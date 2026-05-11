@@ -1,11 +1,44 @@
-/* Expected HTML:
-  <input type="text" id="search-bar" placeholder="Search..." />
-*/
+// ======================================
+// EXERCISE 3
+// HANDLE INPUT VALUE
+// ======================================
 
-// ❓ Print input value when user types
-const searchBar = document.getElementById("search-bar");
+// ❓ Task:
+// Print user input dynamically
+// while typing.
 
-// Listen for the 'input' event, which fires on every keystroke
-searchBar.addEventListener("input", () => {
-  console.log("User typed:", searchBar.value);
+// ======================================
+// HTML EXAMPLE
+// ======================================
+
+// <input id="username" />
+// <p id="output"></p>
+
+// ======================================
+// SELECT ELEMENTS
+// ======================================
+
+const input = document.getElementById("username");
+
+const output = document.getElementById("output");
+
+// ======================================
+// HANDLE INPUT EVENT
+// ======================================
+
+input.addEventListener("input", () => {
+  // Get current value
+  const currentValue = input.value;
+
+  // Print to paragraph
+  output.innerText = `You typed: ${currentValue}`;
+
+  // Print to console
+  console.log(currentValue);
 });
+
+// ======================================
+// EXPECTED RESULT
+// ======================================
+
+// Output updates live while typing.
