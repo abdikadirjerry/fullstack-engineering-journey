@@ -1,9 +1,38 @@
-/* Expected HTML:
-  <h1 id="main-heading">Hello World</h1>
-*/
+// ======================================
+// EXERCISE 1
+// DOM ELEMENT SELECTION
+// ======================================
 
-// ❓ Select element using getElementById
-const heading = document.getElementById("main-heading");
+// ❓ Task:
+// Select the heading element using:
+// 1. getElementById()
+// 2. querySelector()
 
-// Verify it was selected
-console.log("Selected element:", heading);
+// ======================================
+// HTML EXAMPLE
+// ======================================
+
+// <h1 id="title">DOM Basics</h1>
+
+// ======================================
+// SOLUTION
+// ======================================
+
+// Select using getElementById
+const headingById = document.getElementById("title");
+
+// Select using querySelector
+const headingByQuery = document.querySelector("#title");
+
+// Print elements
+console.log("Using ID:");
+console.log(headingById);
+
+console.log("Using Query Selector:");
+console.log(headingByQuery);
+
+// ======================================
+// EXPECTED OUTPUT
+// ======================================
+
+// <h1 id="title">DOM Basics</h1>
