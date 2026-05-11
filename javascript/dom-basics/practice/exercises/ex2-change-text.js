@@ -1,9 +1,45 @@
-/* Expected HTML:
-  <p id="status-message">Loading...</p>
-*/
+// ======================================
+// EXERCISE 2
+// CHANGE TEXT CONTENT
+// ======================================
 
-// ❓ Change element text using innerText
-const statusMessage = document.getElementById("status-message");
+// ❓ Task:
+// Change heading text using:
+// - innerText
+// - innerHTML
 
-// Update the text
-statusMessage.innerText = "Data loaded successfully!";
+// ======================================
+// HTML EXAMPLE
+// ======================================
+
+// <h1 id="heading">Old Title</h1>
+
+// ======================================
+// SELECT ELEMENT
+// ======================================
+
+const heading = document.getElementById("heading");
+
+// ======================================
+// CHANGE TEXT
+// ======================================
+
+// Change plain text
+heading.innerText = "DOM Manipulation Updated";
+
+// Wait 2 seconds
+setTimeout(() => {
+  // Change HTML structure
+  heading.innerHTML = `
+    <span>
+      Updated with innerHTML 🚀
+    </span>
+  `;
+}, 2000);
+
+// ======================================
+// EXPECTED RESULT
+// ======================================
+
+// Text changes immediately,
+// then updates again after 2 seconds.
