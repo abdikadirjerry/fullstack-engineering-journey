@@ -1,46 +1,92 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* ================================
+   GLOBAL STYLES
+================================ */
+
+* {
   margin: 0;
-  background-color: #f4f4f4;
-}
-
-.calculator {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#display {
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: right;
-  padding: 5px;
+  padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background-color: #f4f4f4;
+}
+
+/* ================================
+   CALCULATOR CONTAINER
+================================ */
+
+.calculator {
+  width: 320px;
+
+  background-color: white;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   DISPLAY
+================================ */
+
+#display {
+  width: 100%;
+  height: 60px;
+
+  margin-bottom: 15px;
+  padding: 10px;
+
+  font-size: 24px;
+  text-align: right;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* ================================
+   BUTTON GRID
+================================ */
+
 .buttons {
   display: grid;
+
   grid-template-columns: repeat(4, 1fr);
+
   gap: 10px;
 }
 
+/* ================================
+   BUTTONS
+================================ */
+
 button {
-  height: 50px;
-  cursor: pointer;
+  height: 55px;
+
+  border: none;
+  border-radius: 8px;
+
   font-size: 18px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
 }
 
 button:hover {
-  background-color: #eaeaea;
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.98);
 }
