@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background: #f4f4f4;
+}
+
+form {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 10px;
+
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+input,
+button {
+  padding: 12px;
+}
+
+#message {
+  font-size: 14px;
+}
