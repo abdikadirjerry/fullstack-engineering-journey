@@ -1,0 +1,55 @@
+/* ================================
+   GLOBAL STYLES
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+
+  background: #f4f4f4;
+
+  display: flex;
+  justify-content: center;
+
+  padding-top: 50px;
+}
+
+/* ================================
+   CONTAINER
+================================ */
+
+.container {
+  background: white;
+
+  width: 400px;
+
+  padding: 30px;
+
+  border-radius: 10px;
+}
+
+/* ================================
+   INPUT
+================================ */
+
+input {
+  width: 100%;
+
+  padding: 12px;
+
+  margin: 20px 0;
+}
+
+/* ================================
+   PRODUCT LIST
+================================ */
+
+li {
+  margin: 10px 0;
+}
