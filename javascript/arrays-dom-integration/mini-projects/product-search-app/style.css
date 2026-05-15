@@ -31,7 +31,9 @@ body {
 
   padding: 30px;
 
-  border-radius: 10px;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* ================================
@@ -47,9 +49,15 @@ input {
 }
 
 /* ================================
-   PRODUCT LIST
+   LIST ITEMS
 ================================ */
 
 li {
+  background: #f9f9f9;
+
   margin: 10px 0;
+
+  padding: 10px;
+
+  border-radius: 6px;
 }
