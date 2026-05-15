@@ -14,9 +14,6 @@ body {
 
   background: #f4f4f4;
 
-  display: flex;
-  justify-content: center;
-
   padding: 50px;
 }
 
@@ -25,7 +22,9 @@ body {
 ================================ */
 
 .container {
-  width: 600px;
+  max-width: 700px;
+
+  margin: auto;
 }
 
 /* ================================
@@ -37,11 +36,17 @@ body {
 
   padding: 20px;
 
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .card h3 {
