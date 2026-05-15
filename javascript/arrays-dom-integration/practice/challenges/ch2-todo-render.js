@@ -1,10 +1,10 @@
 // ======================================
 // CHALLENGE 2
-// TODO RENDER APP
+// TODO APP WITH DELETE FEATURE
 // ======================================
 
 // Tasks array
-const tasks = ["Study JavaScript", "Build Projects", "Practice DOM"];
+const tasks = ["Study JavaScript", "Practice DOM"];
 
 // DOM elements
 const list = document.getElementById("todo-list");
@@ -15,13 +15,28 @@ const button = document.getElementById("add-btn");
 
 // Render tasks
 function renderTasks() {
-  // Clear UI
+  // Clear old UI
   list.innerHTML = "";
 
-  tasks.forEach((task) => {
+  tasks.forEach((task, index) => {
+    // Create task item
     const li = document.createElement("li");
 
     li.innerText = task;
+
+    // Create delete button
+    const deleteButton = document.createElement("button");
+
+    deleteButton.innerText = "Delete";
+
+    // Delete event
+    deleteButton.addEventListener("click", () => {
+      tasks.splice(index, 1);
+
+      renderTasks();
+    });
+
+    li.appendChild(deleteButton);
 
     list.appendChild(li);
   });
@@ -30,21 +45,17 @@ function renderTasks() {
 // Initial render
 renderTasks();
 
-// Add task event
+// Add task
 button.addEventListener("click", () => {
   const value = input.value.trim();
 
-  // Prevent empty tasks
   if (value === "") {
     return;
   }
 
-  // Add task
   tasks.push(value);
 
-  // Re-render UI
   renderTasks();
 
-  // Clear input
   input.value = "";
 });
