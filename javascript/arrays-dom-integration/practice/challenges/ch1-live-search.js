@@ -1,24 +1,31 @@
 // ======================================
 // CHALLENGE 1
-// LIVE SEARCH
+// LIVE SEARCH WITH EMPTY MESSAGE
 // ======================================
 
-// Products array
 const products = ["Laptop", "Phone", "Keyboard", "Monitor"];
 
-// DOM elements
 const search = document.getElementById("search");
 
 const list = document.getElementById("list");
 
 // Render products
 function renderProducts(items) {
+  // Clear UI
   list.innerHTML = "";
 
-  items.forEach((item) => {
+  // Show empty state
+  if (items.length === 0) {
+    list.innerHTML = "<li>No products found</li>";
+
+    return;
+  }
+
+  // Render items
+  items.forEach((product) => {
     const li = document.createElement("li");
 
-    li.innerText = item;
+    li.innerText = product;
 
     list.appendChild(li);
   });
