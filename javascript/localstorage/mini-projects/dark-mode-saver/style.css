@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  transition: 0.3s ease;
+}
+
+.container {
+  text-align: center;
+}
+
+.dark-mode {
+  background: #222;
+
+  color: white;
+}
