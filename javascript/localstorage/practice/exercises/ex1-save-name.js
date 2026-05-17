@@ -1,10 +1,13 @@
 // ======================================
 // EXERCISE 1
-// SAVE USERNAME
+// SAVE & DISPLAY USERNAME
 // ======================================
 
-// Save name
+// Save username
 localStorage.setItem("name", "Fatima");
 
-// Output result
-console.log(localStorage.getItem("name"));
+// Retrieve username
+const savedName = localStorage.getItem("name");
+
+// Display result
+console.log(`Saved User: ${savedName}`);
