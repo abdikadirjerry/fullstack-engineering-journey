@@ -12,20 +12,21 @@ const button = document.getElementById("add-btn");
 
 const list = document.getElementById("task-list");
 
-// ======================================
-// SAVE TASKS
-// ======================================
-
+// Save tasks
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// ======================================
-// RENDER TASKS
-// ======================================
-
+// Render tasks
 function renderTasks() {
   list.innerHTML = "";
+
+  // Empty state
+  if (tasks.length === 0) {
+    list.innerHTML = "<li>No tasks available</li>";
+
+    return;
+  }
 
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
@@ -54,10 +55,7 @@ function renderTasks() {
 // Initial render
 renderTasks();
 
-// ======================================
-// ADD TASK
-// ======================================
-
+// Add task
 button.addEventListener("click", () => {
   const value = input.value.trim();
 
@@ -66,15 +64,11 @@ button.addEventListener("click", () => {
     return;
   }
 
-  // Add task
   tasks.push(value);
 
-  // Save tasks
   saveTasks();
 
-  // Re-render UI
   renderTasks();
 
-  // Clear input
   input.value = "";
 });
