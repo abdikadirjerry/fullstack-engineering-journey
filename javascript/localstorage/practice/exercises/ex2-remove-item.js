@@ -1,12 +1,16 @@
 // ======================================
 // EXERCISE 2
-// REMOVE ITEM
+// REMOVE LOCALSTORAGE ITEM
 // ======================================
 
-// Save item
+// Save course
 localStorage.setItem("course", "JavaScript");
+
+// Show before removing
+console.log(localStorage.getItem("course"));
 
 // Remove item
 localStorage.removeItem("course");
 
-console.log("Item removed");
+// Show after removing
+console.log(localStorage.getItem("course"));
