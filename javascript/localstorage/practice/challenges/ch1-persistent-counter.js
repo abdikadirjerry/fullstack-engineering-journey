@@ -1,13 +1,17 @@
 // ======================================
 // CHALLENGE 1
-// PERSISTENT COUNTER
+// PERSISTENT COUNTER WITH RESET
 // ======================================
 
 // Get saved count
 let count = Number(localStorage.getItem("count")) || 0;
 
-// DOM element
+// DOM elements
 const countElement = document.getElementById("count");
+
+const increaseButton = document.getElementById("increase");
+
+const resetButton = document.getElementById("reset");
 
 // Render count
 function renderCount() {
@@ -18,10 +22,18 @@ function renderCount() {
 renderCount();
 
 // Increase counter
-document.getElementById("increase").addEventListener("click", () => {
+increaseButton.addEventListener("click", () => {
   count++;
 
-  // Save count
+  localStorage.setItem("count", count);
+
+  renderCount();
+});
+
+// Reset counter
+resetButton.addEventListener("click", () => {
+  count = 0;
+
   localStorage.setItem("count", count);
 
   renderCount();
