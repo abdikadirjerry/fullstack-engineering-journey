@@ -1,3 +1,14 @@
+/* ================================
+   GLOBAL STYLES
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
 
@@ -8,6 +19,10 @@ body {
 
   padding-top: 50px;
 }
+
+/* ================================
+   CONTAINER
+================================ */
 
 .container {
   background: white;
@@ -21,6 +36,10 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ================================
+   TEXTAREA
+================================ */
+
 textarea {
   width: 100%;
 
@@ -31,4 +50,14 @@ textarea {
   padding: 15px;
 
   resize: none;
+
+  border-radius: 8px;
+
+  border: 1px solid #ccc;
+
+  outline: none;
+}
+
+textarea:focus {
+  border-color: #333;
 }
