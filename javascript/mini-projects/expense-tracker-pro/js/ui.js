@@ -1,7 +1,7 @@
 export function renderExpenses(expenses, list) {
   list.innerHTML = "";
 
-  expenses.forEach((expense) => {
+  expenses.forEach((expense, index) => {
     const li = document.createElement("li");
 
     li.classList.add("expense-item");
@@ -12,7 +12,13 @@ export function renderExpenses(expenses, list) {
         <p>${expense.category}</p>
       </div>
 
-      <span>$${expense.amount}</span>
+      <div>
+        <span>$${expense.amount}</span>
+
+        <button class="delete-btn" data-index="${index}">
+          Delete
+        </button>
+      </div>
     `;
 
     list.appendChild(li);

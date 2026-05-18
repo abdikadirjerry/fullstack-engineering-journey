@@ -25,3 +25,13 @@ form.addEventListener("submit", (e) => {
 
   form.reset();
 });
+
+expenseList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    const index = e.target.dataset.index;
+
+    expenses.splice(index, 1);
+
+    renderExpenses(expenses, expenseList);
+  }
+});
