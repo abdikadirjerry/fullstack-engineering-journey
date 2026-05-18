@@ -1,3 +1,4 @@
+import { saveExpenses, getExpenses } from "./storage.js";
 import { renderExpenses } from "./ui.js";
 
 const form = document.getElementById("expense-form");
@@ -6,10 +7,13 @@ const amountInput = document.getElementById("amount");
 const categoryInput = document.getElementById("category");
 const expenseList = document.getElementById("expense-list");
 
-const expenses = [];
+// GET DATA FROM LOCALSTORAGE
+const expenses = getExpenses();
 
+// SHOW SAVED EXPENSES
 renderExpenses(expenses, expenseList);
 
+// ADD EXPENSE
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -21,16 +25,23 @@ form.addEventListener("submit", (e) => {
 
   expenses.push(expense);
 
+  // SAVE TO LOCALSTORAGE
+  saveExpenses(expenses);
+
   renderExpenses(expenses, expenseList);
 
   form.reset();
 });
 
+// DELETE EXPENSE
 expenseList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-btn")) {
     const index = e.target.dataset.index;
 
     expenses.splice(index, 1);
+
+    // UPDATE LOCALSTORAGE
+    saveExpenses(expenses);
 
     renderExpenses(expenses, expenseList);
   }
