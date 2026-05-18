@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  background: #f4f4f4;
+  padding: 40px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+button {
+  padding: 10px;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  background: #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+}
