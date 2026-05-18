@@ -1,5 +1,6 @@
 import { saveExpenses, getExpenses } from "./storage.js";
 import { renderExpenses } from "./ui.js";
+import { calculateTotal } from "./utils.js";
 
 const form = document.getElementById("expense-form");
 const titleInput = document.getElementById("title");
@@ -7,11 +8,14 @@ const amountInput = document.getElementById("amount");
 const categoryInput = document.getElementById("category");
 const expenseList = document.getElementById("expense-list");
 
+const totalElement = document.getElementById("total");
+const searchInput = document.getElementById("search");
+
 // GET DATA FROM LOCALSTORAGE
 const expenses = getExpenses();
 
-// SHOW SAVED EXPENSES
-renderExpenses(expenses, expenseList);
+// INITIAL UI RENDER
+updateUI();
 
 // ADD EXPENSE
 form.addEventListener("submit", (e) => {
@@ -28,7 +32,7 @@ form.addEventListener("submit", (e) => {
   // SAVE TO LOCALSTORAGE
   saveExpenses(expenses);
 
-  renderExpenses(expenses, expenseList);
+  updateUI();
 
   form.reset();
 });
@@ -43,6 +47,24 @@ expenseList.addEventListener("click", (e) => {
     // UPDATE LOCALSTORAGE
     saveExpenses(expenses);
 
-    renderExpenses(expenses, expenseList);
+    updateUI();
   }
 });
+
+// SEARCH EXPENSES
+searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase();
+
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.title.toLowerCase().includes(value);
+  });
+
+  renderExpenses(filteredExpenses, expenseList);
+});
+
+// UPDATE UI
+function updateUI() {
+  renderExpenses(expenses, expenseList);
+
+  totalElement.textContent = calculateTotal(expenses);
+}
