@@ -1,13 +1,27 @@
 import { renderExpenses } from "./ui.js";
 
+const form = document.getElementById("expense-form");
+const titleInput = document.getElementById("title");
+const amountInput = document.getElementById("amount");
+const categoryInput = document.getElementById("category");
 const expenseList = document.getElementById("expense-list");
 
-const expenses = [
-  {
-    title: "Burger",
-    amount: 10,
-    category: "Food",
-  },
-];
+const expenses = [];
 
 renderExpenses(expenses, expenseList);
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const expense = {
+    title: titleInput.value,
+    amount: Number(amountInput.value),
+    category: categoryInput.value,
+  };
+
+  expenses.push(expense);
+
+  renderExpenses(expenses, expenseList);
+
+  form.reset();
+});
