@@ -23,3 +23,13 @@ form.addEventListener("submit", (e) => {
 
   form.reset();
 });
+
+movieList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
+    const index = e.target.dataset.index;
+
+    movies.splice(index, 1);
+
+    renderMovies(movies, movieList);
+  }
+});
