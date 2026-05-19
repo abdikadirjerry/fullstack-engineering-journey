@@ -1,11 +1,12 @@
 import { renderMovies } from "./ui.js";
+import { saveMovies, getMovies } from "./storage.js";
 
 const form = document.getElementById("movie-form");
 const titleInput = document.getElementById("movie-title");
 const statusInput = document.getElementById("movie-status");
 const movieList = document.getElementById("movie-list");
 
-const movies = [];
+const movies = getMovies();
 
 renderMovies(movies, movieList);
 
@@ -19,6 +20,8 @@ form.addEventListener("submit", (e) => {
 
   movies.push(movie);
 
+  saveMovies(movies);
+
   renderMovies(movies, movieList);
 
   form.reset();
@@ -29,6 +32,8 @@ movieList.addEventListener("click", (e) => {
     const index = e.target.dataset.index;
 
     movies.splice(index, 1);
+
+    saveMovies(movies);
 
     renderMovies(movies, movieList);
   }
