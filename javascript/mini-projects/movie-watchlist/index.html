@@ -9,6 +9,17 @@
   <body>
     <div class="container">
       <h1>Movie WatchList</h1>
+      <form id="movie-form">
+        <input type="text" id="movie-title" placeholder="Movie title" />
+
+        <select id="movie-status">
+          <option value="Watching">Watching</option>
+          <option value="Completed">Completed</option>
+          <option value="Plan to Watch">Plan to Watch</option>
+        </select>
+
+        <button type="submit">Add Movie</button>
+      </form>
     </div>
 
     <script type="module" src="./js/app.js"></script>
