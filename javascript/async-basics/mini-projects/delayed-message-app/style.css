@@ -1,0 +1,35 @@
+body {
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background-color: #f4f4f4;
+}
+
+.container {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+
+  cursor: pointer;
+}
