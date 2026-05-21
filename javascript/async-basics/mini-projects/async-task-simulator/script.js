@@ -1,23 +1,19 @@
 // ======================================
-// DOM ELEMENTS
+// ASYNC TASK SIMULATOR
 // ======================================
 
-const input = document.getElementById("input");
+// DOM elements
+const startButton = document.getElementById("start-btn");
 
-const preview = document.getElementById("preview");
+const statusText = document.getElementById("status");
 
-// ======================================
-// LIVE PREVIEW EVENT
-// ======================================
+// Button event
+startButton.addEventListener("click", () => {
+  // Loading state
+  statusText.innerText = "Processing task...";
 
-input.addEventListener("input", () => {
-  const value = input.value.trim();
-
-  if (value === "") {
-    preview.innerText = "Your text will appear here";
-
-    return;
-  }
-
-  preview.innerText = value;
+  // Simulate async task
+  setTimeout(() => {
+    statusText.innerText = "Task completed successfully";
+  }, 4000);
 });
