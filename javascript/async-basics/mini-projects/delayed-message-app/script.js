@@ -1,44 +1,19 @@
 // ======================================
-// DOM ELEMENTS
+// DELAYED MESSAGE APP
 // ======================================
 
-const countElement = document.getElementById("count");
+// DOM elements
+const button = document.getElementById("show-btn");
 
-const increaseBtn = document.getElementById("increase");
+const message = document.getElementById("message");
 
-const decreaseBtn = document.getElementById("decrease");
+// Button event
+button.addEventListener("click", () => {
+  // Show loading state
+  message.innerText = "Waiting...";
 
-const resetBtn = document.getElementById("reset");
-
-// ======================================
-// STATE
-// ======================================
-
-let count = 0;
-
-// ======================================
-// UPDATE UI
-// ======================================
-
-function updateCount() {
-  countElement.innerText = count;
-}
-
-// ======================================
-// EVENTS
-// ======================================
-
-increaseBtn.addEventListener("click", () => {
-  count++;
-  updateCount();
-});
-
-decreaseBtn.addEventListener("click", () => {
-  count--;
-  updateCount();
-});
-
-resetBtn.addEventListener("click", () => {
-  count = 0;
-  updateCount();
+  // Delay message
+  setTimeout(() => {
+    message.innerText = "Message displayed successfully";
+  }, 3000);
 });
