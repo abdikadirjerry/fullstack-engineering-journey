@@ -2,6 +2,15 @@
 
 This folder contains notes, examples, exercises, challenges, and mini projects focused on learning JavaScript asynchronous behavior.
 
+Topics included:
+
+- Synchronous vs asynchronous JavaScript
+- setTimeout()
+- Delayed execution
+- Async task simulation
+- Countdown timers
+- Callback basics
+
 ---
 
 # 📂 Folder Structure
@@ -24,3 +33,13 @@ async-basics/
     ├── async-task-simulator/
     └── countdown-timer/
 ```
+
+🎯 Learning Goals
+
+By the end of this section, you should understand:
+
+How JavaScript handles async behavior
+How timers work
+How callbacks execute
+How to simulate async operations
+How to structure small async projects
