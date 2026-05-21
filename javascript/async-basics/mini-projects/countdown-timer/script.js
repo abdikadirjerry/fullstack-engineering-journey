@@ -1,33 +1,28 @@
 // ======================================
-// DOM ELEMENTS
+// COUNTDOWN TIMER
 // ======================================
 
-const button = document.getElementById("generate-btn");
+// DOM elements
+const countText = document.getElementById("count");
 
-const colorCode = document.getElementById("color-code");
+const button = document.getElementById("start-btn");
 
-// ======================================
-// GENERATE RANDOM COLOR
-// ======================================
+// Countdown value
+let count = 5;
 
-function generateRandomColor() {
-  const red = Math.floor(Math.random() * 256);
-
-  const green = Math.floor(Math.random() * 256);
-
-  const blue = Math.floor(Math.random() * 256);
-
-  return `rgb(${red}, ${green}, ${blue})`;
-}
-
-// ======================================
-// BUTTON EVENT
-// ======================================
-
+// Button event
 button.addEventListener("click", () => {
-  const randomColor = generateRandomColor();
+  // Countdown interval
+  const timer = setInterval(() => {
+    count--;
 
-  document.body.style.backgroundColor = randomColor;
+    countText.innerText = count;
 
-  colorCode.innerText = randomColor;
+    // Stop timer
+    if (count === 0) {
+      clearInterval(timer);
+
+      countText.innerText = "Done!";
+    }
+  }, 1000);
 });

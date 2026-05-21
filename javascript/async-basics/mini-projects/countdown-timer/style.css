@@ -1,17 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
+
+  background: #f4f4f4;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   min-height: 100vh;
-
-  transition: background 0.3s ease;
 }
 
 .container {
+  background: white;
+
+  width: 400px;
+
+  padding: 30px;
+
+  border-radius: 12px;
+
   text-align: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#count {
+  font-size: 50px;
+
+  margin: 20px 0;
 }
 
 button {
