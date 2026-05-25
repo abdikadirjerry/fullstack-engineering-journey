@@ -7,9 +7,15 @@ const button = document.getElementById("load-btn");
 const status = document.getElementById("status");
 
 function fetchUser() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    const success = true;
+
     setTimeout(() => {
-      resolve("Ahmed");
+      if (success) {
+        resolve("Ahmed");
+      } else {
+        reject("Failed to load user");
+      }
     }, 2000);
   });
 }
@@ -17,9 +23,13 @@ function fetchUser() {
 async function loadUser() {
   status.innerText = "Loading User...";
 
-  const user = await fetchUser();
+  try {
+    const user = await fetchUser();
 
-  status.innerText = `Welcome ${user}`;
+    status.innerText = `Welcome ${user}`;
+  } catch (error) {
+    status.innerText = error;
+  }
 }
 
 button.addEventListener("click", loadUser);
