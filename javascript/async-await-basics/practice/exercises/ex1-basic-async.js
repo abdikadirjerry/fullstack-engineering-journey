@@ -7,6 +7,14 @@ async function greetUser() {
   return "Hello Ahmed";
 }
 
-greetUser().then((result) => {
-  console.log(result);
-});
+async function startGreeting() {
+  console.log("Preparing greeting...");
+
+  const message = await greetUser();
+
+  console.log(message);
+
+  console.log("Greeting completed");
+}
+
+startGreeting();
