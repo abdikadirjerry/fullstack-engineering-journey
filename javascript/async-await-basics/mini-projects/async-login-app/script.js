@@ -15,11 +15,17 @@ function loginUser() {
 }
 
 async function handleLogin() {
+  // Disable button
+  button.disabled = true;
+
   status.innerText = "Logging in...";
 
   const result = await loginUser();
 
   status.innerText = result;
+
+  // Enable button
+  button.disabled = false;
 }
 
 button.addEventListener("click", handleLogin);
