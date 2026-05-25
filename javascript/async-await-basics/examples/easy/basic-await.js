@@ -7,9 +7,15 @@ function getMessage() {
 }
 
 async function loadMessage() {
+  console.log("Loading message...");
+
   const message = await getMessage();
 
+  console.log("Message received");
+
   console.log(message);
+
+  console.log("Execution completed");
 }
 
 loadMessage();
