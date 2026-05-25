@@ -19,7 +19,17 @@ function loadProfile() {
   });
 }
 
+function loadDashboard() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Dashboard Ready");
+    }, 2000);
+  });
+}
+
 async function startLogin() {
+  console.log("Starting login...");
+
   const user = await loginUser();
 
   console.log(`Welcome ${user}`);
@@ -27,6 +37,12 @@ async function startLogin() {
   const profile = await loadProfile();
 
   console.log(profile);
+
+  const dashboard = await loadDashboard();
+
+  console.log(dashboard);
+
+  console.log("System fully loaded");
 }
 
 startLogin();
