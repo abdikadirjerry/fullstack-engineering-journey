@@ -12,9 +12,13 @@ function delayedMessage() {
 }
 
 async function showMessage() {
+  console.log("Waiting for message...");
+
   const result = await delayedMessage();
 
   console.log(result);
+
+  console.log("Async task completed");
 }
 
 showMessage();
