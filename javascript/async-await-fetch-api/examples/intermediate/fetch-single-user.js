@@ -1,19 +1,27 @@
 // ======================================
-// FETCH POSTS
+// FETCH SINGLE USER
 // ======================================
 
-async function getPosts() {
+async function getUser() {
   try {
-    console.log("Loading posts...");
+    console.log("Fetching user...");
 
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/users/1",
+    );
 
-    const posts = await response.json();
+    const user = await response.json();
 
-    console.log(posts);
+    console.log("User loaded successfully");
+
+    console.log(user);
+
+    console.log(`Username: ${user.username}`);
   } catch (error) {
+    console.log("Error loading user");
+
     console.log(error);
   }
 }
 
-getPosts();
+getUser();
