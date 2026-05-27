@@ -10,8 +10,14 @@ async function getPosts() {
 
     const posts = await response.json();
 
+    console.log("Posts loaded successfully");
+
+    console.log(`Total posts: ${posts.length}`);
+
     console.log(posts);
   } catch (error) {
+    console.log("Failed to fetch posts");
+
     console.log(error);
   }
 }
