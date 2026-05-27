@@ -7,6 +7,8 @@ const button = document.getElementById("weather-btn");
 const result = document.getElementById("result");
 
 async function loadWeather() {
+  button.disabled = true;
+
   result.innerText = "Loading weather...";
 
   try {
@@ -20,6 +22,8 @@ async function loadWeather() {
   } catch (error) {
     result.innerText = "Failed to load weather";
   }
+
+  button.disabled = false;
 }
 
 button.addEventListener("click", loadWeather);
