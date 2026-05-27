@@ -4,11 +4,21 @@
 // ======================================
 
 async function loadUsers() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  try {
+    console.log("Loading users...");
 
-  const users = await response.json();
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
 
-  console.log(users);
+    const users = await response.json();
+
+    console.log(`Total users: ${users.length}`);
+
+    console.log(users);
+  } catch (error) {
+    console.log("Failed to fetch users");
+
+    console.log(error);
+  }
 }
 
 loadUsers();
