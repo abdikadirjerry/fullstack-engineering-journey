@@ -10,15 +10,39 @@ const button = document.getElementById("search-btn");
 const profile = document.getElementById("profile");
 
 async function loadProfile() {
-  const response = await fetch(`https://api.github.com/users/${input.value}`);
+  profile.innerHTML = "<p>Loading profile...</p>";
 
-  const user = await response.json();
+  try {
+    const response = await fetch(`https://api.github.com/users/${input.value}`);
 
-  profile.innerHTML = `
-    <h2>${user.login}</h2>
-    <img src="${user.avatar_url}" width="120">
-    <p>Followers: ${user.followers}</p>
-  `;
+    const user = await response.json();
+
+    profile.innerHTML = `
+      <h2>${user.login}</h2>
+
+      <img
+        src="${user.avatar_url}"
+        width="120"
+      >
+
+      <p>
+        Followers:
+        ${user.followers}
+      </p>
+
+      <p>
+        Following:
+        ${user.following}
+      </p>
+
+      <p>
+        Repositories:
+        ${user.public_repos}
+      </p>
+    `;
+  } catch (error) {
+    profile.innerHTML = "<p>Failed to load profile.</p>";
+  }
 }
 
 button.addEventListener("click", loadProfile);
