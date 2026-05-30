@@ -6,15 +6,28 @@
 const commentsContainer = document.getElementById("comments");
 
 async function loadComments() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/comments");
+  commentsContainer.innerHTML = "<p>Loading comments...</p>";
 
-  const comments = await response.json();
+  try {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/comments",
+    );
 
-  comments.slice(0, 5).forEach((comment) => {
-    commentsContainer.innerHTML += `
-      <p>${comment.email}</p>
-    `;
-  });
+    const comments = await response.json();
+
+    commentsContainer.innerHTML = "";
+
+    comments.slice(0, 5).forEach((comment) => {
+      commentsContainer.innerHTML += `
+        <div>
+          <h4>${comment.name}</h4>
+          <p>${comment.email}</p>
+        </div>
+      `;
+    });
+  } catch (error) {
+    commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
+  }
 }
 
 loadComments();
