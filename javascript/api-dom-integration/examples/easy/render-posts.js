@@ -5,15 +5,26 @@
 const postsContainer = document.getElementById("posts");
 
 async function loadPosts() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  postsContainer.innerHTML = "<p>Loading posts...</p>";
 
-  const posts = await response.json();
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
 
-  posts.slice(0, 5).forEach((post) => {
-    postsContainer.innerHTML += `
-      <h3>${post.title}</h3>
-    `;
-  });
+    const posts = await response.json();
+
+    postsContainer.innerHTML = "";
+
+    posts.slice(0, 5).forEach((post) => {
+      postsContainer.innerHTML += `
+        <div>
+          <h3>${post.title}</h3>
+          <p>${post.body}</p>
+        </div>
+      `;
+    });
+  } catch (error) {
+    postsContainer.innerHTML = "<p>Failed to load posts.</p>";
+  }
 }
 
 loadPosts();
