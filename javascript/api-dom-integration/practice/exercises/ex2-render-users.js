@@ -6,15 +6,27 @@
 const usersContainer = document.getElementById("users");
 
 async function renderUsers() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  usersContainer.innerHTML = "<p>Loading users...</p>";
 
-  const users = await response.json();
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
 
-  users.forEach((user) => {
-    usersContainer.innerHTML += `
-      <h3>${user.name}</h3>
-    `;
-  });
+    const users = await response.json();
+
+    usersContainer.innerHTML = "";
+
+    users.forEach((user) => {
+      usersContainer.innerHTML += `
+        <div>
+          <h3>${user.name}</h3>
+          <p>${user.email}</p>
+          <p>${user.phone}</p>
+        </div>
+      `;
+    });
+  } catch (error) {
+    usersContainer.innerHTML = "<p>Failed to load users.</p>";
+  }
 }
 
 renderUsers();
