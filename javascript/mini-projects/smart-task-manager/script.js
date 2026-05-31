@@ -4,42 +4,44 @@ const input = document.getElementById("task-input");
 
 const taskList = document.getElementById("task-list");
 
+const searchInput = document.getElementById("search-input");
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function renderTasks() {
+function renderTasks(filteredTasks = tasks) {
   taskList.innerHTML = "";
 
-  tasks.forEach((task, index) => {
+  filteredTasks.forEach((task, index) => {
     taskList.innerHTML += `
-      <li>
+        <li>
 
-        <span
-          style="
-            text-decoration:
-            ${task.completed ? "line-through" : "none"};
-          "
-        >
-          ${task.text}
-        </span>
+          <span
+            style="
+              text-decoration:
+              ${task.completed ? "line-through" : "none"};
+            "
+          >
+            ${task.text}
+          </span>
 
-        <button
-          onclick="toggleTask(${index})"
-        >
-          ${task.completed ? "Undo" : "Complete"}
-        </button>
+          <button
+            onclick="toggleTask(${index})"
+          >
+            ${task.completed ? "Undo" : "Complete"}
+          </button>
 
-        <button
-          onclick="deleteTask(${index})"
-        >
-          Delete
-        </button>
+          <button
+            onclick="deleteTask(${index})"
+          >
+            Delete
+          </button>
 
-      </li>
-    `;
+        </li>
+      `;
   });
 }
 
@@ -76,6 +78,16 @@ form.addEventListener("submit", (event) => {
   renderTasks();
 
   input.value = "";
+});
+
+searchInput.addEventListener("input", (event) => {
+  const keyword = event.target.value.toLowerCase();
+
+  const filteredTasks = tasks.filter((task) =>
+    task.text.toLowerCase().includes(keyword),
+  );
+
+  renderTasks(filteredTasks);
 });
 
 renderTasks();
