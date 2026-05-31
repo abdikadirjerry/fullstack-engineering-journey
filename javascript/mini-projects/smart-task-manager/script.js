@@ -12,7 +12,21 @@ function renderTasks() {
   tasks.forEach((task, index) => {
     taskList.innerHTML += `
       <li>
-        ${task}
+
+        <span
+          style="
+            text-decoration:
+            ${task.completed ? "line-through" : "none"};
+          "
+        >
+          ${task.text}
+        </span>
+
+        <button
+          onclick="toggleTask(${index})"
+        >
+          ${task.completed ? "Undo" : "Complete"}
+        </button>
 
         <button
           onclick="deleteTask(${index})"
@@ -31,14 +45,23 @@ function deleteTask(index) {
   renderTasks();
 }
 
+function toggleTask(index) {
+  tasks[index].completed = !tasks[index].completed;
+
+  renderTasks();
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const task = input.value.trim();
+  const text = input.value.trim();
 
-  if (!task) return;
+  if (!text) return;
 
-  tasks.push(task);
+  tasks.push({
+    text,
+    completed: false,
+  });
 
   renderTasks();
 
