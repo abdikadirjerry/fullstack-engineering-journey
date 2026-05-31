@@ -6,10 +6,26 @@ const taskList = document.getElementById("task-list");
 
 const searchInput = document.getElementById("search-input");
 
+const totalTasks = document.getElementById("total-tasks");
+
+const completedTasks = document.getElementById("completed-tasks");
+
+const quote = document.getElementById("quote");
+
+const quoteBtn = document.getElementById("quote-btn");
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function updateStats() {
+  totalTasks.innerText = `Total Tasks: ${tasks.length}`;
+
+  const completed = tasks.filter((task) => task.completed).length;
+
+  completedTasks.innerText = `Completed Tasks: ${completed}`;
 }
 
 function renderTasks(filteredTasks = tasks) {
@@ -43,6 +59,8 @@ function renderTasks(filteredTasks = tasks) {
         </li>
       `;
   });
+
+  updateStats();
 }
 
 function deleteTask(index) {
@@ -89,5 +107,21 @@ searchInput.addEventListener("input", (event) => {
 
   renderTasks(filteredTasks);
 });
+
+async function loadQuote() {
+  quote.innerText = "Loading quote...";
+
+  try {
+    const response = await fetch("https://dummyjson.com/quotes/random");
+
+    const data = await response.json();
+
+    quote.innerText = `"${data.quote}" — ${data.author}`;
+  } catch {
+    quote.innerText = "Failed to load quote.";
+  }
+}
+
+quoteBtn.addEventListener("click", loadQuote);
 
 renderTasks();
