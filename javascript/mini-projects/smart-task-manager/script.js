@@ -81,6 +81,10 @@ function renderTasks(filteredTasks = tasks) {
 }
 
 function deleteTask(index) {
+  const confirmed = confirm("Are you sure you want to delete this task?");
+
+  if (!confirmed) return;
+
   tasks.splice(index, 1);
 
   saveTasks();
