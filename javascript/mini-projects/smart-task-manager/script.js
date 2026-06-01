@@ -35,26 +35,43 @@ function renderTasks(filteredTasks = tasks) {
     taskList.innerHTML += `
         <li>
 
-          <span
-            style="
-              text-decoration:
-              ${task.completed ? "line-through" : "none"};
-            "
-          >
-            ${task.text}
-          </span>
+          <div>
 
-          <button
-            onclick="toggleTask(${index})"
-          >
-            ${task.completed ? "Undo" : "Complete"}
-          </button>
+            <strong
+              style="
+                text-decoration:
+                ${task.completed ? "line-through" : "none"};
+              "
+            >
+              ${task.text}
+            </strong>
 
-          <button
-            onclick="deleteTask(${index})"
-          >
-            Delete
-          </button>
+            <br>
+
+            <small>
+              Created:
+              ${task.createdAt}
+            </small>
+
+          </div>
+
+          <div>
+
+            <button
+              class="complete-btn"
+              onclick="toggleTask(${index})"
+            >
+              ${task.completed ? "Undo" : "Complete"}
+            </button>
+
+            <button
+              class="delete-btn"
+              onclick="deleteTask(${index})"
+            >
+              Delete
+            </button>
+
+          </div>
 
         </li>
       `;
@@ -89,6 +106,7 @@ form.addEventListener("submit", (event) => {
   tasks.push({
     text,
     completed: false,
+    createdAt: new Date().toLocaleDateString(),
   });
 
   saveTasks();
