@@ -31,6 +31,23 @@ function updateStats() {
 function renderTasks(filteredTasks = tasks) {
   taskList.innerHTML = "";
 
+  if (filteredTasks.length === 0) {
+    taskList.innerHTML = `
+      <li
+        style="
+          justify-content:center;
+          color:#6b7280;
+        "
+      >
+        No tasks found.
+      </li>
+    `;
+
+    updateStats();
+
+    return;
+  }
+
   filteredTasks.forEach((task, index) => {
     taskList.innerHTML += `
         <li>
