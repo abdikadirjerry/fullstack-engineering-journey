@@ -23,6 +23,8 @@ function saveTasks() {
 function updateStats() {
   totalTasks.innerText = `Total Tasks: ${tasks.length}`;
 
+  taskCount.innerText = tasks.length;
+
   const completed = tasks.filter((task) => task.completed).length;
 
   completedTasks.innerText = `Completed Tasks: ${completed}`;
