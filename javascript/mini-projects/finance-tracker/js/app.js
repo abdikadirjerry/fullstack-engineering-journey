@@ -19,3 +19,23 @@ taskForm.addEventListener("submit", (event) => {
 
   taskInput.value = "";
 });
+
+/* ==========================
+   PROJECT TRACKER
+========================== */
+
+const projectForm = document.getElementById("project-form");
+
+const projectInput = document.getElementById("project-input");
+
+projectForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const value = projectInput.value.trim();
+
+  if (!value) return;
+
+  addProject(value);
+
+  projectInput.value = "";
+});
