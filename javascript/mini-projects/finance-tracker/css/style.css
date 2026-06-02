@@ -1,24 +1,42 @@
+/* =========================
+   RESET
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =========================
+   BODY
+========================= */
+
 body {
   font-family: Arial, sans-serif;
 
   background: #f3f4f6;
 
-  padding: 40px;
+  color: #111827;
+
+  padding: 30px;
 
   transition: 0.3s;
 }
 
-.container {
-  max-width: 1200px;
+/* =========================
+   CONTAINER
+========================= */
 
-  margin: auto;
+.container {
+  max-width: 1300px;
+
+  margin: 0 auto;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .header-top {
   display: flex;
@@ -30,6 +48,18 @@ body {
   margin-bottom: 30px;
 }
 
+.header-top h1 {
+  margin-bottom: 8px;
+}
+
+.header-top p {
+  color: #6b7280;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
 .dashboard {
   display: grid;
 
@@ -40,6 +70,10 @@ body {
   margin-bottom: 25px;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .card,
 .task-section,
 .timer-section {
@@ -47,17 +81,37 @@ body {
 
   padding: 20px;
 
-  border-radius: 12px;
+  border-radius: 16px;
 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition: 0.3s;
+}
+
+.card:hover,
+.task-section:hover,
+.timer-section:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  color: #6b7280;
 }
 
 .card p {
   margin-top: 10px;
 
-  font-size: 28px;
+  font-size: 32px;
 
   font-weight: bold;
+}
+
+/* =========================
+   TASK SECTION
+========================= */
+
+.task-section {
+  margin-bottom: 25px;
 }
 
 form {
@@ -71,29 +125,63 @@ form {
 input {
   flex: 1;
 
-  padding: 10px;
+  padding: 12px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  outline: none;
 }
+
+input:focus {
+  border-color: #2563eb;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 
 button {
-  padding: 10px 15px;
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  background: #2563eb;
+
+  color: white;
 
   cursor: pointer;
+
+  transition: 0.3s;
 }
 
-#task-list {
+button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   TASK LIST
+========================= */
+
+#task-list,
+#project-list {
   list-style: none;
 
   margin-top: 20px;
 }
 
-#task-list li {
+#task-list li,
+#project-list li {
   display: flex;
 
   justify-content: space-between;
 
   align-items: center;
 
-  padding: 10px;
+  padding: 12px;
 
   margin-bottom: 10px;
 
@@ -102,7 +190,35 @@ button {
   border-radius: 8px;
 }
 
-/* DARK MODE */
+/* =========================
+   TIMER
+========================= */
+
+.timer-section {
+  margin-bottom: 25px;
+}
+
+#timer {
+  font-size: 64px;
+
+  text-align: center;
+
+  margin: 25px 0;
+}
+
+/* =========================
+   QUOTE
+========================= */
+
+#quote {
+  margin: 15px 0;
+
+  line-height: 1.7;
+}
+
+/* =========================
+   DARK MODE
+========================= */
 
 body.dark {
   background: #111827;
@@ -116,6 +232,45 @@ body.dark .timer-section {
   background: #1f2937;
 }
 
-body.dark #task-list li {
+body.dark .header-top p {
+  color: #d1d5db;
+}
+
+body.dark input {
   background: #374151;
+
+  color: white;
+
+  border-color: #4b5563;
+}
+
+body.dark #task-list li,
+body.dark #project-list li {
+  background: #374151;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .header-top {
+    flex-direction: column;
+
+    gap: 15px;
+
+    text-align: center;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  #timer {
+    font-size: 48px;
+  }
 }
