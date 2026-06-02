@@ -18,6 +18,63 @@ body {
   margin: auto;
 }
 
-h1 {
-  margin-bottom: 10px;
+header {
+  margin-bottom: 30px;
+}
+
+.dashboard {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.task-section,
+.timer-section {
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 15px;
+}
+
+input {
+  flex: 1;
+
+  padding: 10px;
+}
+
+button {
+  padding: 10px 15px;
+
+  cursor: pointer;
+}
+
+#task-list {
+  list-style: none;
+
+  margin-top: 20px;
 }

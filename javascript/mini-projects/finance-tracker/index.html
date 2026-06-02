@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>DevTracker Pro</title>
@@ -10,9 +11,49 @@
   </head>
   <body>
     <div class="container">
-      <h1>DevTracker Pro</h1>
+      <header>
+        <h1>DevTracker Pro</h1>
 
-      <p>Developer Productivity Dashboard</p>
+        <p>Developer Productivity Dashboard</p>
+      </header>
+
+      <section class="dashboard">
+        <div class="card">
+          <h3>Total Tasks</h3>
+
+          <p id="total-tasks">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Completed</h3>
+
+          <p id="completed-tasks">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Completion Rate</h3>
+
+          <p id="completion-rate">0%</p>
+        </div>
+      </section>
+
+      <section class="task-section">
+        <h2>Tasks</h2>
+
+        <form id="task-form">
+          <input type="text" id="task-input" placeholder="Add task..." />
+
+          <button type="submit">Add</button>
+        </form>
+
+        <ul id="task-list"></ul>
+      </section>
+
+      <section class="timer-section">
+        <h2>Pomodoro Timer</h2>
+
+        <h3 id="timer">25:00</h3>
+      </section>
     </div>
 
     <script src="./js/storage.js"></script>
