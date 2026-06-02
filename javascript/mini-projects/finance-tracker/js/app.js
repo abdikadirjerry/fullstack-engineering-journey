@@ -6,6 +6,8 @@ loadTasks();
 
 renderTasks();
 
+updateStats();
+
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
