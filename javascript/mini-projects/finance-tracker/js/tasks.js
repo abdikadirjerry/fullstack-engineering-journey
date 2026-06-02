@@ -7,13 +7,21 @@ function addTask(text) {
     completed: false,
   });
 
+  saveTasks();
+
   renderTasks();
+
+  updateStats();
 }
 
 function deleteTask(id) {
   tasks = tasks.filter((task) => task.id !== id);
 
+  saveTasks();
+
   renderTasks();
+
+  updateStats();
 }
 
 function toggleTask(id) {
@@ -28,7 +36,11 @@ function toggleTask(id) {
     return task;
   });
 
+  saveTasks();
+
   renderTasks();
+
+  updateStats();
 }
 
 function renderTasks() {
@@ -49,21 +61,25 @@ function renderTasks() {
           ${task.text}
         </span>
 
-        <button
-          onclick="
-            toggleTask(${task.id})
-          "
-        >
-          Complete
-        </button>
+        <div>
 
-        <button
-          onclick="
-            deleteTask(${task.id})
-          "
-        >
-          Delete
-        </button>
+          <button
+            onclick="
+              toggleTask(${task.id})
+            "
+          >
+            ${task.completed ? "Undo" : "Complete"}
+          </button>
+
+          <button
+            onclick="
+              deleteTask(${task.id})
+            "
+          >
+            Delete
+          </button>
+
+        </div>
 
       </li>
     `;
