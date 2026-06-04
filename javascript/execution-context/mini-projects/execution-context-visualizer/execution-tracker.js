@@ -1,33 +1,19 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+function login() {
+  console.log("Entering Login Context");
 
-    <meta
-      name="viewport"
-      content="width=device-width,
-                 initial-scale=1.0"
-    />
+  authenticate();
+}
 
-    <title>Counter App</title>
+function authenticate() {
+  console.log("Entering Authentication Context");
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Counter App</h1>
+  createSession();
+}
 
-      <h2 id="count">0</h2>
+function createSession() {
+  console.log("Entering Session Context");
 
-      <div class="buttons">
-        <button id="decrease">-</button>
+  console.log("Session Created");
+}
 
-        <button id="reset">Reset</button>
-
-        <button id="increase">+</button>
-      </div>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+login();
