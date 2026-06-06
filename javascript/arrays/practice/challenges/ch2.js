@@ -1,20 +1,5 @@
-const products = [
-  {
-    name: "Laptop",
-    price: 1000,
-  },
+const students = ["Jerry", "Ahmed", "Ali", "Hassan", "Abdi"];
 
-  {
-    name: "Mouse",
-    price: 20,
-  },
+const sortedStudents = [...students].sort();
 
-  {
-    name: "Keyboard",
-    price: 50,
-  },
-];
-
-const expensiveProducts = products.filter((product) => product.price >= 50);
-
-console.log(expensiveProducts);
+console.log(sortedStudents);
