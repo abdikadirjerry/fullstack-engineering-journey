@@ -34,8 +34,12 @@ function getStudent(id) {
   return students.find((student) => student.id === id);
 }
 
-addStudent("mohamed");
+function getStudentCount() {
+  return students.length;
+}
+
+addStudent("Hassan");
 
 console.log(students);
 
-console.log(getStudent(1));
+console.log("Total Students:", getStudentCount());
