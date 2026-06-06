@@ -40,4 +40,3 @@ This lesson covers:
 ## Mini Project
 
 Student Manager
-clg
