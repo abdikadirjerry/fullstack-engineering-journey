@@ -1,5 +1,7 @@
-const ages = [12, 18, 21, 30, 15];
+const skills = ["HTML", "CSS", "JavaScript", "HTML", "CSS", "React"];
 
-const adults = ages.filter((age) => age >= 18);
+const uniqueSkills = [...new Set(skills)];
 
-console.log(adults);
+console.log("Original:", skills);
+
+console.log("Unique:", uniqueSkills);
