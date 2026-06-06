@@ -1,5 +1,5 @@
-const scores = [10, 20, 30];
+const students = ["Ahmed", "Ali", "Jerry", "Hassan"];
 
-const doubledScores = scores.map((score) => score * 2);
+const foundStudent = students.find((student) => student === "Jerry");
 
-console.log(doubledScores);
+console.log(foundStudent);
