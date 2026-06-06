@@ -1,22 +1,7 @@
-const products = [
-  {
-    name: "Laptop",
-    price: 800,
-  },
+const scores = [70, 80, 90, 100];
 
-  {
-    name: "Mouse",
-    price: 25,
-  },
+const total = scores.reduce((sum, score) => sum + score, 0);
 
-  {
-    name: "Keyboard",
-    price: 50,
-  },
-];
+const average = total / scores.length;
 
-const expensiveProducts = products
-  .filter((product) => product.price >= 50)
-  .map((product) => product.name);
-
-console.log(expensiveProducts);
+console.log("Average Score:", average);
