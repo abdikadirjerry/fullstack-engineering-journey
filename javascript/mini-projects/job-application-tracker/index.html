@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Job Application Tracker</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Job Application Tracker</h1>
+
+        <button id="theme-btn">Dark Mode</button>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <h3>Total</h3>
+          <p id="total-applications">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Interviews</h3>
+          <p id="interviews">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Accepted</h3>
+          <p id="accepted">0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <form id="application-form">
+          <input type="text" id="company" placeholder="Company Name" required />
+
+          <input type="text" id="position" placeholder="Position" required />
+
+          <select id="status">
+            <option value="Applied">Applied</option>
+
+            <option value="Interview">Interview</option>
+
+            <option value="Rejected">Rejected</option>
+
+            <option value="Accepted">Accepted</option>
+          </select>
+
+          <button type="submit">Add Application</button>
+        </form>
+      </section>
+
+      <section>
+        <input type="text" id="search" placeholder="Search Company..." />
+
+        <select id="filter">
+          <option value="All">All</option>
+
+          <option value="Applied">Applied</option>
+
+          <option value="Interview">Interview</option>
+
+          <option value="Rejected">Rejected</option>
+
+          <option value="Accepted">Accepted</option>
+        </select>
+      </section>
+
+      <ul id="application-list"></ul>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/applications.js"></script>
+  </body>
+</html>
