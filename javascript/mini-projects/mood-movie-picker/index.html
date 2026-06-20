@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Movie Picker</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Mood Movie Picker</h1>
+
+      <p class="subtitle">Select your mood and discover a movie.</p>
+
+      <select id="mood">
+        <option value="">Choose Mood</option>
+        <option value="happy">Happy</option>
+        <option value="sad">Sad</option>
+        <option value="excited">Excited</option>
+        <option value="relaxed">Relaxed</option>
+      </select>
+
+      <button id="pick-btn">Pick Movie</button>
+
+      <div class="movie-card">
+        <h2 id="movie-title">Your movie will appear here</h2>
+
+        <p id="movie-description">Select a mood first.</p>
+      </div>
+    </div>
+
+    <script src="data/movies.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
