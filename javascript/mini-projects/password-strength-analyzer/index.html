@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Analyzer Pro</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Password Strength Analyzer Pro</h1>
+        <p>Analyze and generate secure passwords</p>
+      </header>
+
+      <section class="password-section">
+        <div class="input-group">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Enter password..."
+          />
+
+          <button id="toggle-password">Show</button>
+        </div>
+
+        <div class="actions">
+          <button id="generate-btn">Generate Password</button>
+
+          <button id="copy-btn">Copy Password</button>
+        </div>
+      </section>
+
+      <section class="strength-section">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <h2 id="strength-text">Strength: Very Weak</h2>
+
+        <p id="score-text">Score: 0 / 100</p>
+      </section>
+
+      <section class="requirements">
+        <h3>Password Requirements</h3>
+
+        <ul>
+          <li id="length-check">❌ At least 8 characters</li>
+
+          <li id="uppercase-check">❌ Uppercase letter</li>
+
+          <li id="lowercase-check">❌ Lowercase letter</li>
+
+          <li id="number-check">❌ Number</li>
+
+          <li id="special-check">❌ Special character</li>
+        </ul>
+      </section>
+
+      <section class="entropy-section">
+        <h3>Password Entropy</h3>
+
+        <p id="entropy-text">0 bits</p>
+      </section>
+    </div>
+
+    <script src="js/passwordAnalyzer.js"></script>
+    <script src="js/passwordGenerator.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
