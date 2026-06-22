@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Personal Budget Dashboard</h1>
+        <p>Track income, expenses and balance</p>
+      </header>
+
+      <section class="summary">
+        <div class="card">
+          <h3>Total Income</h3>
+          <p id="income">$0</p>
+        </div>
+
+        <div class="card">
+          <h3>Total Expenses</h3>
+          <p id="expenses">$0</p>
+        </div>
+
+        <div class="card">
+          <h3>Balance</h3>
+          <p id="balance">$0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Add Transaction</h2>
+
+        <form id="transaction-form">
+          <input
+            type="text"
+            id="title"
+            placeholder="Transaction title"
+            required
+          />
+
+          <input type="number" id="amount" placeholder="Amount" required />
+
+          <select id="type">
+            <option value="income">Income</option>
+
+            <option value="expense">Expense</option>
+          </select>
+
+          <select id="category">
+            <option value="Salary">Salary</option>
+
+            <option value="Food">Food</option>
+
+            <option value="Transport">Transport</option>
+
+            <option value="Shopping">Shopping</option>
+
+            <option value="Bills">Bills</option>
+          </select>
+
+          <button type="submit">Add Transaction</button>
+        </form>
+      </section>
+
+      <section class="filter-section">
+        <h2>Filter Transactions</h2>
+
+        <select id="filter">
+          <option value="all">All</option>
+
+          <option value="income">Income</option>
+
+          <option value="expense">Expense</option>
+        </select>
+      </section>
+
+      <section>
+        <h2>Transactions</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody id="transaction-list"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="js/calculations.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
