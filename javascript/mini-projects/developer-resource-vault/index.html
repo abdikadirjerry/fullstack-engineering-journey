@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Resource Vault</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Developer Resource Vault</h1>
+        <p>Save and organize your learning resources.</p>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <h3>Total Resources</h3>
+          <p id="total-resources">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Frontend</h3>
+          <p id="frontend-count">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Cybersecurity</h3>
+          <p id="cyber-count">0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Add Resource</h2>
+
+        <form id="resource-form">
+          <input type="text" id="title" placeholder="Resource Title" required />
+
+          <input
+            type="url"
+            id="url"
+            placeholder="https://example.com"
+            required
+          />
+
+          <select id="category">
+            <option value="Frontend">Frontend</option>
+
+            <option value="Backend">Backend</option>
+
+            <option value="Database">Database</option>
+
+            <option value="DevOps">DevOps</option>
+
+            <option value="Cybersecurity">Cybersecurity</option>
+          </select>
+
+          <button type="submit">Save Resource</button>
+        </form>
+      </section>
+
+      <section class="filters">
+        <input type="text" id="search" placeholder="Search resources..." />
+
+        <select id="filter-category">
+          <option value="All">All Categories</option>
+
+          <option value="Frontend">Frontend</option>
+
+          <option value="Backend">Backend</option>
+
+          <option value="Database">Database</option>
+
+          <option value="DevOps">DevOps</option>
+
+          <option value="Cybersecurity">Cybersecurity</option>
+        </select>
+      </section>
+
+      <section>
+        <h2>Saved Resources</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Visit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody id="resource-list"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
