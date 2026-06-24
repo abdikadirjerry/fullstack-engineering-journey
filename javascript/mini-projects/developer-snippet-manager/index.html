@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Snippet Manager</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Developer Snippet Manager</h1>
+        <p>Store and organize your favorite code snippets.</p>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <h3>Total Snippets</h3>
+          <p id="total-snippets">0</p>
+        </div>
+
+        <div class="card">
+          <h3>JavaScript</h3>
+          <p id="javascript-count">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Favorites</h3>
+          <p id="favorite-count">0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Add Snippet</h2>
+
+        <form id="snippet-form">
+          <input type="text" id="title" placeholder="Snippet Title" required />
+
+          <select id="language">
+            <option value="JavaScript">JavaScript</option>
+
+            <option value="HTML">HTML</option>
+
+            <option value="CSS">CSS</option>
+
+            <option value="Python">Python</option>
+
+            <option value="SQL">SQL</option>
+          </select>
+
+          <textarea
+            id="code"
+            placeholder="Paste your code here..."
+            required
+          ></textarea>
+
+          <button type="submit">Save Snippet</button>
+        </form>
+      </section>
+
+      <section class="filters">
+        <input type="text" id="search" placeholder="Search snippets..." />
+
+        <select id="language-filter">
+          <option value="All">All Languages</option>
+
+          <option value="JavaScript">JavaScript</option>
+
+          <option value="HTML">HTML</option>
+
+          <option value="CSS">CSS</option>
+
+          <option value="Python">Python</option>
+
+          <option value="SQL">SQL</option>
+        </select>
+      </section>
+
+      <section>
+        <h2>Saved Snippets</h2>
+
+        <div id="snippet-list"></div>
+      </section>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
