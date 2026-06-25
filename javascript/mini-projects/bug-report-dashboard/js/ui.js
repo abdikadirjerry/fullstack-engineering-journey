@@ -1,15 +1,10 @@
 function renderBugs(bugs) {
+  const bugList = document.getElementById("bug-list");
 
-    const bugList =
-        document.getElementById(
-            "bug-list"
-        );
+  bugList.innerHTML = "";
 
-    bugList.innerHTML = "";
-
-    if (bugs.length === 0) {
-
-        bugList.innerHTML = `
+  if (bugs.length === 0) {
+    bugList.innerHTML = `
             <tr>
                 <td colspan="4">
                     No bugs found
@@ -17,19 +12,15 @@ function renderBugs(bugs) {
             </tr>
         `;
 
-        updateStatistics([]);
+    updateStatistics([]);
 
-        return;
-    }
+    return;
+  }
 
-    bugs.forEach(bug => {
+  bugs.forEach((bug) => {
+    const row = document.createElement("tr");
 
-        const row =
-            document.createElement(
-                "tr"
-            );
-
-        row.innerHTML = `
+    row.innerHTML = `
             <td>${bug.title}</td>
             <td>${bug.priority}</td>
             <td>${bug.status}</td>
@@ -43,12 +34,8 @@ function renderBugs(bugs) {
             </td>
         `;
 
-        bugList.appendChild(
-            row
-        );
-    });
+    bugList.appendChild(row);
+  });
 
-    updateStatistics(
-        bugs
-    );
+  updateStatistics(bugs);
 }
