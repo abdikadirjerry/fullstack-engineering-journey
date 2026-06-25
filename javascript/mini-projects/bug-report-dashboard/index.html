@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Report Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Bug Report Dashboard</h1>
+        <p>Track software bugs efficiently.</p>
+      </header>
+
+      <section class="stats">
+        <div class="card">
+          <h3>Total Bugs</h3>
+          <p id="total-bugs">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Open</h3>
+          <p id="open-bugs">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Fixed</h3>
+          <p id="fixed-bugs">0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Report Bug</h2>
+
+        <form id="bug-form">
+          <input type="text" id="title" placeholder="Bug title" required />
+
+          <select id="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+
+          <select id="status">
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Fixed">Fixed</option>
+          </select>
+
+          <button type="submit">Add Bug</button>
+        </form>
+      </section>
+
+      <section class="filters">
+        <input type="text" id="search" placeholder="Search bugs..." />
+
+        <select id="status-filter">
+          <option value="All">All Statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Fixed">Fixed</option>
+        </select>
+      </section>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+        <tbody id="bug-list"></tbody>
+      </table>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
