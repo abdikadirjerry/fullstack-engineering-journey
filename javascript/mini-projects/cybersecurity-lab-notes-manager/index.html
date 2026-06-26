@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Cybersecurity Lab Notes Manager</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cybersecurity Lab Notes Manager</h1>
+
+        <p>Organize penetration testing notes, commands and lab write-ups.</p>
+      </header>
+
+      <section class="statistics">
+        <div class="card">
+          <h3>Total Notes</h3>
+
+          <p id="total-notes">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Linux</h3>
+
+          <p id="linux-count">0</p>
+        </div>
+
+        <div class="card">
+          <h3>Web Security</h3>
+
+          <p id="web-count">0</p>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Add Lab Note</h2>
+
+        <form id="note-form">
+          <input type="text" id="title" placeholder="Lab title" required />
+
+          <select id="category">
+            <option value="Linux">Linux</option>
+
+            <option value="Networking">Networking</option>
+
+            <option value="Web Security">Web Security</option>
+
+            <option value="Cryptography">Cryptography</option>
+
+            <option value="Forensics">Forensics</option>
+          </select>
+
+          <textarea
+            id="commands"
+            placeholder="Useful commands..."
+            required
+          ></textarea>
+
+          <textarea id="notes" placeholder="Lab notes..." required></textarea>
+
+          <button type="submit">Save Note</button>
+        </form>
+      </section>
+
+      <section class="filters">
+        <input type="text" id="search" placeholder="Search notes..." />
+
+        <select id="category-filter">
+          <option value="All">All Categories</option>
+
+          <option value="Linux">Linux</option>
+
+          <option value="Networking">Networking</option>
+
+          <option value="Web Security">Web Security</option>
+
+          <option value="Cryptography">Cryptography</option>
+
+          <option value="Forensics">Forensics</option>
+        </select>
+      </section>
+
+      <section>
+        <h2>Saved Notes</h2>
+
+        <div id="notes-list"></div>
+      </section>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
