@@ -44,6 +44,7 @@
               placeholder="e.g., Bench Press, Squat"
               required
             />
+            <span class="error-msg" id="name-error"></span>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -51,20 +52,22 @@
               <input
                 type="number"
                 id="workout-weight"
-                min="0"
+                min="1"
                 placeholder="0"
                 required
               />
+              <span class="error-msg" id="weight-error"></span>
             </div>
             <div class="form-group">
               <label for="workout-reps">Reps</label>
               <input
                 type="number"
                 id="workout-reps"
-                min="0"
+                min="1"
                 placeholder="0"
                 required
               />
+              <span class="error-msg" id="reps-error"></span>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Add Log</button>
@@ -72,7 +75,14 @@
       </section>
 
       <section class="history-section card">
-        <h2>Recent Activity</h2>
+        <div class="history-header">
+          <h2>Recent Activity</h2>
+          <input
+            type="text"
+            id="search-logs"
+            placeholder="Filter exercises..."
+          />
+        </div>
         <div class="table-responsive">
           <table class="workout-table">
             <thead>
