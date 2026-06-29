@@ -74,6 +74,7 @@ body {
 /* Form Styles */
 .form-group {
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .form-row {
@@ -104,6 +105,18 @@ input {
 input:focus {
   outline: none;
   border-color: var(--primary-color);
+}
+
+input.invalid {
+  border-color: var(--danger);
+}
+
+.error-msg {
+  color: var(--danger);
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 0.25rem;
+  min-height: 1rem;
 }
 
 .btn {
@@ -165,6 +178,22 @@ input:focus {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-main);
+}
+
+/* History Utilities */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.history-header input {
+  max-width: 240px;
+  padding: 0.5rem;
+  font-size: 0.875rem;
 }
 
 /* Tables */
