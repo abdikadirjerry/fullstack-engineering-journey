@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System | abdikadir.dev</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <div class="header-top">
+          <h1>Student Portal</h1>
+          <button id="theme-toggle" class="btn-secondary">Toggle Theme</button>
+        </div>
+        <p class="subtitle">Manage enrollments and records</p>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="card form-card">
+          <h2>Add New Student</h2>
+          <form id="student-form">
+            <div class="form-group">
+              <label for="student-name">Full Name</label>
+              <input
+                type="text"
+                id="student-name"
+                placeholder="e.g., John Doe"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="student-course">Course / Major</label>
+              <input
+                type="text"
+                id="student-course"
+                placeholder="e.g., Computer Science"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="student-grade">Current Grade</label>
+              <input
+                type="text"
+                id="student-grade"
+                placeholder="e.g., A, B+, 85%"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-primary w-full">
+              Enroll Student
+            </button>
+          </form>
+        </section>
+
+        <section class="card roster-card">
+          <div class="roster-header">
+            <h2>Enrolled Students</h2>
+            <span class="badge" id="student-count">0</span>
+          </div>
+          <div class="table-container">
+            <table id="roster-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Course</th>
+                  <th>Grade</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="student-list"></tbody>
+            </table>
+          </div>
+          <div id="empty-state" class="empty-state">
+            <p>No students enrolled yet.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
