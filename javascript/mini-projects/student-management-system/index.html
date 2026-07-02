@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Management System | abdikadir.dev</title>
+    <title>Student Management System v2</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div class="app-container">
       <header>
         <div class="header-top">
-          <h1>Student Portal</h1>
+          <h1>Student Portal v2.0</h1>
           <button id="theme-toggle" class="btn-secondary">Toggle Theme</button>
         </div>
         <p class="subtitle">Manage enrollments and records</p>
@@ -56,8 +56,19 @@
         <section class="card roster-card">
           <div class="roster-header">
             <h2>Enrolled Students</h2>
-            <span class="badge" id="student-count">0</span>
+            <div class="header-actions">
+              <input
+                type="text"
+                id="search-input"
+                class="search-input"
+                placeholder="Search students..."
+                autocomplete="off"
+              />
+              <button id="export-btn" class="btn-secondary">Export CSV</button>
+              <span class="badge" id="student-count">0</span>
+            </div>
           </div>
+
           <div class="table-container">
             <table id="roster-table">
               <thead>
