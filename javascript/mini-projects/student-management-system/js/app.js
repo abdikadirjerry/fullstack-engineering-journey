@@ -1,60 +1,65 @@
 import { handleThemeToggle } from "./theme.js";
-import { addStudent } from "./students.js";
+import { addStudent, updateStudent } from "./students.js";
 import { renderRoster } from "./dom.js";
 import { showToast } from "./toast.js";
 import { exportToCSV } from "./export.js";
+import { initModalListeners, closeEditModal } from "./modal.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   handleThemeToggle();
   renderRoster();
+  initModalListeners();
 
-  // Elements
-  const form = document.getElementById("student-form");
+  const mainForm = document.getElementById("student-form");
+  const editForm = document.getElementById("edit-form");
   const searchInput = document.getElementById("search-input");
-  const exportBtn = document.getElementById("export-btn");
 
-  // FEATURE: Real-time Search Filtering
+  // Search Feature
   searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    const rows = document.querySelectorAll("#student-list tr");
-
-    rows.forEach((row) => {
-      const rowText = row.textContent.toLowerCase();
-      // Toggle display based on whether the row text contains the search term
-      row.style.display = rowText.includes(searchTerm) ? "" : "none";
+    document.querySelectorAll("#student-list tr").forEach((row) => {
+      row.style.display = row.textContent.toLowerCase().includes(searchTerm)
+        ? ""
+        : "none";
     });
   });
 
-  // FEATURE: CSV Export
-  exportBtn.addEventListener("click", () => {
+  // Export Feature
+  document.getElementById("export-btn").addEventListener("click", () => {
     exportToCSV();
     showToast("Database exported successfully!");
   });
 
-  // Form Submission Handling
-  form.addEventListener("submit", (e) => {
+  // Add New Student Pipeline
+  mainForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    const nameInput = document.getElementById("student-name");
-    const courseInput = document.getElementById("student-course");
-    const gradeInput = document.getElementById("student-grade");
-
-    // State update
+    const name = document.getElementById("student-name").value.trim();
     addStudent(
-      nameInput.value.trim(),
-      courseInput.value.trim(),
-      gradeInput.value.trim(),
+      name,
+      document.getElementById("student-course").value.trim(),
+      document.getElementById("student-grade").value.trim(),
     );
-
-    // UI Reset
-    form.reset();
-    nameInput.focus();
+    mainForm.reset();
     renderRoster();
+    showToast(`Success! ${name} is now enrolled.`);
+  });
 
-    // FEATURE: Fire Success Notification
-    showToast(`Success! ${nameInput.value.trim()} is now enrolled.`);
+  // V3.0 UPGRADE: Edit Existing Student Pipeline
+  editForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const id = document.getElementById("edit-id").value;
+    const updatedName = document.getElementById("edit-name").value.trim();
 
-    // Reset search field if it was active
-    searchInput.value = "";
+    const success = updateStudent(id, {
+      name: updatedName,
+      course: document.getElementById("edit-course").value.trim(),
+      grade: document.getElementById("edit-grade").value.trim(),
+    });
+
+    if (success) {
+      closeEditModal();
+      renderRoster();
+      showToast(`${updatedName}'s record was updated.`);
+    }
   });
 });
