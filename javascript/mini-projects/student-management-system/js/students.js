@@ -5,13 +5,12 @@ let students = Storage.get(STORAGE_KEY, []);
 
 export function addStudent(name, course, grade) {
   const newStudent = {
-    id: crypto.randomUUID(), // Generates a unique ID
+    id: crypto.randomUUID(),
     name,
     course,
     grade,
     dateAdded: new Date().toISOString(),
   };
-
   students.push(newStudent);
   Storage.set(STORAGE_KEY, students);
   return newStudent;
@@ -22,8 +21,25 @@ export function deleteStudent(id) {
   Storage.set(STORAGE_KEY, students);
 }
 
+// --- V3.0 UPGRADE: UPDATE CAPABILITIES --- //
+
+export function getStudentById(id) {
+  return students.find((student) => student.id === id);
+}
+
+export function updateStudent(id, updatedData) {
+  const index = students.findIndex((student) => student.id === id);
+  if (index !== -1) {
+    // Merge existing data with new data
+    students[index] = { ...students[index], ...updatedData };
+    Storage.set(STORAGE_KEY, students);
+    return true;
+  }
+  return false;
+}
+
 export function getStudents() {
-  return [...students]; // Return a copy to prevent accidental mutations
+  return [...students];
 }
 
 export function getStudentCount() {
