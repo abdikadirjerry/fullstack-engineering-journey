@@ -44,3 +44,73 @@
 .toast-error {
   border-left-color: var(--danger);
 }
+
+/* --- V3.0 UPGRADE STYLES: MODALS & BUTTONS --- */
+
+.btn-warning {
+  background-color: #f59e0b; /* Amber */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.875rem;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  color: var(--text-main);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.modal.fade-in {
+  opacity: 1;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 450px;
+  transform: translateY(-20px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.modal.fade-in .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
