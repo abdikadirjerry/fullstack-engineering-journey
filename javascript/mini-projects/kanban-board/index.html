@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Workspace | 365 Days of Code</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <div class="header-content">
+          <h1>Project Board</h1>
+          <button id="theme-toggle" class="btn-secondary">Toggle Theme</button>
+        </div>
+
+        <form id="task-form" class="task-form">
+          <input
+            type="text"
+            id="task-input"
+            placeholder="What needs to be done?"
+            required
+            autocomplete="off"
+          />
+          <button type="submit" class="btn-primary">Add Task</button>
+        </form>
+      </header>
+
+      <main class="board">
+        <section class="column">
+          <div class="column-header">
+            <h2>To Do</h2>
+            <span class="badge" id="todo-count">0</span>
+          </div>
+          <div class="task-list" id="todo" data-status="todo"></div>
+        </section>
+
+        <section class="column">
+          <div class="column-header">
+            <h2>In Progress</h2>
+            <span class="badge" id="doing-count">0</span>
+          </div>
+          <div class="task-list" id="doing" data-status="doing"></div>
+        </section>
+
+        <section class="column">
+          <div class="column-header">
+            <h2>Done</h2>
+            <span class="badge" id="done-count">0</span>
+          </div>
+          <div class="task-list" id="done" data-status="done"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
