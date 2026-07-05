@@ -1,0 +1,65 @@
+:root {
+  --bg-color: #f4f4f9;
+  --text-color: #333;
+  --container-bg: #fff;
+  --border-color: #ddd;
+}
+
+body.dark-mode {
+  --bg-color: #1e1e2e;
+  --text-color: #cdd6f4;
+  --container-bg: #313244;
+  --border-color: #45475a;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+}
+input {
+  padding: 10px;
+  margin: 5px 0;
+  width: calc(50% - 15px);
+  border: 1px solid var(--border-color);
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+.delete-btn {
+  color: red;
+  font-weight: bold;
+}
