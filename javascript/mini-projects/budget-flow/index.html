@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>BudgetFlow</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2>BudgetFlow</h2>
+        <button id="themeToggle">🌓</button>
+      </header>
+
+      <div class="dashboard">
+        <h3>Total Balance: $<span id="balance">0.00</span></h3>
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="descInput" placeholder="What did you buy?" />
+        <input
+          type="number"
+          id="amountInput"
+          placeholder="Amount (e.g. -20 for expense)"
+        />
+        <button id="addBtn">Add</button>
+      </div>
+
+      <ul id="transactionList"></ul>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/calc.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
