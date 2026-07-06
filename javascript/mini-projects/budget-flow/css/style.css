@@ -99,3 +99,55 @@ li {
   color: var(--danger-color);
   padding: 0 10px;
 }
+
+/* Breakdown Cards layout */
+.breakdown-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.breakdown-card {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  background: #1a1a1a;
+  text-align: center;
+  border: 1px solid #333;
+}
+.income-card {
+  border-bottom: 3px solid var(--accent-color);
+}
+.expense-card {
+  border-bottom: 3px solid var(--danger-color);
+}
+.breakdown-card div {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+/* Filter UI layout */
+.filter-section {
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+.full-width-input {
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+}
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+}
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid #444;
+  font-size: 0.85rem;
+}
+.tab-btn.active {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}

@@ -35,6 +35,20 @@
       </div>
 
       <ul id="transactionList"></ul>
+
+      <div class="filter-section">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search transactions..."
+          class="full-width-input"
+        />
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-filter="all">All</button>
+          <button class="tab-btn" data-filter="income">Income</button>
+          <button class="tab-btn" data-filter="expense">Expenses</button>
+        </div>
+      </div>
     </div>
 
     <script src="js/storage.js"></script>
