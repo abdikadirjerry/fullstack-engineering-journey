@@ -6,11 +6,37 @@ const App = {
     this.clearBtn = document.getElementById("clearBtn");
     this.list = document.getElementById("transactionList");
     this.balanceEl = document.getElementById("balance");
+    this.incomeTotalEl = document.getElementById("incomeTotal");
+    this.expenseTotalEl = document.getElementById("expenseTotal");
     this.themeBtn = document.getElementById("themeToggle");
 
+    // New interactive DOM Elements
+    this.searchInput = document.getElementById("searchInput");
+    this.tabBtns = document.querySelectorAll(".tab-btn");
+
+    // State Tracking variables
+    this.currentFilter = "all";
+    this.searchQuery = "";
+
+    // Standard Actions
     this.addBtn.addEventListener("click", () => this.handleAdd());
     this.clearBtn.addEventListener("click", () => this.handleClear());
     this.themeBtn.addEventListener("click", () => ThemeManager.toggle());
+
+    // New Input and Tab Click Listeners
+    this.searchInput.addEventListener("input", (e) => {
+      this.searchQuery = e.target.value.toLowerCase();
+      this.render();
+    });
+
+    this.tabBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        this.tabBtns.forEach((b) => b.classList.remove("active"));
+        e.target.classList.add("active");
+        this.currentFilter = e.target.getAttribute("data-filter");
+        this.render();
+      });
+    });
 
     ThemeManager.init();
     this.render();
@@ -20,7 +46,6 @@ const App = {
     const desc = this.descInput.value.trim();
     const amount = parseFloat(this.amountInput.value);
 
-    // Basic validation for JS beginners: prevent empty text or zero amounts
     if (!desc || isNaN(amount) || amount === 0) {
       alert("Please enter a valid description and a non-zero amount.");
       return;
@@ -47,8 +72,18 @@ const App = {
   render() {
     this.list.innerHTML = "";
 
-    AppState.transactions.forEach((t) => {
-      // Determine if the transaction is an income (gold) or expense (red)
+    // Advanced Pipeline Array filtering
+    const filteredTransactions = AppState.transactions.filter((t) => {
+      const matchesSearch = t.desc.toLowerCase().includes(this.searchQuery);
+      const matchesTab =
+        this.currentFilter === "all" ||
+        (this.currentFilter === "income" && t.amount > 0) ||
+        (this.currentFilter === "expense" && t.amount < 0);
+
+      return matchesSearch && matchesTab;
+    });
+
+    filteredTransactions.forEach((t) => {
       const typeClass = t.amount > 0 ? "income" : "expense";
       const sign = t.amount > 0 ? "+" : "";
 
@@ -63,7 +98,14 @@ const App = {
       this.list.appendChild(li);
     });
 
+    // Push global calculations to the UI regardless of active filter state
     this.balanceEl.textContent = Calculator.getTotalBalance(
+      AppState.transactions,
+    );
+    this.incomeTotalEl.textContent = Calculator.getIncomeTotal(
+      AppState.transactions,
+    );
+    this.expenseTotalEl.textContent = Calculator.getExpenseTotal(
       AppState.transactions,
     );
   },
