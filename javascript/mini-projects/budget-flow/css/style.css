@@ -1,24 +1,24 @@
 :root {
-  --bg-color: #f4f4f9;
-  --text-color: #333;
-  --container-bg: #fff;
-  --border-color: #ddd;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --container-bg: #f8f8f8;
+  --border-color: #d4af37; /* Premium Gold */
+  --accent-color: #d4af37;
+  --danger-color: #ff4c4c;
 }
 
 body.dark-mode {
-  --bg-color: #1e1e2e;
-  --text-color: #cdd6f4;
-  --container-bg: #313244;
-  --border-color: #45475a;
+  --bg-color: #0a0a0a; /* Deep Black */
+  --text-color: #ffffff;
+  --container-bg: #141414;
+  --border-color: #d4af37; /* Premium Gold */
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: sans-serif;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
   margin: 0;
   padding: 20px;
 }
@@ -29,37 +29,73 @@ body {
   background: var(--container-bg);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--accent-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-header {
+header,
+.dashboard {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
+h2,
+h3 {
+  margin: 0;
+}
+
 button {
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 8px 16px;
   border: none;
   border-radius: 4px;
+  background-color: var(--accent-color);
+  color: #000;
+  font-weight: bold;
+  transition: opacity 0.2s;
 }
+button:hover {
+  opacity: 0.8;
+}
+.outline-btn {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+}
+
 input {
   padding: 10px;
   margin: 5px 0;
   width: calc(50% - 15px);
-  border: 1px solid var(--border-color);
+  border: 1px solid #555;
+  background: transparent;
+  color: var(--text-color);
+  border-radius: 4px;
 }
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
 ul {
   list-style: none;
   padding: 0;
 }
 li {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-color);
+  padding: 12px 10px;
+  border-bottom: 1px solid #333;
   display: flex;
   justify-content: space-between;
 }
+.income {
+  border-left: 4px solid var(--accent-color);
+}
+.expense {
+  border-left: 4px solid var(--danger-color);
+}
 .delete-btn {
-  color: red;
-  font-weight: bold;
+  background: transparent;
+  color: var(--danger-color);
+  padding: 0 10px;
 }
