@@ -1,4 +1,3 @@
-// Holds the central data for the application
 const AppState = {
   transactions: StorageUtil.getData("transactions") || [],
 
@@ -10,6 +9,11 @@ const AppState = {
 
   removeTransaction(id) {
     this.transactions = this.transactions.filter((t) => t.id !== id);
+    this.save();
+  },
+
+  clearAll() {
+    this.transactions = [];
     this.save();
   },
 
