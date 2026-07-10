@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>BrandBoard</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2>BrandBoard</h2>
+        <p>Client Asset Manager</p>
+      </header>
+
+      <div class="control-panel">
+        <input
+          type="text"
+          id="clientName"
+          placeholder="Client or Project Name"
+        />
+
+        <div class="color-pickers">
+          <div class="picker-group">
+            <label>Primary</label>
+            <input type="color" id="colorPrimary" value="#2563eb" />
+          </div>
+          <div class="picker-group">
+            <label>Secondary</label>
+            <input type="color" id="colorSecondary" value="#f59e0b" />
+          </div>
+          <div class="picker-group">
+            <label>Accent</label>
+            <input type="color" id="colorAccent" value="#10b981" />
+          </div>
+        </div>
+
+        <button id="saveBtn">Save Brand Identity</button>
+      </div>
+
+      <div id="boardGrid" class="grid-layout"></div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/clipboard.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
