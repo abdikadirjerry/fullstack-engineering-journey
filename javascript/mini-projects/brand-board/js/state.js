@@ -1,8 +1,9 @@
 const AppState = {
   boards: StorageUtil.get("brandBoards") || [],
 
-  addBoard(name, colors) {
-    const newBoard = { id: Date.now(), name, colors };
+  // NEW: Added 'fonts' parameter
+  addBoard(name, colors, fonts) {
+    const newBoard = { id: Date.now(), name, colors, fonts };
     this.boards.push(newBoard);
     this.save();
   },
