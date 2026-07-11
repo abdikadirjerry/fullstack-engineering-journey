@@ -35,12 +35,27 @@
           </div>
         </div>
 
+        <!-- Typography Inputs -->
+        <div class="typography-inputs">
+          <input
+            type="text"
+            id="fontPrimary"
+            placeholder="Heading Font (e.g., Montserrat)"
+          />
+          <input
+            type="text"
+            id="fontSecondary"
+            placeholder="Body Font (e.g., Lora)"
+          />
+        </div>
+
         <button id="saveBtn">Save Brand Identity</button>
       </div>
 
       <div id="boardGrid" class="grid-layout"></div>
     </div>
 
+    <!-- Scripts loaded in strict dependency order -->
     <script src="js/storage.js"></script>
     <script src="js/state.js"></script>
     <script src="js/clipboard.js"></script>
