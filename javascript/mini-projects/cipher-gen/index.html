@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>CipherGen | Secure Password Tool</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h2>CipherGen</h2>
+        <p>Local Password Generator</p>
+      </header>
+
+      <div class="output-panel">
+        <h3 id="passwordOutput">Click Generate...</h3>
+        <button id="copyBtn" class="icon-btn">Copy</button>
+      </div>
+
+      <div class="strength-meter">
+        <div id="strengthBar" class="bar"></div>
+        <span id="strengthText">Strength: None</span>
+      </div>
+
+      <div class="controls">
+        <div class="setting">
+          <label>Password Length: <span id="lengthVal">16</span></label>
+          <input type="range" id="lengthSlider" min="8" max="32" value="16" />
+        </div>
+
+        <div class="setting checkbox-group">
+          <label
+            ><input type="checkbox" id="incUpper" checked /> Include
+            Uppercase</label
+          >
+          <label
+            ><input type="checkbox" id="incLower" checked /> Include
+            Lowercase</label
+          >
+          <label
+            ><input type="checkbox" id="incNumbers" checked /> Include
+            Numbers</label
+          >
+          <label
+            ><input type="checkbox" id="incSymbols" checked /> Include
+            Symbols</label
+          >
+        </div>
+
+        <button id="generateBtn">Generate Password</button>
+      </div>
+    </div>
+
+    <script src="js/clipboard.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/strength.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
