@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Enrollment - Micro-School System</title>
+  </head>
+  <body>
+    <header>
+      <h1>Enroll New Student</h1>
+      <nav>
+        <a href="index.html">Back to Dashboard</a> |
+        <a href="students.html">View Directory</a>
+      </nav>
+    </header>
+    <hr />
+    <main>
+      <h2>Student Registration Form</h2>
+      <!-- The action attribute is empty since there is no backend yet -->
+      <form action="" method="POST">
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <label for="firstName">First Name:</label><br />
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            required
+          /><br /><br />
+
+          <label for="lastName">Last Name:</label><br />
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            required
+          /><br /><br />
+
+          <label for="email">Email Address:</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <label for="dob">Date of Birth:</label><br />
+          <input type="date" id="dob" name="dob" /><br /><br />
+        </fieldset>
+        <br />
+        <fieldset>
+          <legend>Academic Details</legend>
+
+          <label for="course">Select Course:</label><br />
+          <select id="course" name="course">
+            <option value="web-dev">Full-Stack Web Development</option>
+            <option value="cyber">System Integration & Security</option>
+            <option value="design">Graphic Design</option></select
+          ><br /><br />
+
+          <label>Study Mode:</label><br />
+          <input
+            type="radio"
+            id="online"
+            name="studyMode"
+            value="Online"
+            checked
+          />
+          <label for="online">Online</label><br />
+          <input type="radio" id="campus" name="studyMode" value="On-Campus" />
+          <label for="campus">On-Campus</label><br /><br />
+
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms"
+            >I agree to the school's terms and conditions.</label
+          ><br /><br />
+        </fieldset>
+        <br />
+        <button type="submit">Submit Enrollment</button>
+        <button type="reset">Clear Form</button>
+      </form>
+    </main>
+  </body>
+</html>
