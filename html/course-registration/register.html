@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Registration</title>
+  </head>
+  <body>
+    <header>
+      <h1>Student Registration Form</h1>
+
+      <nav>
+        <a href="index.html">Home</a> | <a href="courses.html">Courses</a> |
+        <a href="schedule.html">Schedule</a> |
+        <a href="instructors.html">Instructors</a> |
+        <a href="register.html">Register</a> |
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <hr />
+    </header>
+
+    <main>
+      <form>
+        <fieldset>
+          <legend>Student Information</legend>
+
+          <label for="name">Full Name:</label><br />
+          <input type="text" id="name" name="name" /><br /><br />
+
+          <label for="id">Student ID:</label><br />
+          <input type="text" id="id" name="id" /><br /><br />
+
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" /><br /><br />
+
+          <label for="department">Department:</label><br />
+
+          <select id="department">
+            <option>Computer Science</option>
+            <option>Information Technology</option>
+            <option>Software Engineering</option>
+            <option>Cyber Security</option>
+          </select>
+
+          <br /><br />
+
+          <label for="semester">Semester:</label><br />
+
+          <select id="semester">
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+          </select>
+
+          <br /><br />
+
+          <p>Gender</p>
+
+          <input type="radio" id="male" name="gender" />
+          <label for="male">Male</label>
+
+          <input type="radio" id="female" name="gender" />
+          <label for="female">Female</label>
+
+          <br /><br />
+
+          <p>Select Courses</p>
+
+          <input type="checkbox" /> HTML Fundamentals<br />
+          <input type="checkbox" /> Database Systems<br />
+          <input type="checkbox" /> Computer Networks<br />
+          <input type="checkbox" /> Operating Systems<br />
+
+          <br />
+
+          <label for="comments">Comments</label><br />
+
+          <textarea id="comments" rows="6" cols="40"></textarea>
+
+          <br /><br />
+
+          <input type="submit" value="Register" />
+          <input type="reset" value="Reset" />
+        </fieldset>
+      </form>
+    </main>
+
+    <hr />
+
+    <footer>
+      <p>Complete the form carefully before submitting.</p>
+    </footer>
+  </body>
+</html>
