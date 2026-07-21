@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Appointment</title>
+  </head>
+  <body>
+    <header>
+      <h1>Hospital Appointment Form</h1>
+
+      <nav>
+        <a href="index.html">Home</a> | <a href="doctors.html">Doctors</a> |
+        <a href="services.html">Services</a> |
+        <a href="appointment.html">Appointment</a> |
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <hr />
+    </header>
+
+    <main>
+      <h2>Book Your Appointment</h2>
+
+      <form>
+        <fieldset>
+          <legend>Patient Information</legend>
+
+          <label for="fullname">Full Name:</label><br />
+          <input type="text" id="fullname" name="fullname" required />
+
+          <br /><br />
+
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" required />
+
+          <br /><br />
+
+          <label for="phone">Phone Number:</label><br />
+          <input type="tel" id="phone" name="phone" />
+
+          <br /><br />
+
+          <label for="age">Age:</label><br />
+          <input type="number" id="age" name="age" min="1" />
+
+          <br /><br />
+
+          <p>Gender</p>
+
+          <input type="radio" id="male" name="gender" />
+          <label for="male">Male</label>
+
+          <input type="radio" id="female" name="gender" />
+          <label for="female">Female</label>
+
+          <input type="radio" id="other" name="gender" />
+          <label for="other">Other</label>
+
+          <br /><br />
+
+          <label for="department">Department</label><br />
+
+          <select id="department" name="department">
+            <option>Cardiology</option>
+            <option>Pediatrics</option>
+            <option>Dermatology</option>
+            <option>Orthopedics</option>
+            <option>Neurology</option>
+            <option>Radiology</option>
+          </select>
+
+          <br /><br />
+
+          <label for="doctor">Preferred Doctor</label><br />
+
+          <select id="doctor" name="doctor">
+            <option>Dr. Ahmed Ali</option>
+            <option>Dr. Sarah Hassan</option>
+            <option>Dr. Omar Mohamed</option>
+            <option>Dr. Fatima Yusuf</option>
+            <option>Dr. Ali Ibrahim</option>
+          </select>
+
+          <br /><br />
+
+          <label for="date">Appointment Date</label><br />
+          <input type="date" id="date" name="date" />
+
+          <br /><br />
+
+          <label for="time">Appointment Time</label><br />
+          <input type="time" id="time" name="time" />
+
+          <br /><br />
+
+          <label for="symptoms">Symptoms</label><br />
+
+          <textarea id="symptoms" rows="6" cols="40"></textarea>
+
+          <br /><br />
+
+          <input type="submit" value="Book Appointment" />
+          <input type="reset" value="Clear Form" />
+        </fieldset>
+      </form>
+    </main>
+
+    <hr />
+
+    <footer>
+      <p>Thank you for choosing City Care Hospital.</p>
+    </footer>
+  </body>
+</html>
