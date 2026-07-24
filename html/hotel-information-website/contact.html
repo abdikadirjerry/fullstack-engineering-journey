@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grand View Hotel - Contact</title>
+    <title>Grand View Hotel - Contact & Reservations</title>
   </head>
   <body>
     <header>
@@ -24,6 +24,39 @@
         <p><strong>Phone:</strong> +1 (800) 555-0199</p>
         <p><strong>Email:</strong> reservations@grandviewresort.com</p>
       </address>
+
+      <hr />
+
+      <h2>Reserve a Room</h2>
+      <form action="#" method="POST">
+        <p>
+          <label for="fullname">Full Name:</label><br />
+          <input type="text" id="fullname" name="fullname" required />
+        </p>
+
+        <p>
+          <label for="email">Email Address:</label><br />
+          <input type="email" id="email" name="email" required />
+        </p>
+
+        <p>
+          <label for="room-select">Room Choice:</label><br />
+          <select id="room-select" name="room-select" required>
+            <option value="">-- Choose Option --</option>
+            <option value="deluxe">Standard Deluxe</option>
+            <option value="family">Executive Family</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="checkin">Check-in Date:</label><br />
+          <input type="date" id="checkin" name="checkin" required />
+        </p>
+
+        <p>
+          <button type="submit">Submit Request</button>
+        </p>
+      </form>
     </main>
 
     <hr />
