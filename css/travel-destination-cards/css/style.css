@@ -73,3 +73,36 @@ nav a {
   transform: translateY(-5px);
   transition: 0.3s;
 }
+
+.about {
+  width: 80%;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.about h2 {
+  margin-bottom: 20px;
+}
+
+footer {
+  background: #0f4c81;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 5px 10px;
+  }
+
+  .hero {
+    padding: 50px 20px;
+  }
+}
