@@ -46,3 +46,29 @@ nav a {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.books {
+  width: 90%;
+  max-width: 1100px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.book {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book h3 {
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.book:hover {
+  transform: translateY(-6px);
+  transition: 0.3s;
+}
