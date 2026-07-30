@@ -74,3 +74,35 @@ nav a {
   transform: translateY(-5px);
   transition: 0.3s;
 }
+
+.ingredients,
+.tips,
+.contact {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.ingredients h2,
+.tips h2,
+.contact h2 {
+  margin-bottom: 15px;
+}
+
+.ingredients ul {
+  padding-left: 20px;
+}
+
+.ingredients li {
+  margin-bottom: 8px;
+}
+
+footer {
+  background: #d35400;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
