@@ -47,3 +47,30 @@ nav a {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.recipes {
+  width: 90%;
+  max-width: 1100px;
+  margin: 50px auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.recipe {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe h3 {
+  color: #d35400;
+  margin-bottom: 10px;
+}
+
+.recipe:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
