@@ -105,3 +105,31 @@ footer {
   padding: 20px;
   margin-top: 40px;
 }
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 8px;
+  }
+
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .courses,
+  .benefits,
+  .instructor {
+    width: 95%;
+  }
+}
