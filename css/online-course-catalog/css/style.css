@@ -74,3 +74,34 @@ nav a {
   color: #1f4e79;
   margin-bottom: 12px;
 }
+
+.benefits,
+.instructor {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.benefits h2,
+.instructor h2 {
+  margin-bottom: 15px;
+}
+
+.benefits ul {
+  padding-left: 20px;
+}
+
+.benefits li {
+  margin-bottom: 10px;
+}
+
+footer {
+  background: #1f4e79;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
