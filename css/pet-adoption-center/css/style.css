@@ -98,3 +98,46 @@ footer {
   padding: 20px;
   margin-top: 40px;
 }
+
+.pet {
+  transition: transform 0.3s;
+}
+
+.pet:hover {
+  transform: translateY(-6px);
+}
+
+.hero a:hover {
+  background: #246b45;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 8px;
+  }
+
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .pets,
+  .process {
+    width: 95%;
+  }
+}
