@@ -232,3 +232,88 @@ header .container {
 .plan li {
   margin: 12px 0;
 }
+
+/* =========================
+   SCHEDULE
+========================= */
+
+.schedule {
+  background: #eef6f5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th,
+td {
+  border: 1px solid #d1d5db;
+  padding: 15px;
+  text-align: center;
+}
+
+th {
+  background: #0f766e;
+  color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+/* =========================
+   TESTIMONIALS
+========================= */
+
+.testimonials {
+  background: #ffffff;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.testimonial {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.testimonial h4 {
+  margin-top: 20px;
+  color: #0f766e;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+  background: #eef6f5;
+  text-align: center;
+}
+
+.contact p {
+  margin: 12px 0;
+  font-size: 1.1rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  background: #111827;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+}
+
+footer p {
+  color: #fff;
+}
