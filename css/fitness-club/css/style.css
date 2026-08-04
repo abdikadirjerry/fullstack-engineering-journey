@@ -1,0 +1,135 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 80px 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 15px;
+}
+
+h2 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 40px;
+}
+
+p {
+  color: #555;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+  display: inline-block;
+  background: #0f766e;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  background: #111827;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  background: #0f766e;
+  color: #fff;
+  text-align: center;
+
+  padding: 120px 0;
+}
+
+.hero h2 {
+  color: #fff;
+
+  font-size: 3rem;
+
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #f1f5f9;
+
+  max-width: 700px;
+
+  margin: 0 auto 35px;
+
+  font-size: 1.1rem;
+}
