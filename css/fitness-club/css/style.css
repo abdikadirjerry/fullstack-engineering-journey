@@ -133,3 +133,102 @@ header .container {
 
   font-size: 1.1rem;
 }
+
+/* =========================
+   SERVICES
+========================= */
+
+.services {
+  background: #ffffff;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.service-card h3 {
+  color: #0f766e;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   TRAINERS
+========================= */
+
+.trainers {
+  background: #eef6f5;
+}
+
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.trainer-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.trainer-card h3 {
+  color: #0f766e;
+}
+
+.trainer-card h4 {
+  color: #6b7280;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+/* =========================
+   MEMBERSHIP
+========================= */
+
+.membership {
+  background: #ffffff;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.plan {
+  background: #f8fafc;
+  padding: 35px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+.plan h3 {
+  color: #0f766e;
+}
+
+.plan h4 {
+  margin: 20px 0;
+  font-size: 1.8rem;
+  color: #111827;
+}
+
+.plan ul {
+  list-style: none;
+  margin: 25px 0;
+}
+
+.plan li {
+  margin: 12px 0;
+}
