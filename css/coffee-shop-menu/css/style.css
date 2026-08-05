@@ -92,3 +92,33 @@ nav a {
   color: #4e342e;
   margin-bottom: 10px;
 }
+
+.about {
+  padding: 70px 0;
+  text-align: center;
+  background: #efebe9;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+footer {
+  background: #4e342e;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.item {
+  transition: 0.3s;
+}
+
+.item:hover {
+  transform: translateY(-6px);
+}
+
+.hero a:hover {
+  background: #efebe9;
+}
