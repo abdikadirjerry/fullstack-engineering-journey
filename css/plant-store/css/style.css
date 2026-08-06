@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7f2;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+header {
+  background: #2e7d32;
+  color: #fff;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  background: #4caf50;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h2 {
+  margin-bottom: 15px;
+}
+
+.hero p {
+  margin-bottom: 25px;
+}
+
+.hero a {
+  display: inline-block;
+  background: #fff;
+  color: #2e7d32;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+}
+
+.plants {
+  padding: 70px 0;
+}
+
+.plants h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.plant {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plant h3 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.about {
+  padding: 70px 0;
+  text-align: center;
+  background: #e8f5e9;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+footer {
+  background: #2e7d32;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
