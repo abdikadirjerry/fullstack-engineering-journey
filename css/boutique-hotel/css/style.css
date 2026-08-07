@@ -192,3 +192,95 @@ footer {
 footer p {
   color: #fff;
 }
+
+.btn {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.btn:hover {
+  background: #a97832;
+  transform: translateY(-2px);
+}
+
+nav a {
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+.room-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.room-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.amenity {
+  transition: transform 0.3s;
+}
+
+.amenity:hover {
+  transform: translateY(-4px);
+}
+
+.review {
+  transition: transform 0.3s;
+}
+
+.review:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 900px) {
+  .room-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 7px 10px;
+  }
+
+  .hero {
+    padding: 80px 20px;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amenity-grid {
+    grid-template-columns: 1fr;
+  }
+}
