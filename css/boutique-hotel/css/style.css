@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f5f0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+header {
+  background: #243447;
+  color: #fff;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  margin-left: 25px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  background: #526777;
+  color: #fff;
+  text-align: center;
+  padding: 110px 20px;
+}
+
+.eyebrow {
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p:not(.eyebrow) {
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.btn {
+  display: inline-block;
+  background: #c89b5b;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+section {
+  padding: 75px 0;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #243447;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.room-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.room-card h3 {
+  color: #243447;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #b17c35;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.room-card .btn {
+  margin-top: 20px;
+}
+
+.amenities {
+  background: #ebe7df;
+}
+
+.amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.amenity {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.amenity h3 {
+  color: #243447;
+  margin-bottom: 10px;
+}
+
+.booking {
+  background: #526777;
+  color: #fff;
+  text-align: center;
+}
+
+.booking h2 {
+  color: #fff;
+}
+
+.booking p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.review {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.review h3 {
+  margin-top: 20px;
+  color: #b17c35;
+}
+
+.contact {
+  background: #ebe7df;
+  text-align: center;
+}
+
+.contact p {
+  margin: 8px 0;
+}
+
+footer {
+  background: #243447;
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+}
+
+footer p {
+  color: #fff;
+}
