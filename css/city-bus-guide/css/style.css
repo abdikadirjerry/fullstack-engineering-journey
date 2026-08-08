@@ -231,3 +231,68 @@ footer {
 footer p {
   color: #fff;
 }
+
+nav a {
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+.btn {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.btn:hover {
+  background: #e3f2fd;
+  transform: translateY(-3px);
+}
+
+.route-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.route-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.fare-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.fare-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.tip {
+  transition: transform 0.3s;
+}
+
+.tip:hover {
+  transform: translateY(-4px);
+}
+
+.review {
+  transition: transform 0.3s;
+}
+
+.review:hover {
+  transform: translateY(-4px);
+}
+
+.route-card a {
+  transition: color 0.3s;
+}
+
+.route-card a:hover {
+  color: #0d47a1;
+}
