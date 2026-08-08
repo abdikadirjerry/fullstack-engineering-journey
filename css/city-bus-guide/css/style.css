@@ -296,3 +296,56 @@ nav a:hover {
 .route-card a:hover {
   color: #0d47a1;
 }
+
+@media (max-width: 950px) {
+  .route-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 6px 10px;
+  }
+
+  .hero {
+    padding: 80px 20px;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .route-grid,
+  .fare-grid,
+  .tips-grid,
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 55px 0;
+  }
+}
