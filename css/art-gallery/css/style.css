@@ -275,3 +275,60 @@ nav a:hover {
 .review:hover {
   transform: translateY(-5px);
 }
+
+@media (max-width: 900px) {
+  .artwork-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .artist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 6px 10px;
+  }
+
+  .hero {
+    padding: 80px 20px;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .artwork-grid,
+  .artist-grid,
+  .visit-grid,
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artwork-image {
+    height: 220px;
+  }
+
+  section {
+    padding: 55px 0;
+  }
+}
