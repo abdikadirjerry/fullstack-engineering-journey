@@ -221,3 +221,57 @@ footer {
 footer p {
   color: #fff;
 }
+
+nav a {
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.65;
+}
+
+.btn {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.btn:hover {
+  background: #b9855d;
+  transform: translateY(-3px);
+}
+
+.artwork-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.artwork-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.14);
+}
+
+.artist-card {
+  transition: transform 0.3s;
+}
+
+.artist-card:hover {
+  transform: translateY(-5px);
+}
+
+.visit-card {
+  transition: transform 0.3s;
+}
+
+.visit-card:hover {
+  transform: translateY(-5px);
+}
+
+.review {
+  transition: transform 0.3s;
+}
+
+.review:hover {
+  transform: translateY(-5px);
+}
