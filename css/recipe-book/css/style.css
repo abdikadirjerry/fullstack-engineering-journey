@@ -226,3 +226,101 @@ footer {
 footer p {
   color: #fff;
 }
+
+nav a {
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+.btn {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.btn:hover {
+  background: #efebe9;
+  transform: translateY(-3px);
+}
+
+.category {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tip {
+  transition: transform 0.3s;
+}
+
+.tip:hover {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 900px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 6px 10px;
+  }
+
+  .hero {
+    padding: 75px 20px;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .category-grid,
+  .recipe-grid,
+  .tip-grid,
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 55px 0;
+  }
+}
