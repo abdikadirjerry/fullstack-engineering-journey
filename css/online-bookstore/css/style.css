@@ -247,3 +247,63 @@ footer {
 footer p {
   color: #fff;
 }
+
+nav a {
+  transition: opacity 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+.btn {
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.btn:hover {
+  background: #ad743d;
+  transform: translateY(-3px);
+}
+
+.category-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.book-card {
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.13);
+}
+
+.benefit-card {
+  transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+form button {
+  transition:
+    background 0.3s,
+    transform 0.3s;
+}
+
+form button:hover {
+  background: #ad743d;
+  transform: translateY(-2px);
+}
