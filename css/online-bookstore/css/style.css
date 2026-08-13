@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #faf8f4;
+  color: #292929;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+header {
+  background: #263238;
+  color: #fff;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  margin-left: 25px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  background: #546e7a;
+  color: #fff;
+  text-align: center;
+  padding: 110px 20px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p:not(.eyebrow) {
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.btn {
+  display: inline-block;
+  background: #d49a5b;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+section {
+  padding: 75px 0;
+}
+
+section h2 {
+  text-align: center;
+  color: #263238;
+  margin-bottom: 40px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  background: #fff;
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.category-card h3 {
+  color: #546e7a;
+  margin-bottom: 10px;
+}
+
+.books {
+  background: #eee9e1;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.book-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.book-cover {
+  height: 260px;
+  background: #78909c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.book-cover span {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.book-card h3 {
+  color: #263238;
+  margin-bottom: 5px;
+}
+
+.author {
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.price {
+  color: #b46d2c;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.benefits {
+  background: #fff;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.benefit-card {
+  background: #faf8f4;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.benefit-card h3 {
+  color: #546e7a;
+  margin-bottom: 12px;
+}
+
+.newsletter {
+  background: #546e7a;
+  color: #fff;
+  text-align: center;
+}
+
+.newsletter h2 {
+  color: #fff;
+}
+
+.newsletter p {
+  margin-bottom: 25px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+form label {
+  margin-bottom: 7px;
+}
+
+form input {
+  padding: 13px;
+  border: 0;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 13px;
+  border: 0;
+  border-radius: 5px;
+  background: #d49a5b;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact p {
+  margin: 8px 0;
+}
+
+footer {
+  background: #263238;
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+}
+
+footer p {
+  color: #fff;
+}
