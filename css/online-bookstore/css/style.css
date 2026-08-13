@@ -307,3 +307,59 @@ form button:hover {
   background: #ad743d;
   transform: translateY(-2px);
 }
+
+@media (max-width: 950px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 6px 10px;
+  }
+
+  .hero {
+    padding: 75px 20px;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .category-grid,
+  .book-grid,
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-cover {
+    height: 230px;
+  }
+
+  section {
+    padding: 55px 0;
+  }
+
+  form {
+    width: 100%;
+  }
+}
