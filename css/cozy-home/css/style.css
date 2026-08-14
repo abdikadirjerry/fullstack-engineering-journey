@@ -132,3 +132,43 @@ a {
   display: block;
   margin-top: 15px;
 }
+
+.search-section {
+  padding: 50px 0;
+  background-color: #eeeae3;
+}
+
+.search-section h2 {
+  margin-top: 0;
+}
+
+.search-form {
+  display: flex;
+  align-items: end;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 220px;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.search-form .button {
+  border: none;
+  cursor: pointer;
+}
