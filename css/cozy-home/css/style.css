@@ -75,3 +75,60 @@ a {
   color: white;
   border-radius: 6px;
 }
+
+.homes {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-size: 36px;
+  margin-top: 10px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.home-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.home-image {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+  color: #666;
+}
+
+.home-content {
+  padding: 20px;
+}
+
+.home-content h3 {
+  margin-top: 0;
+}
+
+.home-content p {
+  color: #666;
+}
+
+.home-content strong {
+  display: block;
+  margin-top: 15px;
+}
