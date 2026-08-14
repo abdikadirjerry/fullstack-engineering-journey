@@ -172,3 +172,19 @@ a {
   border: none;
   cursor: pointer;
 }
+
+.button:hover {
+  background-color: #444;
+}
+
+.home-card {
+  transition: transform 0.2s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-5px);
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
