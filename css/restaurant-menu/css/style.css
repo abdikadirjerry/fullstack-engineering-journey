@@ -147,59 +147,59 @@ a {
 }
 
 .button {
-    transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .button:hover {
-    background-color: #444;
+  background-color: #444;
 }
 
 .main-nav a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .menu-card {
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .menu-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 @media (max-width: 700px) {
-    .site-header .container {
-        flex-direction: column;
-        gap: 15px;
-    }
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    .main-nav {
-        gap: 15px;
-    }
+  .main-nav {
+    gap: 15px;
+  }
 
-    .hero {
-        padding: 70px 0;
-    }
+  .hero {
+    padding: 70px 0;
+  }
 
-    .hero h1 {
-        font-size: 40px;
-    }
+  .hero h1 {
+    font-size: 40px;
+  }
 
-    .menu-grid {
-        grid-template-columns: 1fr;
-    }
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 450px) {
-    .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .hero h1 {
-        font-size: 34px;
-    }
+  .hero h1 {
+    font-size: 34px;
+  }
 
-    .menu-section {
-        padding: 60px 0;
-    }
+  .menu-section {
+    padding: 60px 0;
+  }
 }
