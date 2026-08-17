@@ -235,3 +235,89 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #444;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.book-card {
+  transition: transform 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive design */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero {
+    padding: 75px 0;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-nav {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .books-section,
+  .about-section,
+  .join-section {
+    padding: 60px 0;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2,
+  .about-content h2,
+  .join-content h2 {
+    font-size: 30px;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
