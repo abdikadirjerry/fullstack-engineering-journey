@@ -81,3 +81,63 @@ a {
   color: white;
   border-radius: 6px;
 }
+
+.menu-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.menu-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.menu-image {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9c8b6;
+  color: #6b5b4b;
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.menu-content h3 {
+  margin-top: 0;
+}
+
+.menu-content p {
+  color: #665b51;
+  line-height: 1.5;
+}
+
+.menu-content strong {
+  display: block;
+  margin-top: 15px;
+  font-size: 18px;
+}
