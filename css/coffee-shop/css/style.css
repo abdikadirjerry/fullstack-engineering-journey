@@ -258,3 +258,86 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #554438;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.menu-card {
+  transition: transform 0.2s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive design */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero {
+    padding: 65px 0;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .menu-section,
+  .about-section,
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .about-content h2,
+  .contact-content h2 {
+    font-size: 30px;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
