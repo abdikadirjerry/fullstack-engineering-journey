@@ -141,3 +141,53 @@ a {
   margin-top: 15px;
   font-size: 18px;
 }
+
+.about-section {
+  padding: 80px 0;
+  background-color: #f5f1ec;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-content {
+  max-width: 600px;
+}
+
+.about-content h2 {
+  font-size: 36px;
+  margin: 15px 0;
+}
+
+.about-content p {
+  color: #665b51;
+  line-height: 1.6;
+}
+
+.hours-card {
+  padding: 30px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.hours-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
