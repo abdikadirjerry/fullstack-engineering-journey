@@ -250,3 +250,95 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #444;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.class-card,
+.trainer-card {
+  transition: transform 0.2s ease;
+}
+
+.class-card:hover,
+.trainer-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive design */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .trainer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .class-card {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .classes-section,
+  .trainers-section,
+  .membership-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .membership-content h2 {
+    font-size: 30px;
+  }
+
+  .trainer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .class-card {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .class-time {
+    align-items: flex-start;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
