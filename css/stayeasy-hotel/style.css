@@ -213,4 +213,53 @@ a {
 .booking-form .button {
   margin-top: 0;
 }
-    
+
+.about-section {
+  padding: 80px 0;
+  background-color: #f5f3ef;
+}
+
+.about-content {
+  max-width: 650px;
+}
+
+.about-content h2 {
+  margin: 15px 0;
+  font-size: 36px;
+}
+
+.about-content > p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.testimonial {
+  max-width: 700px;
+  margin-top: 50px;
+  padding: 30px;
+  border-left: 4px solid #222;
+  background-color: white;
+}
+
+.testimonial p {
+  margin-top: 0;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #222;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
