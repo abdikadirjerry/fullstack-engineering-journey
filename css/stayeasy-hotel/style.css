@@ -169,3 +169,48 @@ a {
   color: #666;
   line-height: 1.5;
 }
+
+.booking-section {
+  padding: 80px 0;
+}
+
+.booking-content {
+  max-width: 850px;
+}
+
+.booking-content h2 {
+  margin: 15px 0 30px;
+  font-size: 36px;
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background-color: white;
+  font: inherit;
+}
+
+.booking-form .button {
+  margin-top: 0;
+}
+    
