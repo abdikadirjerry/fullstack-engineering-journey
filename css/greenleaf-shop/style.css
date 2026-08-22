@@ -201,3 +201,24 @@ a {
   display: flex;
   gap: 20px;
 }
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #405044;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.plant-card {
+  transition: transform 0.2s ease;
+}
+
+.plant-card:hover {
+  transform: translateY(-5px);
+}
