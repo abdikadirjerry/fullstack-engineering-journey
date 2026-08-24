@@ -85,3 +85,92 @@ a {
   background-color: #302820;
   color: white;
 }
+
+/* Menu */
+
+.menu-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.menu-card {
+  overflow: hidden;
+  border: 1px solid #ddd5cc;
+  border-radius: 8px;
+}
+
+.menu-image {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8c8b8;
+  color: #70665d;
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.menu-category {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #806d5b;
+}
+
+.menu-content h3 {
+  margin: 10px 0;
+}
+
+.menu-content p {
+  color: #70665d;
+  line-height: 1.5;
+}
+
+.menu-content strong {
+  display: block;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+/* About */
+
+.about-section {
+  padding: 80px 0;
+  background-color: #f5f1ec;
+}
+
+.about-content {
+  max-width: 700px;
+}
+
+.about-content h2 {
+  margin: 15px 0;
+  font-size: 38px;
+}
+
+.about-content p {
+  color: #70665d;
+  line-height: 1.6;
+}
