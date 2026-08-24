@@ -233,3 +233,87 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #574a3e;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.menu-card {
+  transition: transform 0.2s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive design */
+
+@media (max-width: 750px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .menu-section,
+  .about-section,
+  .hours-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .about-content h2,
+  .hours-content h2 {
+    font-size: 30px;
+  }
+
+  .hours-list div {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
