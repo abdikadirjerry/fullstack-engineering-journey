@@ -174,3 +174,62 @@ a {
   color: #70665d;
   line-height: 1.6;
 }
+
+/* Opening hours */
+
+.hours-section {
+  padding: 80px 0;
+}
+
+.hours-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hours-content h2 {
+  margin: 15px 0;
+  font-size: 36px;
+}
+
+.hours-content p {
+  color: #70665d;
+  line-height: 1.6;
+}
+
+.hours-list {
+  display: grid;
+  gap: 15px;
+}
+
+.hours-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd5cc;
+}
+
+.hours-list span {
+  color: #70665d;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #302820;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
