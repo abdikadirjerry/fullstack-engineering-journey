@@ -242,93 +242,89 @@ a {
 /* Hover effects */
 
 .button {
-    transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .button:hover {
-    background-color: #514a45;
+  background-color: #514a45;
 }
 
 .main-nav a:hover,
 .footer-links a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .book-card,
 .category {
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .book-card:hover,
 .category:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
-
 
 /* Tablet */
 
 @media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-    .site-header .container {
-        flex-direction: column;
-        gap: 15px;
-    }
+  .hero {
+    padding: 80px 0;
+  }
 
-    .hero {
-        padding: 80px 0;
-    }
+  .hero h1 {
+    font-size: 44px;
+  }
 
-    .hero h1 {
-        font-size: 44px;
-    }
+  .book-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .book-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .category-list {
-        grid-template-columns: 1fr 1fr;
-    }
+  .category-list {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-
 
 /* Mobile */
 
 @media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
 
-    .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
+  .hero h1 {
+    font-size: 36px;
+  }
 
-    .hero h1 {
-        font-size: 36px;
-    }
+  .books-section,
+  .categories-section,
+  .newsletter-section {
+    padding: 60px 0;
+  }
 
-    .books-section,
-    .categories-section,
-    .newsletter-section {
-        padding: 60px 0;
-    }
+  .book-grid,
+  .category-list {
+    grid-template-columns: 1fr;
+  }
 
-    .book-grid,
-    .category-list {
-        grid-template-columns: 1fr;
-    }
+  .section-heading h2,
+  .newsletter-content h2 {
+    font-size: 30px;
+  }
 
-    .section-heading h2,
-    .newsletter-content h2 {
-        font-size: 30px;
-    }
+  .newsletter-form {
+    flex-direction: column;
+  }
 
-    .newsletter-form {
-        flex-direction: column;
-    }
-
-    .site-footer .container {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
 }
