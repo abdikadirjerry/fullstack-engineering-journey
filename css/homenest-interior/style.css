@@ -85,3 +85,96 @@ a {
   background-color: #2c2926;
   color: white;
 }
+
+/* Featured spaces */
+
+.spaces-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.space-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.space-card {
+  overflow: hidden;
+  border: 1px solid #ddd8d1;
+  border-radius: 8px;
+}
+
+.space-image {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8cec2;
+  color: #706a64;
+}
+
+.space-content {
+  padding: 20px;
+}
+
+.space-content span {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #7b6c5d;
+}
+
+.space-content h3 {
+  margin: 10px 0;
+}
+
+.space-content p {
+  margin-bottom: 0;
+  color: #706a64;
+  line-height: 1.5;
+}
+
+/* Services */
+
+.services-section {
+  padding: 80px 0;
+  background-color: #f5f2ee;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.service {
+  padding: 25px;
+  border: 1px solid #ddd8d1;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.service h3 {
+  margin-top: 0;
+}
+
+.service p {
+  margin-bottom: 0;
+  color: #706a64;
+  line-height: 1.5;
+}
