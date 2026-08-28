@@ -180,3 +180,34 @@ a {
   color: #66716a;
   line-height: 1.5;
 }
+
+/* Travel tips */
+
+.tips-section {
+  padding: 80px 0;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tip {
+  padding: 25px;
+  border-top: 2px solid #25302a;
+}
+
+.tip > span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.tip h3 {
+  margin: 15px 0 10px;
+}
+
+.tip p {
+  color: #66716a;
+  line-height: 1.5;
+}
