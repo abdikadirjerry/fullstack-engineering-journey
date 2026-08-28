@@ -328,3 +328,76 @@ a {
 .destination-content a:hover {
   text-decoration: underline;
 }
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .destination-grid,
+  .activity-grid,
+  .tips-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .destinations-section,
+  .activities-section,
+  .tips-section,
+  .about-section,
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .about-content h2,
+  .contact-content h2 {
+    font-size: 30px;
+  }
+
+  .destination-grid,
+  .activity-grid,
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
