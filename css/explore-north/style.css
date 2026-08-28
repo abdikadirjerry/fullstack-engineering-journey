@@ -280,3 +280,51 @@ a {
   border: none;
   cursor: pointer;
 }
+
+/* Footer */
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #25302a;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #4c5951;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.destination-card,
+.activity {
+  transition: transform 0.2s ease;
+}
+
+.destination-card:hover,
+.activity:hover {
+  transform: translateY(-5px);
+}
+
+.destination-content a:hover {
+  text-decoration: underline;
+}
