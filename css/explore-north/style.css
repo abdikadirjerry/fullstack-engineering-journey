@@ -85,3 +85,98 @@ a {
   background-color: #25302a;
   color: white;
 }
+
+/* Destinations */
+
+.destinations-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.destination-card {
+  overflow: hidden;
+  border: 1px solid #dce2dd;
+  border-radius: 8px;
+}
+
+.destination-image {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cfdcd3;
+  color: #66716a;
+}
+
+.destination-content {
+  padding: 20px;
+}
+
+.destination-content span {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.destination-content h3 {
+  margin: 10px 0;
+}
+
+.destination-content p {
+  color: #66716a;
+  line-height: 1.5;
+}
+
+.destination-content a {
+  font-weight: bold;
+}
+
+/* Activities */
+
+.activities-section {
+  padding: 80px 0;
+  background-color: #f2f5f2;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.activity {
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #dce2dd;
+  border-radius: 8px;
+}
+
+.activity h3 {
+  margin-top: 0;
+}
+
+.activity p {
+  margin-bottom: 0;
+  color: #66716a;
+  line-height: 1.5;
+}
