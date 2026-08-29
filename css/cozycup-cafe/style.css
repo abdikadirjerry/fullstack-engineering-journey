@@ -85,3 +85,69 @@ a {
   background-color: #302923;
   color: white;
 }
+
+/* Menu */
+
+.menu-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.menu-card {
+  overflow: hidden;
+  border: 1px solid #e0d8d0;
+  border-radius: 8px;
+}
+
+.menu-image {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9cdc0;
+  color: #756b63;
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.menu-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.menu-title h3 {
+  margin: 0;
+}
+
+.menu-title strong {
+  white-space: nowrap;
+}
+
+.menu-content p {
+  margin-bottom: 0;
+  color: #756b63;
+  line-height: 1.5;
+}
