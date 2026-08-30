@@ -179,3 +179,122 @@ a {
   color: #686868;
   line-height: 1.5;
 }
+
+/* Membership */
+
+.membership-section {
+  padding: 80px 0;
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.membership-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+}
+
+.membership-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.price span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #686868;
+}
+
+.membership-card ul {
+  padding-left: 20px;
+  line-height: 2;
+  color: #686868;
+}
+
+.membership-card .button {
+  margin-top: 10px;
+}
+
+.popular {
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Contact */
+
+.contact-section {
+  padding: 90px 0;
+  background-color: #f2f2f2;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contact-content h2 {
+  margin: 15px 0;
+  font-size: 38px;
+}
+
+.contact-content p {
+  color: #686868;
+  line-height: 1.6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form label {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 13px;
+  border: 1px solid #c5c5c5;
+  border-radius: 6px;
+  font: inherit;
+  resize: vertical;
+}
+
+.contact-form .button {
+  border: none;
+  cursor: pointer;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #252525;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
