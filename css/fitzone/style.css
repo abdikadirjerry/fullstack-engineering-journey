@@ -85,3 +85,97 @@ a {
   background-color: #252525;
   color: white;
 }
+
+/* General sections */
+
+.programs-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+/* Programs */
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.program-card {
+  overflow: hidden;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+}
+
+.program-image {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d5d5d5;
+  color: #686868;
+}
+
+.program-content {
+  padding: 20px;
+}
+
+.program-content span {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.program-content h3 {
+  margin: 10px 0;
+}
+
+.program-content p {
+  margin-bottom: 0;
+  color: #686868;
+  line-height: 1.5;
+}
+
+/* Benefits */
+
+.benefits-section {
+  padding: 80px 0;
+  background-color: #f2f2f2;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.benefit {
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+}
+
+.benefit h3 {
+  margin-top: 0;
+}
+
+.benefit p {
+  margin-bottom: 0;
+  color: #686868;
+  line-height: 1.5;
+}
