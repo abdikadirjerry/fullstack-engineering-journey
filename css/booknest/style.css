@@ -96,3 +96,48 @@ a {
 .text-link {
   font-weight: bold;
 }
+
+/* General sections */
+
+.categories-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+/* Categories */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  padding: 25px;
+  border: 1px solid #dedbd6;
+  border-radius: 8px;
+}
+
+.category-card h3 {
+  margin-top: 0;
+}
+
+.category-card p {
+  margin-bottom: 0;
+  color: #706b65;
+  line-height: 1.5;
+}
