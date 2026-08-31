@@ -228,3 +228,25 @@ a {
   color: #706b65;
   line-height: 1.5;
 }
+
+/* About */
+
+.about-section {
+  padding: 90px 0;
+  background-color: #eee9e1;
+}
+
+.about-content {
+  max-width: 750px;
+}
+
+.about-content h2 {
+  margin: 15px 0;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.about-content p {
+  color: #706b65;
+  line-height: 1.6;
+}
