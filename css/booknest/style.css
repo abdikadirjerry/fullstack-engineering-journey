@@ -317,3 +317,38 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #55514d;
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.category-card,
+.book-card,
+.benefit {
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover,
+.book-card:hover,
+.benefit:hover {
+  transform: translateY(-5px);
+}
+
+.book-footer a:hover {
+  text-decoration: underline;
+}
