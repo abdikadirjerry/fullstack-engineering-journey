@@ -352,3 +352,99 @@ a {
 .book-footer a:hover {
   text-decoration: underline;
 }
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .benefit-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .newsletter-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .categories-section,
+  .books-section,
+  .benefits-section,
+  .about-section,
+  .newsletter-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .newsletter-content h2 {
+    font-size: 30px;
+  }
+
+  .category-grid,
+  .book-grid,
+  .benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-cover {
+    height: 260px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row .button {
+    align-self: flex-start;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
