@@ -250,3 +250,70 @@ a {
   color: #706b65;
   line-height: 1.6;
 }
+
+/* Newsletter */
+
+.newsletter-section {
+  padding: 80px 0;
+}
+
+.newsletter-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.newsletter-content h2 {
+  margin: 15px 0;
+  font-size: 36px;
+}
+
+.newsletter-content p {
+  color: #706b65;
+  line-height: 1.6;
+}
+
+.newsletter-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px;
+  border: 1px solid #c8c2ba;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.form-row .button {
+  border: none;
+  cursor: pointer;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #292725;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
