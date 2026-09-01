@@ -85,3 +85,101 @@ a {
   background-color: #263129;
   color: white;
 }
+
+/* General sections */
+
+.meals-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+/* Meals */
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.meal-card {
+  overflow: hidden;
+  border: 1px solid #dce2dc;
+  border-radius: 8px;
+}
+
+.meal-image {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d2ddd4;
+  color: #68736c;
+}
+
+.meal-content {
+  padding: 20px;
+}
+
+.meal-content span {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.meal-content h3 {
+  margin: 10px 0;
+}
+
+.meal-content p {
+  color: #68736c;
+  line-height: 1.5;
+}
+
+.meal-content strong {
+  display: block;
+  margin-top: 15px;
+}
+
+/* Benefits */
+
+.benefits-section {
+  padding: 80px 0;
+  background-color: #f3f6f3;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.benefit {
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #dce2dc;
+  border-radius: 8px;
+}
+
+.benefit h3 {
+  margin-top: 0;
+}
+
+.benefit p {
+  margin-bottom: 0;
+  color: #68736c;
+  line-height: 1.5;
+}
