@@ -187,3 +187,167 @@ a {
   color: #666666;
   line-height: 1.5;
 }
+
+/* Plans */
+
+.plans-section {
+  padding: 80px 0;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.plan-card {
+  padding: 30px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.plan-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.price span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #666666;
+}
+
+.plan-card ul {
+  padding-left: 20px;
+  color: #666666;
+  line-height: 2;
+}
+
+.popular {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 30px 0;
+  background-color: #1f1f1f;
+  color: white;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+/* Hover effects */
+
+.button,
+.secondary-button,
+.playlist-card,
+.feature,
+.plan-card {
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  background-color: #555555;
+}
+
+.secondary-button:hover {
+  background-color: #1f1f1f;
+  color: white;
+}
+
+.playlist-card:hover,
+.feature:hover,
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .playlist-grid,
+  .feature-grid,
+  .plan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .playlists-section,
+  .features-section,
+  .plans-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .playlist-grid,
+  .feature-grid,
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
