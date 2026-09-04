@@ -85,3 +85,66 @@ a {
   color: white;
   border-radius: 6px;
 }
+,
+/* General sections */
+
+.menu-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+/* Menu */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.menu-card {
+  overflow: hidden;
+  border: 1px solid #ded7cf;
+  border-radius: 8px;
+}
+
+.menu-image {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9cec2;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.menu-content h3 {
+  margin-top: 0;
+}
+
+.menu-content p {
+  color: #6d6259;
+  line-height: 1.5;
+}
+
+.menu-content strong {
+  display: block;
+  margin-top: 15px;
+}
