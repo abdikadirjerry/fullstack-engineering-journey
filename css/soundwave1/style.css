@@ -88,3 +88,68 @@ a {
   font: inherit;
   cursor: pointer;
 }
+
+/* General Sections */
+
+.playlists-section,
+.categories-section,
+.artists-section,
+.albums-section {
+  padding: 80px 0;
+}
+
+.section-heading {
+  margin-bottom: 40px;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+/* Playlists */
+
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.playlist-card {
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.playlist-cover {
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d8d8d8;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.playlist-content {
+  padding: 20px;
+}
+
+.playlist-content h3 {
+  margin-top: 0;
+}
+
+.playlist-content p {
+  color: #666666;
+  line-height: 1.5;
+}
+
+.card-link {
+  font-weight: bold;
+}
