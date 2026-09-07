@@ -153,3 +153,32 @@ a {
 .card-link {
   font-weight: bold;
 }
+
+/* Categories */
+
+.categories-section {
+  background-color: #f4f4f4;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  padding: 30px;
+  background-color: white;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.category-card h3 {
+  margin-top: 0;
+}
+
+.category-card p {
+  margin-bottom: 0;
+  color: #666666;
+  line-height: 1.5;
+}
