@@ -182,3 +182,71 @@ a {
   color: #666666;
   line-height: 1.5;
 }
+
+/* Artists */
+
+.artist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.artist-card {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+
+.artist-image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-color: #d8d8d8;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.artist-card h3 {
+  margin-bottom: 8px;
+}
+
+.artist-card p {
+  margin-top: 0;
+  color: #666666;
+}
+
+/* Albums */
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.album-card {
+  text-align: center;
+}
+
+.album-cover {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e2e2;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.album-card h3 {
+  margin-bottom: 5px;
+}
+
+.album-card p {
+  margin-top: 0;
+  color: #666666;
+}
