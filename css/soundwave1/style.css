@@ -310,3 +310,109 @@ a {
   display: flex;
   gap: 20px;
 }
+
+/* Hover Effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #555555;
+}
+
+.playlist-card,
+.category-card,
+.artist-card,
+.album-card {
+  transition: transform 0.2s ease;
+}
+
+.playlist-card:hover,
+.category-card:hover,
+.artist-card:hover,
+.album-card:hover {
+  transform: translateY(-5px);
+}
+
+.main-nav a:hover,
+.footer-links a:hover,
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .playlist-grid,
+  .album-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .artist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsletter-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .playlists-section,
+  .categories-section,
+  .artists-section,
+  .albums-section,
+  .newsletter-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .newsletter-content h2 {
+    font-size: 30px;
+  }
+
+  .playlist-grid,
+  .category-grid,
+  .artist-grid,
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
