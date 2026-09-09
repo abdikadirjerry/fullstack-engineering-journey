@@ -205,60 +205,157 @@ a {
 /* Newsletter */
 
 .newsletter-section {
-    padding: 90px 0;
-    background-color: #f4f4f4;
+  padding: 90px 0;
+  background-color: #f4f4f4;
 }
 
 .newsletter-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
 .newsletter-content h2 {
-    margin: 15px 0;
-    font-size: 38px;
+  margin: 15px 0;
+  font-size: 38px;
 }
 
 .newsletter-content p {
-    color: #666666;
-    line-height: 1.6;
+  color: #666666;
+  line-height: 1.6;
 }
 
 .newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .newsletter-form input {
-    padding: 14px;
-    border: 1px solid #bbbbbb;
-    border-radius: 6px;
-    font: inherit;
+  padding: 14px;
+  border: 1px solid #bbbbbb;
+  border-radius: 6px;
+  font: inherit;
 }
 
 .newsletter-form .button {
-    margin-top: 0;
+  margin-top: 0;
 }
-
 
 /* Footer */
 
 .site-footer {
-    padding: 30px 0;
-    background-color: #252525;
-    color: white;
+  padding: 30px 0;
+  background-color: #252525;
+  color: white;
 }
 
 .site-footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-links {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Hover Effects */
+
+.button {
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #555555;
+}
+
+.plant-card,
+.benefit-card,
+.care-card {
+  transition: transform 0.2s ease;
+}
+
+.plant-card:hover,
+.benefit-card:hover,
+.care-card:hover {
+  transform: translateY(-5px);
+}
+
+.main-nav a:hover,
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero {
+    padding: 80px 0;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .plant-grid,
+  .benefit-grid,
+  .care-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .newsletter-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .plants-section,
+  .benefits-section,
+  .care-section,
+  .newsletter-section {
+    padding: 60px 0;
+  }
+
+  .section-heading h2,
+  .newsletter-content h2 {
+    font-size: 30px;
+  }
+
+  .plant-grid,
+  .benefit-grid,
+  .care-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
