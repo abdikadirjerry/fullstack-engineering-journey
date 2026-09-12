@@ -304,3 +304,34 @@ body {
   padding-top: 20px;
   font-size: 14px;
 }
+
+h1,
+h2,
+h3 {
+  color: #26352b;
+}
+
+p {
+  color: #536259;
+}
+
+.hero-text h1 {
+  color: #26352b;
+}
+
+.hero-text > p:not(.section-label) {
+  color: #405047;
+}
+
+.destination-content p,
+.activity-card p,
+.about-text p {
+  color: #536259;
+}
+
+@media (min-width: 801px) {
+  .destination-card,
+  .activity-card {
+    min-height: 100%;
+  }
+}
