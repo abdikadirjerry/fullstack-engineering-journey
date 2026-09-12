@@ -267,3 +267,40 @@ body {
 .form-row button:hover {
   background-color: #223d2a;
 }
+
+.site-footer {
+  background-color: #26352b;
+  color: #ffffff;
+  padding: 45px 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.footer-logo {
+  color: #ffffff;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  border-top: 1px solid #536259;
+  padding-top: 20px;
+  font-size: 14px;
+}
