@@ -357,3 +357,67 @@ p {
     gap: 40px;
   }
 }
+
+@media (max-width: 600px) {
+  .container {
+    width: 92%;
+  }
+
+  .site-header .container {
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+  }
+
+  .main-navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero-section {
+    padding: 65px 0;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-text > p:not(.section-label) {
+    font-size: 16px;
+  }
+
+  .destinations-section,
+  .activities-section,
+  .about-section {
+    padding: 65px 0;
+  }
+
+  .section-heading h2,
+  .about-heading h2,
+  .newsletter-content h2 {
+    font-size: 30px;
+  }
+
+  .destination-grid,
+  .activity-grid,
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row button {
+    width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
