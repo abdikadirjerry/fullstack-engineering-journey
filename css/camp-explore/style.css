@@ -211,3 +211,59 @@ body {
 .about-text p {
   margin-bottom: 18px;
 }
+
+.newsletter-section {
+  padding: 80px 0;
+  background-color: #d8dfd1;
+}
+
+.newsletter-content {
+  max-width: 700px;
+  text-align: center;
+}
+
+.newsletter-content h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.newsletter-content > p:not(.section-label) {
+  margin-bottom: 25px;
+}
+
+.newsletter-form {
+  text-align: left;
+}
+
+.newsletter-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 13px;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-row button {
+  border: none;
+  background-color: #31543b;
+  color: #ffffff;
+  padding: 13px 22px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background-color: #223d2a;
+}
