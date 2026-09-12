@@ -161,3 +161,32 @@ body {
 .button:hover {
   background-color: #223d2a;
 }
+
+.activities-section {
+  padding: 90px 0;
+  background-color: #e9ede5;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.activity-card {
+  background-color: #ffffff;
+  padding: 28px;
+  border-radius: 8px;
+}
+
+.activity-number {
+  display: block;
+  color: #55745d;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.activity-card h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
