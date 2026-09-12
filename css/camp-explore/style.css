@@ -335,3 +335,25 @@ p {
     min-height: 100%;
   }
 }
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 80px 0;
+  }
+
+  .hero-text h1 {
+    font-size: 44px;
+  }
+
+  .destination-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .activity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-content {
+    gap: 40px;
+  }
+}
