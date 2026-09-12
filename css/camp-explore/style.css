@@ -138,3 +138,26 @@ body {
   font-size: 22px;
   margin-bottom: 8px;
 }
+
+.destination-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.destination-image {
+  transition: transform 0.3s ease;
+}
+
+.destination-card:hover .destination-image {
+  transform: scale(1.03);
+}
+
+.button:hover {
+  background-color: #223d2a;
+}
