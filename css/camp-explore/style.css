@@ -85,3 +85,56 @@ body {
   border-radius: 5px;
   font-weight: bold;
 }
+
+.destinations-section {
+  padding: 90px 0;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.destination-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.destination-image {
+  height: 220px;
+}
+
+.forest-image {
+  background-color: #71856d;
+}
+
+.mountain-image {
+  background-color: #9ba6a0;
+}
+
+.lake-image {
+  background-color: #789ca0;
+}
+
+.destination-content {
+  padding: 22px;
+}
+
+.destination-content h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
