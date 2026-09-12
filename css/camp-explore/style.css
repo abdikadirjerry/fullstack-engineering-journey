@@ -46,3 +46,42 @@ body {
   color: #26352b;
   text-decoration: none;
 }
+
+.hero-section {
+  background-color: #d8dfd1;
+  padding: 110px 0;
+}
+
+.hero-text {
+  max-width: 650px;
+}
+
+.section-label {
+  color: #55745d;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.hero-text h1 {
+  font-size: 54px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-text > p:not(.section-label) {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.button {
+  display: inline-block;
+  background-color: #31543b;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 13px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+}
