@@ -190,3 +190,24 @@ body {
   font-size: 21px;
   margin-bottom: 10px;
 }
+
+.about-section {
+  padding: 90px 0;
+  background-color: #ffffff;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.about-heading h2 {
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.about-text p {
+  margin-bottom: 18px;
+}
