@@ -98,3 +98,70 @@ body {
 .button:hover {
   background-color: #555555;
 }
+
+.movies-section {
+  padding: 90px 0;
+}
+
+.section-heading {
+  max-width: 650px;
+  text-align: center;
+  margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.movie-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.movie-poster {
+  height: 280px;
+}
+
+.poster-one {
+  background-color: #5f6875;
+}
+
+.poster-two {
+  background-color: #8b7467;
+}
+
+.poster-three {
+  background-color: #596b62;
+}
+
+.poster-four {
+  background-color: #788894;
+}
+
+.movie-content {
+  padding: 20px;
+}
+
+.movie-year {
+  color: #725f49;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.movie-content h3 {
+  font-size: 21px;
+  margin: 6px 0 8px;
+}
+
+.movie-content p {
+  color: #666666;
+}
