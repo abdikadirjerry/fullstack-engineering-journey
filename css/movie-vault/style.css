@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f2ee;
+  color: #242424;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dddddd;
+}
+
+.header-content {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.logo {
+  color: #242424;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.main-navigation {
+  display: flex;
+  gap: 25px;
+}
+
+.main-navigation a {
+  color: #242424;
+  text-decoration: none;
+}
+
+.main-navigation a:hover {
+  text-decoration: underline;
+}
+
+.hero-section {
+  background-color: #ddd7ce;
+  padding: 110px 0;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.section-label {
+  color: #725f49;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.hero-content h1 {
+  font-size: 54px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-content > p:not(.section-label) {
+  max-width: 650px;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 24px;
+  background-color: #242424;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #555555;
+}
