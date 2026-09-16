@@ -59,6 +59,19 @@ h1 {
   margin-top: 25px;
 }
 
+#task-list li {
+  padding: 14px;
+  margin-bottom: 10px;
+  background-color: #f4f6f8;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#task-list li.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 @media (max-width: 550px) {
   .todo-container {
     width: 90%;

@@ -15,6 +15,10 @@ todoForm.addEventListener("submit", function (event) {
 
   taskItem.textContent = taskText;
 
+  taskItem.addEventListener("click", function () {
+    taskItem.classList.toggle("completed");
+  });
+
   taskList.appendChild(taskItem);
 
   taskInput.value = "";
