@@ -13,11 +13,24 @@ todoForm.addEventListener("submit", function (event) {
 
   const taskItem = document.createElement("li");
 
-  taskItem.textContent = taskText;
+  const taskTextElement = document.createElement("span");
+  taskTextElement.textContent = taskText;
+  taskTextElement.classList.add("task-text");
 
-  taskItem.addEventListener("click", function () {
-    taskItem.classList.toggle("completed");
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("delete-button");
+
+  taskTextElement.addEventListener("click", function () {
+    taskTextElement.classList.toggle("completed");
   });
+
+  deleteButton.addEventListener("click", function () {
+    taskItem.remove();
+  });
+
+  taskItem.appendChild(taskTextElement);
+  taskItem.appendChild(deleteButton);
 
   taskList.appendChild(taskItem);
 

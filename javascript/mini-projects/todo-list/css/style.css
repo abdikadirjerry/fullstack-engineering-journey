@@ -60,16 +60,31 @@ h1 {
 }
 
 #task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 14px;
   margin-bottom: 10px;
   background-color: #f4f6f8;
   border-radius: 6px;
+}
+
+.task-text {
   cursor: pointer;
 }
 
-#task-list li.completed {
+.task-text.completed {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+.delete-button {
+  border: none;
+  background-color: #222;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 @media (max-width: 550px) {
