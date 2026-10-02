@@ -19,27 +19,201 @@
         <span>TaskFlow</span>
       </a>
 
-      <p class="header-subtitle">Organize your day, your way.</p>
+      <div class="header-right">
+        <span class="header-date" id="header-date"
+          >Your productivity space</span
+        >
+        <div class="profile-avatar" aria-label="User profile">JD</div>
+      </div>
     </header>
 
     <main class="app-container">
+      <!-- Welcome section -->
       <section class="welcome-section">
-        <p class="eyebrow">YOUR PRODUCTIVITY SPACE</p>
-        <h1>Manage your tasks</h1>
-        <p class="welcome-description">
-          Stay organized, focus on what matters, and get things done.
-        </p>
+        <div>
+          <p class="eyebrow">YOUR PRODUCTIVITY SPACE</p>
+          <h1>Good day, welcome back!</h1>
+          <p class="welcome-description">
+            Plan your day, stay focused, and accomplish your goals.
+          </p>
+        </div>
+
+        <div class="welcome-icon" aria-hidden="true">✦</div>
       </section>
 
-      <section class="task-section" aria-label="Task manager">
-        <div class="task-panel">
-          <h2>My Tasks</h2>
-          <p>Your personal task manager is ready.</p>
+      <!-- Statistics -->
+      <section class="stats-grid" aria-label="Task statistics">
+        <article class="stat-card">
+          <div class="stat-icon total-icon" aria-hidden="true">▤</div>
+          <div>
+            <p class="stat-label">Total Tasks</p>
+            <p class="stat-number" id="total-count">3</p>
+          </div>
+        </article>
 
-          <div id="app-message" class="app-message" aria-live="polite">
-            Welcome to TaskFlow!
+        <article class="stat-card">
+          <div class="stat-icon active-icon" aria-hidden="true">◷</div>
+          <div>
+            <p class="stat-label">In Progress</p>
+            <p class="stat-number" id="active-count">2</p>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon completed-icon" aria-hidden="true">✓</div>
+          <div>
+            <p class="stat-label">Completed</p>
+            <p class="stat-number" id="completed-count">1</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Main task workspace -->
+      <section class="workspace">
+        <!-- Task list panel -->
+        <div class="task-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>My Tasks</h2>
+              <p class="panel-description">
+                Keep track of everything you need to do.
+              </p>
+            </div>
+
+            <span class="task-count-badge" id="task-count-badge">
+              3 tasks
+            </span>
+          </div>
+
+          <!-- Task filters -->
+          <nav class="task-filters" aria-label="Filter tasks">
+            <button
+              class="filter-button active"
+              type="button"
+              data-filter="all"
+            >
+              All Tasks
+            </button>
+            <button class="filter-button" type="button" data-filter="active">
+              Active
+            </button>
+            <button class="filter-button" type="button" data-filter="completed">
+              Completed
+            </button>
+          </nav>
+
+          <!-- Search -->
+          <div class="search-container">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+              type="search"
+              id="task-search"
+              placeholder="Search your tasks..."
+              aria-label="Search tasks"
+            />
+          </div>
+
+          <!-- Task list -->
+          <div class="task-list" id="task-list" aria-live="polite">
+            <article class="task-item">
+              <div class="task-checkbox" aria-hidden="true"></div>
+              <div class="task-content">
+                <h3>Complete JavaScript practice</h3>
+                <p>Review functions and array methods</p>
+              </div>
+              <span class="priority-badge priority-high">High</span>
+            </article>
+
+            <article class="task-item">
+              <div class="task-checkbox" aria-hidden="true"></div>
+              <div class="task-content">
+                <h3>Build TaskFlow dashboard</h3>
+                <p>Finish the application layout</p>
+              </div>
+              <span class="priority-badge priority-medium">Medium</span>
+            </article>
+
+            <article class="task-item completed">
+              <div class="task-checkbox checked" aria-hidden="true">✓</div>
+              <div class="task-content">
+                <h3>Set up project repository</h3>
+                <p>Initialize Git and create project files</p>
+              </div>
+              <span class="priority-badge priority-low">Low</span>
+            </article>
+          </div>
+
+          <div class="list-footer">
+            <span>Showing 3 tasks</span>
+            <span class="footer-status">
+              <span class="status-dot"></span>
+              Stay productive
+            </span>
           </div>
         </div>
+
+        <!-- Add task panel -->
+        <aside class="add-task-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>New Task</h2>
+              <p class="panel-description">Add something to your list.</p>
+            </div>
+            <div class="add-task-icon" aria-hidden="true">+</div>
+          </div>
+
+          <form id="task-form" class="task-form">
+            <div class="form-group">
+              <label for="task-title">Task name</label>
+              <input
+                type="text"
+                id="task-title"
+                name="title"
+                placeholder="What needs to be done?"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="task-description">Description</label>
+              <textarea
+                id="task-description"
+                name="description"
+                rows="3"
+                placeholder="Add some details..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="task-priority">Priority</label>
+              <select id="task-priority" name="priority">
+                <option value="low">Low Priority</option>
+                <option value="medium" selected>Medium Priority</option>
+                <option value="high">High Priority</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="task-due-date">Due date</label>
+              <input type="date" id="task-due-date" name="dueDate" />
+            </div>
+
+            <button class="add-task-button" type="submit">
+              <span aria-hidden="true">+</span>
+              Add Task
+            </button>
+          </form>
+
+          <div class="quick-tip">
+            <span class="tip-icon" aria-hidden="true">✦</span>
+            <div>
+              <h3>Quick tip</h3>
+              <p>
+                Break big goals into smaller tasks to make progress every day.
+              </p>
+            </div>
+          </div>
+        </aside>
       </section>
     </main>
 

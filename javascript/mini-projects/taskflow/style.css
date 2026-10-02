@@ -1,6 +1,6 @@
-/* ==============================
-   1. Global styles
-================================= */
+/* =========================================
+   1. Global styles and variables
+========================================= */
 
 * {
   box-sizing: border-box;
@@ -15,26 +15,55 @@
 
   --primary: #6d5dfc;
   --primary-dark: #5545e8;
+  --primary-light: #f1efff;
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --surface: #ffffff;
   --border: #e2e8f0;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --header-height: 76px;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8fafc;
 }
 
-/* ==============================
-   2. Header
-================================= */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(109, 93, 252, 0.35);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   2. Application header
+========================================= */
 
 .app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   width: 100%;
-  min-height: 76px;
-  padding: 16px 7%;
+  min-height: var(--header-height);
+  padding: 14px 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,125 +79,759 @@ body {
   font-size: 22px;
   font-weight: 800;
   text-decoration: none;
+  letter-spacing: -0.7px;
 }
 
 .logo-icon {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: grid;
   place-items: center;
   color: #ffffff;
   background: var(--primary);
   border-radius: 11px;
+  font-size: 22px;
+  box-shadow: 0 5px 12px rgba(109, 93, 252, 0.2);
 }
 
-.header-subtitle {
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-date {
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
 }
 
-/* ==============================
-   3. Main container
-================================= */
+.profile-avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: #8b7cf6;
+  border: 3px solid #eeeaff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   3. Main application container
+========================================= */
 
 .app-container {
-  width: min(100% - 40px, 900px);
+  width: min(100% - 48px, 1240px);
   margin: 0 auto;
+  padding: 42px 0 64px;
   flex: 1;
-  padding: 72px 0;
 }
 
+/* =========================================
+   4. Welcome section
+========================================= */
+
 .welcome-section {
-  margin-bottom: 36px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
 }
 
 .eyebrow {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: var(--primary);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 1.5px;
 }
 
 .welcome-section h1 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: var(--text-primary);
-  font-size: clamp(30px, 5vw, 42px);
+  font-size: clamp(27px, 4vw, 36px);
   font-weight: 800;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.3px;
 }
 
 .welcome-description {
-  max-width: 520px;
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.7;
 }
 
-/* ==============================
-   4. Task panel
-================================= */
+.welcome-icon {
+  width: 66px;
+  height: 66px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+  background: #eeebff;
+  border: 1px solid #e2dcff;
+  border-radius: 20px;
+  font-size: 32px;
+}
 
-.task-panel {
-  padding: 32px;
+/* =========================================
+   5. Statistics cards
+========================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  min-width: 0;
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.025);
 }
 
-.task-panel h2 {
-  margin-bottom: 8px;
-  font-size: 22px;
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 23px;
+  font-weight: 700;
 }
 
-.task-panel > p {
+.total-icon {
+  color: #6d5dfc;
+  background: #f0edff;
+}
+
+.active-icon {
+  color: #d97706;
+  background: #fff6df;
+}
+
+.completed-icon {
+  color: #16a34a;
+  background: #eaf9ef;
+}
+
+.stat-label {
+  margin-bottom: 7px;
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.app-message {
-  margin-top: 24px;
-  padding: 16px;
-  color: #5545e8;
-  background: #f1efff;
-  border: 1px solid #e3dfff;
+.stat-number {
+  color: var(--text-primary);
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* =========================================
+   6. Main workspace
+========================================= */
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(270px, 0.9fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.task-panel,
+.add-task-panel {
+  min-width: 0;
+  padding: 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.025);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-heading h2 {
+  margin-bottom: 7px;
+  color: var(--text-primary);
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.panel-description {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.task-count-badge {
+  padding: 7px 10px;
+  color: var(--primary);
+  background: var(--primary-light);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* =========================================
+   7. Task filters
+========================================= */
+
+.task-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 25px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-button {
+  padding: 9px 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.filter-button:hover {
+  color: var(--primary);
+  background: #f6f4ff;
+}
+
+.filter-button.active {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+/* =========================================
+   8. Search field
+========================================= */
+
+.search-container {
+  position: relative;
+  margin: 19px 0;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.search-container input {
+  width: 100%;
+  min-height: 43px;
+  padding: 11px 14px 11px 42px;
+  color: var(--text-primary);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  outline: none;
+  font-size: 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-container input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(109, 93, 252, 0.1);
+}
+
+.search-container input::placeholder {
+  color: #94a3b8;
+}
+
+/* =========================================
+   9. Task list and task items
+========================================= */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 15px 12px;
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 11px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.task-item:hover {
+  background: #fcfbff;
+  border-color: #dcd6ff;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.task-checkbox.checked {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.task-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.task-content h3 {
+  overflow-wrap: anywhere;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.task-content p {
+  overflow-wrap: anywhere;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.task-item.completed .task-content h3 {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.task-item.completed .task-content p {
+  color: #a1a1aa;
+}
+
+.priority-badge {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.priority-high {
+  color: #dc2626;
+  background: #fef0f0;
+}
+
+.priority-medium {
+  color: #b7791f;
+  background: #fff7df;
+}
+
+.priority-low {
+  color: #15803d;
+  background: #eaf8ee;
+}
+
+/* =========================================
+   10. Task list footer
+========================================= */
+
+.list-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+/* =========================================
+   11. Add task panel
+========================================= */
+
+.add-task-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+  background: var(--primary-light);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 23px;
 }
 
-/* ==============================
-   5. Footer
-================================= */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  margin-top: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  min-height: 42px;
+  padding: 11px 12px;
+  color: var(--text-primary);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  font-size: 11px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(109, 93, 252, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aaba;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.add-task-button {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2px;
+  color: #ffffff;
+  background: var(--primary);
+  border: 0;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.add-task-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.add-task-button span {
+  font-size: 19px;
+  line-height: 1;
+}
+
+/* =========================================
+   12. Quick tip
+========================================= */
+
+.quick-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 25px;
+  padding: 15px 13px;
+  background: #f5f3ff;
+  border: 1px solid #e9e4ff;
+  border-radius: 10px;
+}
+
+.tip-icon {
+  flex-shrink: 0;
+  color: var(--primary);
+  font-size: 17px;
+}
+
+.quick-tip h3 {
+  margin-bottom: 5px;
+  color: #4c3ec4;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.quick-tip p {
+  color: #6b65a2;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   13. Footer
+========================================= */
 
 .app-footer {
-  padding: 22px 20px;
+  padding: 20px;
   text-align: center;
   color: var(--text-secondary);
   background: var(--surface);
   border-top: 1px solid var(--border);
-  font-size: 13px;
+  font-size: 11px;
 }
 
-/* ==============================
-   6. Responsive design
-================================= */
+/* =========================================
+   14. Responsive layout
+========================================= */
+
+@media (max-width: 900px) {
+  .app-container {
+    width: min(100% - 36px, 760px);
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .add-task-panel {
+    width: 100%;
+  }
+
+  .task-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .add-task-button {
+    align-self: end;
+  }
+
+  .quick-tip {
+    margin-top: 20px;
+  }
+}
 
 @media (max-width: 600px) {
   .app-header {
-    padding: 14px 20px;
+    min-height: 66px;
+    padding: 12px 18px;
   }
 
-  .header-subtitle {
+  .logo {
+    font-size: 19px;
+  }
+
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header-date {
     display: none;
   }
 
   .app-container {
-    width: calc(100% - 32px);
-    padding: 48px 0;
+    width: calc(100% - 30px);
+    padding: 34px 0 45px;
   }
 
-  .task-panel {
-    padding: 22px;
+  .welcome-section {
+    margin-bottom: 23px;
+  }
+
+  .welcome-section h1 {
+    font-size: 27px;
+  }
+
+  .welcome-description {
+    max-width: 290px;
+    font-size: 12px;
+  }
+
+  .welcome-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    font-size: 23px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    min-height: 100px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .stat-icon {
+    width: 31px;
+    height: 31px;
+    border-radius: 9px;
+    font-size: 16px;
+  }
+
+  .stat-label {
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .stat-number {
+    font-size: 21px;
+  }
+
+  .workspace {
+    gap: 16px;
+  }
+
+  .task-panel,
+  .add-task-panel {
+    padding: 18px 14px;
+    border-radius: 13px;
+  }
+
+  .panel-heading h2 {
+    font-size: 17px;
+  }
+
+  .panel-description {
+    font-size: 10px;
+  }
+
+  .task-filters {
+    gap: 3px;
+    margin-top: 20px;
+  }
+
+  .filter-button {
+    padding: 9px 8px;
+    font-size: 10px;
+  }
+
+  .task-item {
+    gap: 8px;
+    padding: 12px 8px;
+  }
+
+  .priority-badge {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+
+  .task-content h3 {
+    font-size: 11px;
+  }
+
+  .task-content p {
+    font-size: 9px;
+  }
+
+  .list-footer {
+    font-size: 9px;
+  }
+
+  .task-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .quick-tip {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .stats-grid {
+    gap: 5px;
+  }
+
+  .stat-card {
+    padding: 9px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  .filter-button {
+    padding: 8px 6px;
+    font-size: 9px;
   }
 }

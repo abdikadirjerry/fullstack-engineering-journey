@@ -1,18 +1,52 @@
 "use strict";
 
-// TaskFlow application initialization
+// =========================================
+// 1. DOM ELEMENTS
+// =========================================
 
-const appMessage = document.querySelector("#app-message");
+const headerDate = document.querySelector("#header-date");
+const taskForm = document.querySelector("#task-form");
+const taskList = document.querySelector("#task-list");
 
-function initializeApp() {
-  if (!appMessage) {
-    console.error("TaskFlow: Application message element not found.");
+// =========================================
+// 2. DISPLAY CURRENT DATE
+// =========================================
+
+function displayCurrentDate() {
+  if (!headerDate) {
+    console.error("TaskFlow: Date element not found.");
     return;
   }
 
-  appMessage.textContent = "Welcome to TaskFlow! Your workspace is ready.";
+  const today = new Date();
 
-  console.log("TaskFlow initialized successfully.");
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  headerDate.textContent = formattedDate;
 }
+
+// =========================================
+// 3. INITIALIZE APPLICATION
+// =========================================
+
+function initializeApp() {
+  if (!taskForm || !taskList) {
+    console.error("TaskFlow: Required dashboard elements are missing.");
+    return;
+  }
+
+  displayCurrentDate();
+
+  console.log("TaskFlow dashboard initialized successfully.");
+}
+
+// =========================================
+// 4. START APPLICATION
+// =========================================
 
 initializeApp();
