@@ -63,6 +63,34 @@
             <p class="stat-number" id="completed-count">0</p>
           </div>
         </article>
+
+        <article class="stat-card">
+          <div class="stat-icon overdue-icon" aria-hidden="true">!</div>
+          <div>
+            <p class="stat-label">Overdue</p>
+            <p class="stat-number" id="overdue-count">0</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="progress-panel" aria-label="Overall task progress">
+        <div class="progress-heading">
+          <div>
+            <h2>Overall progress</h2>
+            <p>Keep going — every completed task counts.</p>
+          </div>
+          <strong id="completion-percent">0%</strong>
+        </div>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Task completion"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <span class="progress-fill" id="completion-progress"></span>
+        </div>
       </section>
 
       <section class="workspace">
@@ -77,30 +105,43 @@
             <span class="task-count-badge" id="task-count-badge">0 tasks</span>
           </div>
 
-          <nav class="task-filters" aria-label="Filter tasks">
-            <button
-              class="filter-button active"
-              type="button"
-              data-filter="all"
-            >
-              All Tasks
-            </button>
-            <button class="filter-button" type="button" data-filter="active">
-              Active
-            </button>
-            <button class="filter-button" type="button" data-filter="completed">
-              Completed
-            </button>
-          </nav>
+          <div class="task-controls">
+            <nav class="task-filters" aria-label="Filter tasks">
+              <button
+                class="filter-button active"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All Tasks
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="active"
+                aria-pressed="false"
+              >
+                Active
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-filter="completed"
+                aria-pressed="false"
+              >
+                Completed
+              </button>
+            </nav>
 
-          <div class="search-container">
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <input
-              type="search"
-              id="task-search"
-              placeholder="Search your tasks..."
-              aria-label="Search tasks"
-            />
+            <div class="search-container">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input
+                type="search"
+                id="task-search"
+                placeholder="Search your tasks..."
+                aria-label="Search tasks"
+              />
+            </div>
           </div>
 
           <p
@@ -109,7 +150,6 @@
             role="status"
             aria-live="polite"
           ></p>
-
           <div class="task-list" id="task-list" aria-live="polite"></div>
 
           <div class="list-footer">

@@ -7,10 +7,14 @@ const taskList = document.querySelector("#task-list");
 const formMessage = document.querySelector("#form-message");
 const submitButton = taskForm.querySelector('button[type="submit"]');
 
-const totalTasksElement = document.querySelector("#total-tasks");
-const completedTasksElement = document.querySelector("#completed-tasks");
-const pendingTasksElement = document.querySelector("#pending-tasks");
-const currentDateElement = document.querySelector("#current-date");
+const totalTasksElement = document.querySelector("#total-count");
+const completedTasksElement = document.querySelector("#completed-count");
+const pendingTasksElement = document.querySelector("#active-count");
+const currentDateElement = document.querySelector("#header-date");
+const overdueTasksElement = document.querySelector("#overdue-count");
+const completionPercentElement = document.querySelector("#completion-percent");
+const progressBarElement = document.querySelector("#completion-progress");
+const progressTrackElement = document.querySelector(".progress-track");
 
 const searchInput = document.querySelector("#task-search");
 const filterButtons = document.querySelectorAll("[data-filter]");
@@ -338,10 +342,52 @@ function updateTaskStatistics() {
   const total = tasks.length;
   const completed = tasks.filter((task) => task.completed).length;
   const pending = total - completed;
+  const today = getTodayDateString();
+  const overdue = tasks.filter(
+    (task) => !task.completed && task.dueDate && task.dueDate < today,
+  ).length;
+  const completionPercent =
+    total === 0 ? 0 : Math.round((completed / total) * 100);
 
   totalTasksElement.textContent = total;
   completedTasksElement.textContent = completed;
   pendingTasksElement.textContent = pending;
+
+  if (overdueTasksElement) {
+    overdueTasksElement.textContent = overdue;
+  }
+
+  if (completionPercentElement) {
+    completionPercentElement.textContent = `${completionPercent}%`;
+  }
+
+  if (progressBarElement) {
+    progressBarElement.style.width = `${completionPercent}%`;
+    if (progressTrackElement) {
+      progressTrackElement.setAttribute(
+        "aria-valuenow",
+        String(completionPercent),
+      );
+      progressTrackElement.setAttribute(
+        "aria-label",
+        `Task completion: ${completionPercent}%`,
+      );
+    }
+  }
+
+  const taskCountBadge = document.querySelector("#task-count-badge");
+  const listSummary = document.querySelector("#list-summary");
+  const visibleCount = getFilteredTasks().length;
+
+  if (taskCountBadge) {
+    taskCountBadge.textContent = `${total} ${total === 1 ? "task" : "tasks"}`;
+  }
+
+  if (listSummary) {
+    listSummary.textContent = `Showing ${visibleCount} of ${total} ${
+      total === 1 ? "task" : "tasks"
+    }`;
+  }
 }
 
 function updateActiveFilterButton() {

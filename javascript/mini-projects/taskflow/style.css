@@ -1136,3 +1136,168 @@ a:focus-visible {
     width: 100%;
   }
 }
+
+/* =========================================
+   Part 9: Dashboard progress and UI polish
+========================================= */
+
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+}
+
+.overdue-icon {
+  color: #dc2626;
+  background: #fef0f0;
+}
+
+.progress-panel {
+  margin-bottom: 28px;
+  padding: 22px 25px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.025);
+}
+
+.progress-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.progress-heading h2 {
+  margin-bottom: 5px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.progress-heading p {
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.progress-heading strong {
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  background: #eeecf8;
+  border-radius: 999px;
+}
+
+.progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #9a8cff);
+  border-radius: inherit;
+  transition: width 0.35s ease;
+}
+
+.task-item {
+  animation: task-appear 0.2s ease both;
+}
+
+.task-checkbox {
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task-checkbox:hover {
+  transform: scale(1.08);
+}
+
+.empty-state {
+  color: var(--text-secondary);
+}
+
+.task-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 18px;
+}
+
+.task-controls .task-filters {
+  margin-top: 0;
+}
+
+.task-controls .search-container {
+  margin: 0;
+}
+
+.task-extra-controls {
+  padding-top: 4px;
+  border-top: 1px solid #f0eef7;
+}
+
+@keyframes task-appear {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .progress-panel {
+    margin-bottom: 20px;
+    padding: 18px 15px;
+  }
+
+  .progress-heading h2 {
+    font-size: 13px;
+  }
+
+  .progress-heading p {
+    font-size: 10px;
+  }
+
+  .progress-heading strong {
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
