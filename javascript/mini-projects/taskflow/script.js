@@ -16,6 +16,8 @@ const searchInput = document.querySelector("#task-search");
 const filterButtons = document.querySelectorAll("[data-filter]");
 const taskControls = document.querySelector(".task-controls");
 
+const STORAGE_KEY = "taskflow-tasks";
+
 let tasks = [];
 let editingTaskId = null;
 let currentFilter = "all";
@@ -79,12 +81,70 @@ function validateTaskTitle(title) {
   return true;
 }
 
+// Save the current task list to the browser's local storage.
+function saveTasks() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    return true;
+  } catch (error) {
+    console.error("Unable to save tasks:", error);
+    showFormMessage(
+      "Tasks could not be saved. Check your browser storage settings.",
+      "error",
+    );
+    return false;
+  }
+}
+
+// Load previously saved tasks when the app starts.
+function loadTasks() {
+  try {
+    const savedTasks = localStorage.getItem(STORAGE_KEY);
+
+    if (!savedTasks) {
+      tasks = [];
+      return;
+    }
+
+    const parsedTasks = JSON.parse(savedTasks);
+
+    if (!Array.isArray(parsedTasks)) {
+      throw new Error("Saved task data is not a valid list.");
+    }
+
+    // Keep only task records with the expected basic structure.
+    tasks = parsedTasks.filter((task) => {
+      return (
+        task &&
+        typeof task.id === "string" &&
+        typeof task.title === "string" &&
+        typeof task.description === "string" &&
+        ["low", "medium", "high"].includes(task.priority) &&
+        typeof task.completed === "boolean" &&
+        typeof task.createdAt === "string" &&
+        (typeof task.dueDate === "string" || task.dueDate === "")
+      );
+    });
+  } catch (error) {
+    console.error("Unable to load saved tasks:", error);
+    tasks = [];
+    showFormMessage(
+      "Saved tasks could not be read. A new task list has been started.",
+      "error",
+    );
+  }
+}
+
 function formatDueDate(dateString) {
   if (!dateString) {
     return "No due date";
   }
 
   const date = new Date(`${dateString}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) {
+    return "Invalid due date";
+  }
 
   return date.toLocaleDateString("en-US", {
     month: "short",
@@ -305,6 +365,7 @@ function createTask(title, description, priority, dueDate) {
   };
 
   tasks.unshift(task);
+  saveTasks();
   renderTasks();
   showFormMessage("Task added successfully!", "success");
   taskForm.reset();
@@ -339,6 +400,7 @@ function updateTask(taskId, title, description, priority, dueDate) {
   task.priority = priority;
   task.dueDate = dueDate;
 
+  saveTasks();
   renderTasks();
   resetTaskForm();
   showFormMessage("Task updated successfully!", "success");
@@ -361,6 +423,7 @@ function deleteTask(taskId) {
     resetTaskForm();
   }
 
+  saveTasks();
   renderTasks();
   showFormMessage("Task deleted successfully.", "success");
 }
@@ -371,6 +434,7 @@ function toggleTaskCompletion(taskId) {
   if (!task) return;
 
   task.completed = !task.completed;
+  saveTasks();
   renderTasks();
 }
 
@@ -415,6 +479,9 @@ function handleSortChange(event) {
 
 function addPriorityAndSortControls() {
   if (!taskControls) return;
+
+  // Avoid creating duplicate controls if initialization is repeated.
+  if (document.querySelector("#priority-filter")) return;
 
   const extraControls = document.createElement("div");
   extraControls.className = "task-extra-controls";
@@ -499,6 +566,7 @@ function handleTitleInput() {
 
 function initializeApp() {
   displayCurrentDate();
+  loadTasks();
   addPriorityAndSortControls();
   updateActiveFilterButton();
   renderTasks();
