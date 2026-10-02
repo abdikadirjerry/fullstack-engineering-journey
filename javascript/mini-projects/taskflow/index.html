@@ -28,7 +28,6 @@
     </header>
 
     <main class="app-container">
-      <!-- Welcome section -->
       <section class="welcome-section">
         <div>
           <p class="eyebrow">YOUR PRODUCTIVITY SPACE</p>
@@ -41,13 +40,13 @@
         <div class="welcome-icon" aria-hidden="true">✦</div>
       </section>
 
-      <!-- Statistics -->
+      <!-- Task statistics -->
       <section class="stats-grid" aria-label="Task statistics">
         <article class="stat-card">
           <div class="stat-icon total-icon" aria-hidden="true">▤</div>
           <div>
             <p class="stat-label">Total Tasks</p>
-            <p class="stat-number" id="total-count">3</p>
+            <p class="stat-number" id="total-count">0</p>
           </div>
         </article>
 
@@ -55,7 +54,7 @@
           <div class="stat-icon active-icon" aria-hidden="true">◷</div>
           <div>
             <p class="stat-label">In Progress</p>
-            <p class="stat-number" id="active-count">2</p>
+            <p class="stat-number" id="active-count">0</p>
           </div>
         </article>
 
@@ -63,14 +62,13 @@
           <div class="stat-icon completed-icon" aria-hidden="true">✓</div>
           <div>
             <p class="stat-label">Completed</p>
-            <p class="stat-number" id="completed-count">1</p>
+            <p class="stat-number" id="completed-count">0</p>
           </div>
         </article>
       </section>
 
       <!-- Main task workspace -->
       <section class="workspace">
-        <!-- Task list panel -->
         <div class="task-panel">
           <div class="panel-heading">
             <div>
@@ -81,7 +79,7 @@
             </div>
 
             <span class="task-count-badge" id="task-count-badge">
-              3 tasks
+              0 tasks
             </span>
           </div>
 
@@ -113,38 +111,19 @@
             />
           </div>
 
-          <!-- Task list -->
-          <div class="task-list" id="task-list" aria-live="polite">
-            <article class="task-item">
-              <div class="task-checkbox" aria-hidden="true"></div>
-              <div class="task-content">
-                <h3>Complete JavaScript practice</h3>
-                <p>Review functions and array methods</p>
-              </div>
-              <span class="priority-badge priority-high">High</span>
-            </article>
+          <!-- Feedback for task creation -->
+          <p
+            id="form-message"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
 
-            <article class="task-item">
-              <div class="task-checkbox" aria-hidden="true"></div>
-              <div class="task-content">
-                <h3>Build TaskFlow dashboard</h3>
-                <p>Finish the application layout</p>
-              </div>
-              <span class="priority-badge priority-medium">Medium</span>
-            </article>
-
-            <article class="task-item completed">
-              <div class="task-checkbox checked" aria-hidden="true">✓</div>
-              <div class="task-content">
-                <h3>Set up project repository</h3>
-                <p>Initialize Git and create project files</p>
-              </div>
-              <span class="priority-badge priority-low">Low</span>
-            </article>
-          </div>
+          <!-- JavaScript renders tasks here -->
+          <div class="task-list" id="task-list" aria-live="polite"></div>
 
           <div class="list-footer">
-            <span>Showing 3 tasks</span>
+            <span id="list-summary">Showing 0 tasks</span>
             <span class="footer-status">
               <span class="status-dot"></span>
               Stay productive
@@ -152,7 +131,7 @@
           </div>
         </div>
 
-        <!-- Add task panel -->
+        <!-- Add task form -->
         <aside class="add-task-panel">
           <div class="panel-heading">
             <div>
@@ -162,7 +141,7 @@
             <div class="add-task-icon" aria-hidden="true">+</div>
           </div>
 
-          <form id="task-form" class="task-form">
+          <form id="task-form" class="task-form" novalidate>
             <div class="form-group">
               <label for="task-title">Task name</label>
               <input
@@ -171,6 +150,8 @@
                 name="title"
                 placeholder="What needs to be done?"
                 autocomplete="off"
+                maxlength="100"
+                required
               />
             </div>
 
@@ -181,6 +162,7 @@
                 name="description"
                 rows="3"
                 placeholder="Add some details..."
+                maxlength="300"
               ></textarea>
             </div>
 
