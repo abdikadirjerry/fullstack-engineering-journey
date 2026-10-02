@@ -1,0 +1,174 @@
+/* ==============================
+   1. Global styles
+================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #1e293b;
+  background: #f8fafc;
+
+  --primary: #6d5dfc;
+  --primary-dark: #5545e8;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==============================
+   2. Header
+================================= */
+
+.app-header {
+  width: 100%;
+  min-height: 76px;
+  padding: 16px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: var(--primary);
+  border-radius: 11px;
+}
+
+.header-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ==============================
+   3. Main container
+================================= */
+
+.app-container {
+  width: min(100% - 40px, 900px);
+  margin: 0 auto;
+  flex: 1;
+  padding: 72px 0;
+}
+
+.welcome-section {
+  margin-bottom: 36px;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.welcome-section h1 {
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.welcome-description {
+  max-width: 520px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ==============================
+   4. Task panel
+================================= */
+
+.task-panel {
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+.task-panel h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.task-panel > p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.app-message {
+  margin-top: 24px;
+  padding: 16px;
+  color: #5545e8;
+  background: #f1efff;
+  border: 1px solid #e3dfff;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ==============================
+   5. Footer
+================================= */
+
+.app-footer {
+  padding: 22px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+/* ==============================
+   6. Responsive design
+================================= */
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 14px 20px;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .app-container {
+    width: calc(100% - 32px);
+    padding: 48px 0;
+  }
+
+  .task-panel {
+    padding: 22px;
+  }
+}
