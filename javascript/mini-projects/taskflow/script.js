@@ -1,4 +1,3 @@
-
 const taskForm = document.querySelector("#task-form");
 const taskTitleInput = document.querySelector("#task-title");
 const taskDescriptionInput = document.querySelector("#task-description");
@@ -13,8 +12,13 @@ const completedTasksElement = document.querySelector("#completed-tasks");
 const pendingTasksElement = document.querySelector("#pending-tasks");
 const currentDateElement = document.querySelector("#current-date");
 
+const searchInput = document.querySelector("#task-search");
+const filterButtons = document.querySelectorAll("[data-filter]");
+
 let tasks = [];
 let editingTaskId = null;
+let currentFilter = "all";
+let searchQuery = "";
 
 function displayCurrentDate() {
   const today = new Date();
@@ -97,11 +101,11 @@ function createTaskElement(task) {
   const taskCheckbox = document.createElement("button");
   taskCheckbox.type = "button";
   taskCheckbox.className = `task-checkbox ${task.completed ? "checked" : ""}`;
-  taskCheckbox.dataset-action = "toggle";
+  taskCheckbox.dataset.action = "toggle";
   taskCheckbox.setAttribute("aria-pressed", String(task.completed));
   taskCheckbox.setAttribute(
     "aria-label",
-    `${task.completed ? "Mark as active" : "Mark as completed"}: ${task.title}`
+    `${task.completed ? "Mark as active" : "Mark as completed"}: ${task.title}`,
   );
 
   const taskContent = document.createElement("div");
@@ -160,16 +164,40 @@ function createTaskElement(task) {
   return taskItem;
 }
 
+function getFilteredTasks() {
+  return tasks.filter((task) => {
+    const matchesFilter =
+      currentFilter === "all" ||
+      (currentFilter === "active" && !task.completed) ||
+      (currentFilter === "completed" && task.completed);
+
+    const searchableText = `${task.title} ${task.description}`.toLowerCase();
+    const matchesSearch = searchableText.includes(searchQuery);
+
+    return matchesFilter && matchesSearch;
+  });
+}
+
 function renderTasks() {
   taskList.innerHTML = "";
 
-  if (tasks.length === 0) {
+  const filteredTasks = getFilteredTasks();
+
+  if (filteredTasks.length === 0) {
     const emptyState = document.createElement("div");
     emptyState.className = "empty-state";
-    emptyState.textContent = "No tasks yet. Add your first task!";
+
+    if (tasks.length === 0) {
+      emptyState.textContent = "No tasks yet. Add your first task!";
+    } else if (searchQuery || currentFilter !== "all") {
+      emptyState.textContent = "No tasks match your search or filter.";
+    } else {
+      emptyState.textContent = "No tasks to display.";
+    }
+
     taskList.append(emptyState);
   } else {
-    const taskElements = tasks.map(createTaskElement);
+    const taskElements = filteredTasks.map(createTaskElement);
     taskList.append(...taskElements);
   }
 
@@ -184,6 +212,15 @@ function updateTaskStatistics() {
   totalTasksElement.textContent = total;
   completedTasksElement.textContent = completed;
   pendingTasksElement.textContent = pending;
+}
+
+function updateActiveFilterButton() {
+  filterButtons.forEach((button) => {
+    const isActive = button.dataset.filter === currentFilter;
+
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
 }
 
 function createTask(title, description, priority, dueDate) {
@@ -252,7 +289,7 @@ function deleteTask(taskId) {
   }
 
   const confirmed = window.confirm(
-    `Are you sure you want to delete "${task.title}"?`
+    `Are you sure you want to delete "${task.title}"?`,
   );
 
   if (!confirmed) {
@@ -304,6 +341,23 @@ function handleTaskListClick(event) {
   }
 }
 
+function handleFilterClick(event) {
+  const clickedButton = event.target.closest("[data-filter]");
+
+  if (!clickedButton) {
+    return;
+  }
+
+  currentFilter = clickedButton.dataset.filter;
+  updateActiveFilterButton();
+  renderTasks();
+}
+
+function handleSearchInput(event) {
+  searchQuery = event.target.value.trim().toLowerCase();
+  renderTasks();
+}
+
 function handleTaskFormSubmit(event) {
   event.preventDefault();
   clearFormMessage();
@@ -334,11 +388,17 @@ function handleTitleInput() {
 
 function initializeApp() {
   displayCurrentDate();
+  updateActiveFilterButton();
   renderTasks();
 
   taskForm.addEventListener("submit", handleTaskFormSubmit);
   taskTitleInput.addEventListener("input", handleTitleInput);
   taskList.addEventListener("click", handleTaskListClick);
+  searchInput.addEventListener("input", handleSearchInput);
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", handleFilterClick);
+  });
 }
 
 initializeApp();
