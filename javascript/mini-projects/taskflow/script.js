@@ -20,10 +20,8 @@ const taskCountBadge = document.querySelector("#task-count-badge");
 const listSummary = document.querySelector("#list-summary");
 
 // =========================================
-// 2. APPLICATION DATA
+// 2. APPLICATION STATE
 // =========================================
-
-// Each task is an object stored in this array.
 
 let tasks = [];
 
@@ -39,14 +37,12 @@ function displayCurrentDate() {
 
   const today = new Date();
 
-  const formattedDate = today.toLocaleDateString("en-US", {
+  headerDate.textContent = today.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
   });
-
-  headerDate.textContent = formattedDate;
 }
 
 // =========================================
@@ -65,7 +61,7 @@ function generateTaskId() {
 }
 
 // =========================================
-// 5. DISPLAY FORM MESSAGES
+// 5. FORM FEEDBACK
 // =========================================
 
 function showFormMessage(message, type) {
@@ -95,16 +91,16 @@ function validateTaskTitle(title) {
 }
 
 // =========================================
-// 7. CREATE A TASK OBJECT
+// 7. CREATE TASK OBJECT
 // =========================================
 
 function createTask(title, description, priority, dueDate) {
   return {
     id: generateTaskId(),
-    title: title,
-    description: description,
-    priority: priority,
-    dueDate: dueDate,
+    title,
+    description,
+    priority,
+    dueDate,
     completed: false,
     createdAt: new Date().toISOString(),
   };
@@ -119,8 +115,6 @@ function formatDueDate(dateString) {
     return "";
   }
 
-  // Parse the date components locally to avoid
-  // timezone shifts from parsing a date-only string.
   const [year, month, day] = dateString.split("-").map(Number);
   const date = new Date(year, month - 1, day);
 
@@ -137,19 +131,33 @@ function formatDueDate(dateString) {
 
 function createTaskElement(task) {
   const article = document.createElement("article");
+
   article.className = task.completed ? "task-item completed" : "task-item";
 
+  article.dataset.taskId = task.id;
+
+  // Accessible checkbox control.
   const checkbox = document.createElement("div");
+
   checkbox.className = task.completed
     ? "task-checkbox checked"
     : "task-checkbox";
 
-  checkbox.setAttribute("aria-hidden", "true");
+  checkbox.setAttribute("role", "checkbox");
+  checkbox.setAttribute("tabindex", "0");
+  checkbox.setAttribute("aria-checked", String(task.completed));
+  checkbox.setAttribute(
+    "aria-label",
+    `Mark "${task.title}" as ${task.completed ? "active" : "completed"}`,
+  );
+
+  checkbox.dataset.action = "toggle";
 
   if (task.completed) {
     checkbox.textContent = "✓";
   }
 
+  // Task title and description.
   const content = document.createElement("div");
   content.className = "task-content";
 
@@ -161,13 +169,16 @@ function createTaskElement(task) {
 
   content.append(title, description);
 
+  // Optional due date.
   if (task.dueDate) {
     const dueDate = document.createElement("p");
     dueDate.className = "task-due-date";
     dueDate.textContent = `Due: ${formatDueDate(task.dueDate)}`;
+
     content.append(dueDate);
   }
 
+  // Priority badge.
   const priority = document.createElement("span");
   priority.className = `priority-badge priority-${task.priority}`;
 
@@ -240,7 +251,78 @@ function updateTaskStatistics() {
 }
 
 // =========================================
-// 12. HANDLE TASK FORM SUBMISSION
+// 12. TOGGLE TASK COMPLETION
+// =========================================
+
+function toggleTaskCompletion(taskId) {
+  const task = tasks.find(function (item) {
+    return item.id === taskId;
+  });
+
+  if (!task) {
+    console.warn("TaskFlow: Task not found.", taskId);
+    return;
+  }
+
+  // Switch the task's completion status.
+  task.completed = !task.completed;
+
+  // Refresh the task list and statistics.
+  renderTasks();
+
+  console.log(
+    `Task "${task.title}" is now ${task.completed ? "completed" : "active"}.`,
+  );
+}
+
+// =========================================
+// 13. HANDLE TASK LIST CLICKS
+// =========================================
+
+function handleTaskListClick(event) {
+  const checkbox = event.target.closest('[data-action="toggle"]');
+
+  if (!checkbox || !taskList.contains(checkbox)) {
+    return;
+  }
+
+  const taskItem = checkbox.closest("[data-task-id]");
+
+  if (!taskItem) {
+    return;
+  }
+
+  toggleTaskCompletion(taskItem.dataset.taskId);
+}
+
+// =========================================
+// 14. HANDLE KEYBOARD INTERACTION
+// =========================================
+
+function handleTaskListKeydown(event) {
+  if (event.key !== "Enter" && event.key !== " ") {
+    return;
+  }
+
+  const checkbox = event.target.closest('[data-action="toggle"]');
+
+  if (!checkbox || !taskList.contains(checkbox)) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const taskItem = checkbox.closest("[data-task-id]");
+
+  if (!taskItem) {
+    return;
+  }
+
+  toggleTaskCompletion(taskItem.dataset.taskId);
+}
+
+// =========================================
+// 15. HANDLE TASK FORM SUBMISSION
 // =========================================
 
 function handleTaskSubmission(event) {
@@ -253,7 +335,6 @@ function handleTaskSubmission(event) {
   const priority = taskPriorityInput.value;
   const dueDate = taskDueDateInput.value;
 
-  // Validate the task title.
   const validationError = validateTaskTitle(title);
 
   if (validationError) {
@@ -266,28 +347,22 @@ function handleTaskSubmission(event) {
 
   taskTitleInput.classList.remove("invalid");
 
-  // Create the task object.
   const newTask = createTask(title, description, priority, dueDate);
 
-  // Add the task to the array.
   tasks.push(newTask);
 
-  // Update the task list and statistics.
   renderTasks();
 
-  // Clear the form after successful submission.
   taskForm.reset();
   taskTitleInput.focus();
 
-  // Inform the user.
   showFormMessage("Your task has been added successfully!", "success");
 
   console.log("Task created:", newTask);
-  console.log("Current tasks:", tasks);
 }
 
 // =========================================
-// 13. HANDLE INPUT CHANGES
+// 16. HANDLE TITLE INPUT
 // =========================================
 
 function handleTitleInput() {
@@ -299,45 +374,51 @@ function handleTitleInput() {
 }
 
 // =========================================
-// 14. INITIALIZE APPLICATION
+// 17. INITIALIZE APPLICATION
 // =========================================
 
 function initializeApp() {
-  if (
-    !headerDate ||
-    !taskForm ||
-    !taskList ||
-    !taskTitleInput ||
-    !taskDescriptionInput ||
-    !taskPriorityInput ||
-    !taskDueDateInput ||
-    !formMessage ||
-    !totalCount ||
-    !activeCount ||
-    !completedCount ||
-    !taskCountBadge ||
-    !listSummary
-  ) {
-    console.error("TaskFlow: Required application elements are missing.");
+  const requiredElements = [
+    headerDate,
+    taskForm,
+    taskList,
+    taskTitleInput,
+    taskDescriptionInput,
+    taskPriorityInput,
+    taskDueDateInput,
+    formMessage,
+    totalCount,
+    activeCount,
+    completedCount,
+    taskCountBadge,
+    listSummary,
+  ];
+
+  if (requiredElements.some((element) => !element)) {
+    console.error(
+      "TaskFlow: One or more required application elements are missing.",
+    );
     return;
   }
 
   displayCurrentDate();
 
-  // Listen for task form submissions.
+  // Task creation.
   taskForm.addEventListener("submit", handleTaskSubmission);
-
-  // Clear validation feedback as the user types.
   taskTitleInput.addEventListener("input", handleTitleInput);
 
-  // Display the initial empty task list.
+  // Task completion using event delegation.
+  taskList.addEventListener("click", handleTaskListClick);
+  taskList.addEventListener("keydown", handleTaskListKeydown);
+
+  // Initial rendering.
   renderTasks();
 
-  console.log("TaskFlow Part 3 initialized successfully.");
+  console.log("TaskFlow Part 4 initialized successfully.");
 }
 
 // =========================================
-// 15. START APPLICATION
+// 18. START APPLICATION
 // =========================================
 
 initializeApp();
