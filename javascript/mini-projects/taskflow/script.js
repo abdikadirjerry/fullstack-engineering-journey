@@ -1,43 +1,25 @@
-"use strict";
 
-// =========================================
-// 1. DOM ELEMENTS
-// =========================================
-
-const headerDate = document.querySelector("#header-date");
 const taskForm = document.querySelector("#task-form");
-const taskList = document.querySelector("#task-list");
 const taskTitleInput = document.querySelector("#task-title");
 const taskDescriptionInput = document.querySelector("#task-description");
 const taskPriorityInput = document.querySelector("#task-priority");
 const taskDueDateInput = document.querySelector("#task-due-date");
+const taskList = document.querySelector("#task-list");
 const formMessage = document.querySelector("#form-message");
+const submitButton = taskForm.querySelector('button[type="submit"]');
 
-const totalCount = document.querySelector("#total-count");
-const activeCount = document.querySelector("#active-count");
-const completedCount = document.querySelector("#completed-count");
-const taskCountBadge = document.querySelector("#task-count-badge");
-const listSummary = document.querySelector("#list-summary");
-
-// =========================================
-// 2. APPLICATION STATE
-// =========================================
+const totalTasksElement = document.querySelector("#total-tasks");
+const completedTasksElement = document.querySelector("#completed-tasks");
+const pendingTasksElement = document.querySelector("#pending-tasks");
+const currentDateElement = document.querySelector("#current-date");
 
 let tasks = [];
-
-// =========================================
-// 3. DISPLAY CURRENT DATE
-// =========================================
+let editingTaskId = null;
 
 function displayCurrentDate() {
-  if (!headerDate) {
-    console.error("TaskFlow: Date element not found.");
-    return;
-  }
-
   const today = new Date();
 
-  headerDate.textContent = today.toLocaleDateString("en-US", {
+  currentDateElement.textContent = today.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -45,24 +27,13 @@ function displayCurrentDate() {
   });
 }
 
-// =========================================
-// 4. GENERATE UNIQUE TASK IDS
-// =========================================
-
 function generateTaskId() {
-  if (
-    typeof crypto !== "undefined" &&
-    typeof crypto.randomUUID === "function"
-  ) {
+  if (crypto.randomUUID) {
     return crypto.randomUUID();
   }
 
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return `${Date.now()}-${Math.floor(Math.random() * 100000)}`;
 }
-
-// =========================================
-// 5. FORM FEEDBACK
-// =========================================
 
 function showFormMessage(message, type) {
   formMessage.textContent = message;
@@ -74,49 +45,39 @@ function clearFormMessage() {
   formMessage.className = "form-message";
 }
 
-// =========================================
-// 6. VALIDATE TASK TITLE
-// =========================================
+function resetTaskForm() {
+  taskForm.reset();
+  editingTaskId = null;
+  submitButton.textContent = "Add Task";
+  clearFormMessage();
+  taskTitleInput.classList.remove("invalid");
+}
 
 function validateTaskTitle(title) {
-  if (!title) {
-    return "Please enter a task name.";
+  if (!title.trim()) {
+    showFormMessage("Please enter a task title.", "error");
+    taskTitleInput.classList.add("invalid");
+    taskTitleInput.focus();
+    return false;
   }
 
-  if (title.length > 100) {
-    return "Task name cannot exceed 100 characters.";
+  if (title.trim().length > 100) {
+    showFormMessage("Task title must be 100 characters or fewer.", "error");
+    taskTitleInput.classList.add("invalid");
+    taskTitleInput.focus();
+    return false;
   }
 
-  return "";
+  taskTitleInput.classList.remove("invalid");
+  return true;
 }
-
-// =========================================
-// 7. CREATE TASK OBJECT
-// =========================================
-
-function createTask(title, description, priority, dueDate) {
-  return {
-    id: generateTaskId(),
-    title,
-    description,
-    priority,
-    dueDate,
-    completed: false,
-    createdAt: new Date().toISOString(),
-  };
-}
-
-// =========================================
-// 8. FORMAT TASK DUE DATE
-// =========================================
 
 function formatDueDate(dateString) {
   if (!dateString) {
-    return "";
+    return "No due date";
   }
 
-  const [year, month, day] = dateString.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
+  const date = new Date(`${dateString}T00:00:00`);
 
   return date.toLocaleDateString("en-US", {
     month: "short",
@@ -125,100 +86,87 @@ function formatDueDate(dateString) {
   });
 }
 
-// =========================================
-// 9. CREATE TASK ELEMENT
-// =========================================
-
 function createTaskElement(task) {
-  const article = document.createElement("article");
+  const taskItem = document.createElement("article");
+  taskItem.className = `task-item ${task.completed ? "completed" : ""}`;
+  taskItem.dataset.taskId = task.id;
 
-  article.className = task.completed ? "task-item completed" : "task-item";
+  const taskMain = document.createElement("div");
+  taskMain.className = "task-main";
 
-  article.dataset.taskId = task.id;
-
-  // Accessible checkbox control.
-  const checkbox = document.createElement("div");
-
-  checkbox.className = task.completed
-    ? "task-checkbox checked"
-    : "task-checkbox";
-
-  checkbox.setAttribute("role", "checkbox");
-  checkbox.setAttribute("tabindex", "0");
-  checkbox.setAttribute("aria-checked", String(task.completed));
-  checkbox.setAttribute(
+  const taskCheckbox = document.createElement("button");
+  taskCheckbox.type = "button";
+  taskCheckbox.className = `task-checkbox ${task.completed ? "checked" : ""}`;
+  taskCheckbox.dataset-action = "toggle";
+  taskCheckbox.setAttribute("aria-pressed", String(task.completed));
+  taskCheckbox.setAttribute(
     "aria-label",
-    `Mark "${task.title}" as ${task.completed ? "active" : "completed"}`,
+    `${task.completed ? "Mark as active" : "Mark as completed"}: ${task.title}`
   );
 
-  checkbox.dataset.action = "toggle";
+  const taskContent = document.createElement("div");
+  taskContent.className = "task-content";
 
-  if (task.completed) {
-    checkbox.textContent = "✓";
+  const taskTitle = document.createElement("h3");
+  taskTitle.className = "task-title";
+  taskTitle.textContent = task.title;
+
+  const taskDescription = document.createElement("p");
+  taskDescription.className = "task-description";
+  taskDescription.textContent = task.description || "";
+
+  const taskMeta = document.createElement("div");
+  taskMeta.className = "task-meta";
+
+  const priorityBadge = document.createElement("span");
+  priorityBadge.className = `priority-badge priority-${task.priority}`;
+  priorityBadge.textContent =
+    task.priority.charAt(0).toUpperCase() + task.priority.slice(1);
+
+  const dueDate = document.createElement("span");
+  dueDate.className = "task-due-date";
+  dueDate.textContent = formatDueDate(task.dueDate);
+
+  taskMeta.append(priorityBadge, dueDate);
+  taskContent.append(taskTitle);
+
+  if (task.description) {
+    taskContent.append(taskDescription);
   }
 
-  // Task title and description.
-  const content = document.createElement("div");
-  content.className = "task-content";
+  taskContent.append(taskMeta);
+  taskMain.append(taskCheckbox, taskContent);
 
-  const title = document.createElement("h3");
-  title.textContent = task.title;
+  const taskActions = document.createElement("div");
+  taskActions.className = "task-actions";
 
-  const description = document.createElement("p");
-  description.textContent = task.description || "No description";
+  const editButton = document.createElement("button");
+  editButton.type = "button";
+  editButton.className = "task-action-button edit-task";
+  editButton.dataset.action = "edit";
+  editButton.textContent = "Edit";
+  editButton.setAttribute("aria-label", `Edit task: ${task.title}`);
 
-  content.append(title, description);
+  const deleteButton = document.createElement("button");
+  deleteButton.type = "button";
+  deleteButton.className = "task-action-button delete-task";
+  deleteButton.dataset.action = "delete";
+  deleteButton.textContent = "Delete";
+  deleteButton.setAttribute("aria-label", `Delete task: ${task.title}`);
 
-  // Optional due date.
-  if (task.dueDate) {
-    const dueDate = document.createElement("p");
-    dueDate.className = "task-due-date";
-    dueDate.textContent = `Due: ${formatDueDate(task.dueDate)}`;
+  taskActions.append(editButton, deleteButton);
+  taskItem.append(taskMain, taskActions);
 
-    content.append(dueDate);
-  }
-
-  // Priority badge.
-  const priority = document.createElement("span");
-  priority.className = `priority-badge priority-${task.priority}`;
-
-  const priorityLabels = {
-    low: "Low",
-    medium: "Medium",
-    high: "High",
-  };
-
-  priority.textContent = priorityLabels[task.priority] || "Medium";
-
-  article.append(checkbox, content, priority);
-
-  return article;
+  return taskItem;
 }
 
-// =========================================
-// 10. RENDER TASKS
-// =========================================
-
 function renderTasks() {
-  taskList.replaceChildren();
+  taskList.innerHTML = "";
 
   if (tasks.length === 0) {
     const emptyState = document.createElement("div");
     emptyState.className = "empty-state";
-
-    const icon = document.createElement("div");
-    icon.className = "empty-state-icon";
-    icon.textContent = "✓";
-    icon.setAttribute("aria-hidden", "true");
-
-    const heading = document.createElement("h3");
-    heading.textContent = "No tasks yet";
-
-    const description = document.createElement("p");
-    description.textContent =
-      "Add your first task using the form to get started.";
-
-    emptyState.append(icon, heading, description);
+    emptyState.textContent = "No tasks yet. Add your first task!";
     taskList.append(emptyState);
   } else {
     const taskElements = tasks.map(createTaskElement);
@@ -228,142 +176,153 @@ function renderTasks() {
   updateTaskStatistics();
 }
 
-// =========================================
-// 11. UPDATE TASK STATISTICS
-// =========================================
-
 function updateTaskStatistics() {
   const total = tasks.length;
+  const completed = tasks.filter((task) => task.completed).length;
+  const pending = total - completed;
 
-  const completed = tasks.filter(function (task) {
-    return task.completed;
-  }).length;
-
-  const active = total - completed;
-
-  totalCount.textContent = total;
-  activeCount.textContent = active;
-  completedCount.textContent = completed;
-
-  taskCountBadge.textContent = `${total} ${total === 1 ? "task" : "tasks"}`;
-
-  listSummary.textContent = `Showing ${total} ${total === 1 ? "task" : "tasks"}`;
+  totalTasksElement.textContent = total;
+  completedTasksElement.textContent = completed;
+  pendingTasksElement.textContent = pending;
 }
 
-// =========================================
-// 12. TOGGLE TASK COMPLETION
-// =========================================
+function createTask(title, description, priority, dueDate) {
+  const task = {
+    id: generateTaskId(),
+    title: title.trim(),
+    description: description.trim(),
+    priority,
+    dueDate,
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
 
-function toggleTaskCompletion(taskId) {
-  const task = tasks.find(function (item) {
-    return item.id === taskId;
-  });
+  tasks.unshift(task);
+  renderTasks();
+  showFormMessage("Task added successfully!", "success");
+  taskForm.reset();
+  taskTitleInput.focus();
+}
+
+function startEditingTask(taskId) {
+  const task = tasks.find((item) => item.id === taskId);
 
   if (!task) {
-    console.warn("TaskFlow: Task not found.", taskId);
     return;
   }
 
-  // Switch the task's completion status.
-  task.completed = !task.completed;
+  editingTaskId = taskId;
+  taskTitleInput.value = task.title;
+  taskDescriptionInput.value = task.description;
+  taskPriorityInput.value = task.priority;
+  taskDueDateInput.value = task.dueDate;
 
-  // Refresh the task list and statistics.
-  renderTasks();
+  submitButton.textContent = "Save Changes";
+  showFormMessage("Editing task. Update the fields and save.", "success");
 
-  console.log(
-    `Task "${task.title}" is now ${task.completed ? "completed" : "active"}.`,
-  );
+  taskTitleInput.focus();
+  taskForm.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
 }
 
-// =========================================
-// 13. HANDLE TASK LIST CLICKS
-// =========================================
+function updateTask(taskId, title, description, priority, dueDate) {
+  const task = tasks.find((item) => item.id === taskId);
+
+  if (!task) {
+    return;
+  }
+
+  task.title = title.trim();
+  task.description = description.trim();
+  task.priority = priority;
+  task.dueDate = dueDate;
+
+  renderTasks();
+  resetTaskForm();
+  showFormMessage("Task updated successfully!", "success");
+}
+
+function deleteTask(taskId) {
+  const task = tasks.find((item) => item.id === taskId);
+
+  if (!task) {
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `Are you sure you want to delete "${task.title}"?`
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  tasks = tasks.filter((item) => item.id !== taskId);
+
+  if (editingTaskId === taskId) {
+    resetTaskForm();
+  }
+
+  renderTasks();
+  showFormMessage("Task deleted successfully.", "success");
+}
+
+function toggleTaskCompletion(taskId) {
+  const task = tasks.find((item) => item.id === taskId);
+
+  if (!task) {
+    return;
+  }
+
+  task.completed = !task.completed;
+  renderTasks();
+}
 
 function handleTaskListClick(event) {
-  const checkbox = event.target.closest('[data-action="toggle"]');
+  const actionButton = event.target.closest("[data-action]");
+  const taskItem = event.target.closest("[data-task-id]");
 
-  if (!checkbox || !taskList.contains(checkbox)) {
+  if (!actionButton || !taskItem) {
     return;
   }
 
-  const taskItem = checkbox.closest("[data-task-id]");
+  const taskId = taskItem.dataset.taskId;
+  const action = actionButton.dataset.action;
 
-  if (!taskItem) {
-    return;
+  if (action === "toggle") {
+    toggleTaskCompletion(taskId);
   }
 
-  toggleTaskCompletion(taskItem.dataset.taskId);
+  if (action === "edit") {
+    startEditingTask(taskId);
+  }
+
+  if (action === "delete") {
+    deleteTask(taskId);
+  }
 }
 
-// =========================================
-// 14. HANDLE KEYBOARD INTERACTION
-// =========================================
-
-function handleTaskListKeydown(event) {
-  if (event.key !== "Enter" && event.key !== " ") {
-    return;
-  }
-
-  const checkbox = event.target.closest('[data-action="toggle"]');
-
-  if (!checkbox || !taskList.contains(checkbox)) {
-    return;
-  }
-
+function handleTaskFormSubmit(event) {
   event.preventDefault();
-
-  const taskItem = checkbox.closest("[data-task-id]");
-
-  if (!taskItem) {
-    return;
-  }
-
-  toggleTaskCompletion(taskItem.dataset.taskId);
-}
-
-// =========================================
-// 15. HANDLE TASK FORM SUBMISSION
-// =========================================
-
-function handleTaskSubmission(event) {
-  event.preventDefault();
-
   clearFormMessage();
 
-  const title = taskTitleInput.value.trim();
-  const description = taskDescriptionInput.value.trim();
+  const title = taskTitleInput.value;
+  const description = taskDescriptionInput.value;
   const priority = taskPriorityInput.value;
   const dueDate = taskDueDateInput.value;
 
-  const validationError = validateTaskTitle(title);
-
-  if (validationError) {
-    taskTitleInput.classList.add("invalid");
-    taskTitleInput.focus();
-
-    showFormMessage(validationError, "error");
+  if (!validateTaskTitle(title)) {
     return;
   }
 
-  taskTitleInput.classList.remove("invalid");
-
-  const newTask = createTask(title, description, priority, dueDate);
-
-  tasks.push(newTask);
-
-  renderTasks();
-
-  taskForm.reset();
-  taskTitleInput.focus();
-
-  showFormMessage("Your task has been added successfully!", "success");
-
-  console.log("Task created:", newTask);
+  if (editingTaskId) {
+    updateTask(editingTaskId, title, description, priority, dueDate);
+  } else {
+    createTask(title, description, priority, dueDate);
+  }
 }
-
-// =========================================
-// 16. HANDLE TITLE INPUT
-// =========================================
 
 function handleTitleInput() {
   taskTitleInput.classList.remove("invalid");
@@ -373,52 +332,13 @@ function handleTitleInput() {
   }
 }
 
-// =========================================
-// 17. INITIALIZE APPLICATION
-// =========================================
-
 function initializeApp() {
-  const requiredElements = [
-    headerDate,
-    taskForm,
-    taskList,
-    taskTitleInput,
-    taskDescriptionInput,
-    taskPriorityInput,
-    taskDueDateInput,
-    formMessage,
-    totalCount,
-    activeCount,
-    completedCount,
-    taskCountBadge,
-    listSummary,
-  ];
-
-  if (requiredElements.some((element) => !element)) {
-    console.error(
-      "TaskFlow: One or more required application elements are missing.",
-    );
-    return;
-  }
-
   displayCurrentDate();
-
-  // Task creation.
-  taskForm.addEventListener("submit", handleTaskSubmission);
-  taskTitleInput.addEventListener("input", handleTitleInput);
-
-  // Task completion using event delegation.
-  taskList.addEventListener("click", handleTaskListClick);
-  taskList.addEventListener("keydown", handleTaskListKeydown);
-
-  // Initial rendering.
   renderTasks();
 
-  console.log("TaskFlow Part 4 initialized successfully.");
+  taskForm.addEventListener("submit", handleTaskFormSubmit);
+  taskTitleInput.addEventListener("input", handleTitleInput);
+  taskList.addEventListener("click", handleTaskListClick);
 }
-
-// =========================================
-// 18. START APPLICATION
-// =========================================
 
 initializeApp();

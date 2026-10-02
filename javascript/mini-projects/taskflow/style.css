@@ -907,3 +907,62 @@ a:focus-visible {
   font-size: 11px;
   line-height: 1.6;
 }
+
+/* Task action buttons */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.task-action-button {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.task-action-button:hover {
+  background: var(--background-color);
+}
+
+.task-action-button:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.delete-task {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.delete-task:hover {
+  background: #fef2f2;
+  border-color: #f87171;
+}
+
+.edit-task:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+@media (max-width: 520px) {
+  .task-item {
+    flex-wrap: wrap;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
