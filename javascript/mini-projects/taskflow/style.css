@@ -1057,3 +1057,82 @@ a:focus-visible {
     width: 100%;
   }
 }
+
+/* Priority filtering and task sorting */
+.task-extra-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.task-control-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.task-control-select {
+  min-width: 155px;
+  min-height: 38px;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.task-control-select:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Due-date status indicators */
+.task-due-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.task-due-date.due-overdue {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.task-due-date.due-today {
+  color: #d97706;
+  font-weight: 700;
+}
+
+.task-due-date.due-upcoming {
+  color: var(--text-secondary);
+}
+
+.task-due-date.due-completed {
+  color: #16a34a;
+}
+
+.task-due-date.no-due-date {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 520px) {
+  .task-extra-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .task-control-select {
+    width: 100%;
+  }
+}

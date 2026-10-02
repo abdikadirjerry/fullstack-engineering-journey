@@ -14,11 +14,14 @@ const currentDateElement = document.querySelector("#current-date");
 
 const searchInput = document.querySelector("#task-search");
 const filterButtons = document.querySelectorAll("[data-filter]");
+const taskControls = document.querySelector(".task-controls");
 
 let tasks = [];
 let editingTaskId = null;
 let currentFilter = "all";
 let searchQuery = "";
+let priorityFilter = "all";
+let sortMode = "newest";
 
 function displayCurrentDate() {
   const today = new Date();
@@ -90,6 +93,49 @@ function formatDueDate(dateString) {
   });
 }
 
+function getTodayDateString() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function getDueDateStatus(task) {
+  if (!task.dueDate) {
+    return { className: "no-due-date", label: "No due date" };
+  }
+
+  if (task.completed) {
+    return {
+      className: "due-completed",
+      label: `Due ${formatDueDate(task.dueDate)}`,
+    };
+  }
+
+  const today = getTodayDateString();
+
+  if (task.dueDate < today) {
+    return {
+      className: "due-overdue",
+      label: `Overdue · ${formatDueDate(task.dueDate)}`,
+    };
+  }
+
+  if (task.dueDate === today) {
+    return {
+      className: "due-today",
+      label: "Due today",
+    };
+  }
+
+  return {
+    className: "due-upcoming",
+    label: `Due ${formatDueDate(task.dueDate)}`,
+  };
+}
+
 function createTaskElement(task) {
   const taskItem = document.createElement("article");
   taskItem.className = `task-item ${task.completed ? "completed" : ""}`;
@@ -127,9 +173,10 @@ function createTaskElement(task) {
   priorityBadge.textContent =
     task.priority.charAt(0).toUpperCase() + task.priority.slice(1);
 
+  const dueDateStatus = getDueDateStatus(task);
   const dueDate = document.createElement("span");
-  dueDate.className = "task-due-date";
-  dueDate.textContent = formatDueDate(task.dueDate);
+  dueDate.className = `task-due-date ${dueDateStatus.className}`;
+  dueDate.textContent = dueDateStatus.label;
 
   taskMeta.append(priorityBadge, dueDate);
   taskContent.append(taskTitle);
@@ -165,8 +212,8 @@ function createTaskElement(task) {
 }
 
 function getFilteredTasks() {
-  return tasks.filter((task) => {
-    const matchesFilter =
+  const filteredTasks = tasks.filter((task) => {
+    const matchesStatus =
       currentFilter === "all" ||
       (currentFilter === "active" && !task.completed) ||
       (currentFilter === "completed" && task.completed);
@@ -174,8 +221,34 @@ function getFilteredTasks() {
     const searchableText = `${task.title} ${task.description}`.toLowerCase();
     const matchesSearch = searchableText.includes(searchQuery);
 
-    return matchesFilter && matchesSearch;
+    const matchesPriority =
+      priorityFilter === "all" || task.priority === priorityFilter;
+
+    return matchesStatus && matchesSearch && matchesPriority;
   });
+
+  const priorityOrder = { high: 3, medium: 2, low: 1 };
+
+  filteredTasks.sort((a, b) => {
+    if (sortMode === "priority") {
+      return priorityOrder[b.priority] - priorityOrder[a.priority];
+    }
+
+    if (sortMode === "due-date") {
+      if (!a.dueDate && !b.dueDate) return 0;
+      if (!a.dueDate) return 1;
+      if (!b.dueDate) return -1;
+      return a.dueDate.localeCompare(b.dueDate);
+    }
+
+    if (sortMode === "oldest") {
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    }
+
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+  return filteredTasks;
 }
 
 function renderTasks() {
@@ -189,16 +262,13 @@ function renderTasks() {
 
     if (tasks.length === 0) {
       emptyState.textContent = "No tasks yet. Add your first task!";
-    } else if (searchQuery || currentFilter !== "all") {
-      emptyState.textContent = "No tasks match your search or filter.";
     } else {
-      emptyState.textContent = "No tasks to display.";
+      emptyState.textContent = "No tasks match your search or filters.";
     }
 
     taskList.append(emptyState);
   } else {
-    const taskElements = filteredTasks.map(createTaskElement);
-    taskList.append(...taskElements);
+    taskList.append(...filteredTasks.map(createTaskElement));
   }
 
   updateTaskStatistics();
@@ -244,9 +314,7 @@ function createTask(title, description, priority, dueDate) {
 function startEditingTask(taskId) {
   const task = tasks.find((item) => item.id === taskId);
 
-  if (!task) {
-    return;
-  }
+  if (!task) return;
 
   editingTaskId = taskId;
   taskTitleInput.value = task.title;
@@ -258,18 +326,13 @@ function startEditingTask(taskId) {
   showFormMessage("Editing task. Update the fields and save.", "success");
 
   taskTitleInput.focus();
-  taskForm.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+  taskForm.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function updateTask(taskId, title, description, priority, dueDate) {
   const task = tasks.find((item) => item.id === taskId);
 
-  if (!task) {
-    return;
-  }
+  if (!task) return;
 
   task.title = title.trim();
   task.description = description.trim();
@@ -284,17 +347,13 @@ function updateTask(taskId, title, description, priority, dueDate) {
 function deleteTask(taskId) {
   const task = tasks.find((item) => item.id === taskId);
 
-  if (!task) {
-    return;
-  }
+  if (!task) return;
 
   const confirmed = window.confirm(
     `Are you sure you want to delete "${task.title}"?`,
   );
 
-  if (!confirmed) {
-    return;
-  }
+  if (!confirmed) return;
 
   tasks = tasks.filter((item) => item.id !== taskId);
 
@@ -309,9 +368,7 @@ function deleteTask(taskId) {
 function toggleTaskCompletion(taskId) {
   const task = tasks.find((item) => item.id === taskId);
 
-  if (!task) {
-    return;
-  }
+  if (!task) return;
 
   task.completed = !task.completed;
   renderTasks();
@@ -321,32 +378,20 @@ function handleTaskListClick(event) {
   const actionButton = event.target.closest("[data-action]");
   const taskItem = event.target.closest("[data-task-id]");
 
-  if (!actionButton || !taskItem) {
-    return;
-  }
+  if (!actionButton || !taskItem) return;
 
   const taskId = taskItem.dataset.taskId;
   const action = actionButton.dataset.action;
 
-  if (action === "toggle") {
-    toggleTaskCompletion(taskId);
-  }
-
-  if (action === "edit") {
-    startEditingTask(taskId);
-  }
-
-  if (action === "delete") {
-    deleteTask(taskId);
-  }
+  if (action === "toggle") toggleTaskCompletion(taskId);
+  if (action === "edit") startEditingTask(taskId);
+  if (action === "delete") deleteTask(taskId);
 }
 
 function handleFilterClick(event) {
   const clickedButton = event.target.closest("[data-filter]");
 
-  if (!clickedButton) {
-    return;
-  }
+  if (!clickedButton) return;
 
   currentFilter = clickedButton.dataset.filter;
   updateActiveFilterButton();
@@ -358,6 +403,74 @@ function handleSearchInput(event) {
   renderTasks();
 }
 
+function handlePriorityFilterChange(event) {
+  priorityFilter = event.target.value;
+  renderTasks();
+}
+
+function handleSortChange(event) {
+  sortMode = event.target.value;
+  renderTasks();
+}
+
+function addPriorityAndSortControls() {
+  if (!taskControls) return;
+
+  const extraControls = document.createElement("div");
+  extraControls.className = "task-extra-controls";
+
+  const priorityLabel = document.createElement("label");
+  priorityLabel.className = "task-control-label";
+  priorityLabel.textContent = "Priority";
+
+  const prioritySelect = document.createElement("select");
+  prioritySelect.id = "priority-filter";
+  prioritySelect.className = "task-control-select";
+  prioritySelect.setAttribute("aria-label", "Filter tasks by priority");
+
+  [
+    ["all", "All priorities"],
+    ["high", "High priority"],
+    ["medium", "Medium priority"],
+    ["low", "Low priority"],
+  ].forEach(([value, label]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    prioritySelect.append(option);
+  });
+
+  priorityLabel.append(prioritySelect);
+
+  const sortLabel = document.createElement("label");
+  sortLabel.className = "task-control-label";
+  sortLabel.textContent = "Sort by";
+
+  const sortSelect = document.createElement("select");
+  sortSelect.id = "task-sort";
+  sortSelect.className = "task-control-select";
+  sortSelect.setAttribute("aria-label", "Sort tasks");
+
+  [
+    ["newest", "Newest first"],
+    ["oldest", "Oldest first"],
+    ["priority", "Priority: High to Low"],
+    ["due-date", "Due date: Earliest first"],
+  ].forEach(([value, label]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    sortSelect.append(option);
+  });
+
+  sortLabel.append(sortSelect);
+  extraControls.append(priorityLabel, sortLabel);
+  taskControls.append(extraControls);
+
+  prioritySelect.addEventListener("change", handlePriorityFilterChange);
+  sortSelect.addEventListener("change", handleSortChange);
+}
+
 function handleTaskFormSubmit(event) {
   event.preventDefault();
   clearFormMessage();
@@ -367,9 +480,7 @@ function handleTaskFormSubmit(event) {
   const priority = taskPriorityInput.value;
   const dueDate = taskDueDateInput.value;
 
-  if (!validateTaskTitle(title)) {
-    return;
-  }
+  if (!validateTaskTitle(title)) return;
 
   if (editingTaskId) {
     updateTask(editingTaskId, title, description, priority, dueDate);
@@ -388,6 +499,7 @@ function handleTitleInput() {
 
 function initializeApp() {
   displayCurrentDate();
+  addPriorityAndSortControls();
   updateActiveFilterButton();
   renderTasks();
 
