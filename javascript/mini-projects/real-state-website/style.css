@@ -26,7 +26,8 @@ a {
   color: inherit;
 }
 
-button {
+button,
+input {
   font: inherit;
 }
 
@@ -174,11 +175,58 @@ button {
   color: #69756d;
 }
 
+/* ===== PROPERTY SEARCH ===== */
+
+.property-search {
+  width: min(650px, 100%);
+  margin: 35px auto 0;
+  text-align: left;
+}
+
+.property-search label {
+  display: block;
+  margin-bottom: 8px;
+  color: #344139;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.property-search input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #dce4de;
+  border-radius: 7px;
+  outline: none;
+  color: #17221d;
+  background-color: #ffffff;
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.property-search input::placeholder {
+  color: #9aa59e;
+}
+
+.property-search input:focus {
+  border-color: #36805b;
+  box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
+}
+
+.property-count {
+  margin-top: 18px;
+  color: #69756d;
+  font-size: 13px;
+}
+
+/* ===== PROPERTY GRID ===== */
+
 .property-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-top: 45px;
+  margin-top: 30px;
   text-align: left;
 }
 
@@ -239,6 +287,14 @@ button {
   color: #286847;
   font-size: 20px;
   font-weight: 700;
+}
+
+/* ===== NO RESULTS ===== */
+
+.no-results {
+  padding: 50px 20px;
+  color: #69756d;
+  font-size: 15px;
 }
 
 /* ===== ABOUT ===== */

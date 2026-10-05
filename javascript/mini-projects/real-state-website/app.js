@@ -3,6 +3,10 @@
 // ===== DOM ELEMENTS =====
 
 const propertyList = document.querySelector("#property-list");
+const propertyCount = document.querySelector("#property-count");
+const searchInput = document.querySelector("#search-input");
+const noResults = document.querySelector("#no-results");
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
@@ -134,6 +138,28 @@ function createPropertyCard(property) {
 
 function renderProperties(propertyData) {
   propertyList.innerHTML = propertyData.map(createPropertyCard).join("");
+
+  propertyCount.textContent = `${propertyData.length} ${propertyData.length === 1 ? "property" : "properties"} found`;
+
+  noResults.hidden = propertyData.length !== 0;
+}
+
+// ===== SEARCH PROPERTIES =====
+
+function searchProperties() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  const filteredProperties = properties.filter((property) => {
+    const searchableText = `
+      ${property.title}
+      ${property.location}
+      ${property.type}
+    `.toLowerCase();
+
+    return searchableText.includes(searchTerm);
+  });
+
+  renderProperties(filteredProperties);
 }
 
 // ===== MOBILE NAVIGATION =====
@@ -166,6 +192,8 @@ menuToggle.addEventListener("click", toggleMobileMenu);
 navLinks.forEach((link) => {
   link.addEventListener("click", closeMobileMenu);
 });
+
+searchInput.addEventListener("input", searchProperties);
 
 // ===== INITIALIZE APP =====
 

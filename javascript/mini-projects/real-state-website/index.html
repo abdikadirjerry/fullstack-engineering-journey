@@ -69,9 +69,27 @@
             Discover our selection of beautiful homes.
           </p>
 
+          <!-- SEARCH -->
+          <div class="property-search">
+            <label for="search-input"> Search properties </label>
+
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Search by name, location, or type..."
+              autocomplete="off"
+            />
+          </div>
+
+          <p class="property-count" id="property-count"></p>
+
           <div id="property-list" class="property-grid">
             <!-- Property cards are rendered by JavaScript -->
           </div>
+
+          <p class="no-results" id="no-results" hidden>
+            No properties found. Try another search.
+          </p>
         </div>
       </section>
 
