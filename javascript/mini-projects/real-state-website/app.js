@@ -7,6 +7,9 @@ const propertyCount = document.querySelector("#property-count");
 const searchInput = document.querySelector("#search-input");
 const noResults = document.querySelector("#no-results");
 
+const minPriceInput = document.querySelector("#min-price");
+const maxPriceInput = document.querySelector("#max-price");
+
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const menuToggle = document.querySelector(".menu-toggle");
@@ -16,6 +19,8 @@ const navLinks = document.querySelectorAll(".main-nav a");
 // ===== APPLICATION STATE =====
 
 let selectedPropertyType = "all";
+let minimumPrice = 0;
+let maximumPrice = Infinity;
 
 // ===== PROPERTY DATA =====
 
@@ -170,7 +175,10 @@ function filterProperties() {
       selectedPropertyType === "all" ||
       property.type.toLowerCase() === selectedPropertyType;
 
-    return matchesSearch && matchesType;
+    const matchesPrice =
+      property.price >= minimumPrice && property.price <= maximumPrice;
+
+    return matchesSearch && matchesType && matchesPrice;
   });
 
   renderProperties(filteredProperties);
@@ -188,6 +196,15 @@ function handleTypeFilter(event) {
   });
 
   clickedButton.classList.add("active");
+
+  filterProperties();
+}
+
+// ===== HANDLE PRICE FILTER =====
+
+function handlePriceFilter() {
+  minimumPrice = Number(minPriceInput.value) || 0;
+  maximumPrice = Number(maxPriceInput.value) || Infinity;
 
   filterProperties();
 }
@@ -228,6 +245,9 @@ searchInput.addEventListener("input", filterProperties);
 filterButtons.forEach((button) => {
   button.addEventListener("click", handleTypeFilter);
 });
+
+minPriceInput.addEventListener("input", handlePriceFilter);
+maxPriceInput.addEventListener("input", handlePriceFilter);
 
 // ===== INITIALIZE APP =====
 

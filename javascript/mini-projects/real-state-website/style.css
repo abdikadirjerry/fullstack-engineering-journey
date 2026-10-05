@@ -217,7 +217,7 @@ button {
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }
 
-/* ===== PROPERTY FILTERS ===== */
+/* ===== PROPERTY TYPE FILTERS ===== */
 
 .property-filters {
   margin-top: 25px;
@@ -259,6 +259,50 @@ button {
   border-color: #286847;
   color: #ffffff;
   background-color: #286847;
+}
+
+/* ===== PRICE FILTERS ===== */
+
+.price-filters {
+  width: min(650px, 100%);
+  margin: 25px auto 0;
+  text-align: left;
+}
+
+.price-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.price-input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #69756d;
+  font-size: 12px;
+}
+
+.price-input-group input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dce4de;
+  border-radius: 7px;
+  outline: none;
+  color: #17221d;
+  background-color: #ffffff;
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.price-input-group input::placeholder {
+  color: #9aa59e;
+}
+
+.price-input-group input:focus {
+  border-color: #36805b;
+  box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }
 
 /* ===== PROPERTY COUNT ===== */
@@ -461,6 +505,10 @@ button {
 
   .filter-button {
     padding: 8px 12px;
+  }
+
+  .price-inputs {
+    grid-template-columns: 1fr;
   }
 
   .site-footer .container {

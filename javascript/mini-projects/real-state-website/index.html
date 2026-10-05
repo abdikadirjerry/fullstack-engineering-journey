@@ -108,6 +108,35 @@
             </div>
           </div>
 
+          <!-- PRICE FILTER -->
+          <div class="price-filters">
+            <p class="filter-label">Price range</p>
+
+            <div class="price-inputs">
+              <div class="price-input-group">
+                <label for="min-price">Minimum price</label>
+
+                <input
+                  type="number"
+                  id="min-price"
+                  placeholder="e.g. 50000"
+                  min="0"
+                />
+              </div>
+
+              <div class="price-input-group">
+                <label for="max-price">Maximum price</label>
+
+                <input
+                  type="number"
+                  id="max-price"
+                  placeholder="e.g. 200000"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
           <p class="property-count" id="property-count"></p>
 
           <div id="property-list" class="property-grid">
