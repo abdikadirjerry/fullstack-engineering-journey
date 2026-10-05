@@ -189,6 +189,60 @@
       </section>
     </main>
 
+    <!-- PROPERTY DETAILS MODAL -->
+    <div
+      class="modal"
+      id="property-modal"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-overlay"></div>
+
+      <div class="modal-content">
+        <button
+          class="modal-close"
+          id="modal-close"
+          type="button"
+          aria-label="Close property details"
+        >
+          &times;
+        </button>
+
+        <img class="modal-image" id="modal-image" src="" alt="" />
+
+        <div class="modal-body">
+          <span class="property-type" id="modal-type"></span>
+
+          <h2 id="modal-title"></h2>
+
+          <p class="property-location" id="modal-location"></p>
+
+          <p class="modal-description" id="modal-description"></p>
+
+          <div class="modal-details">
+            <div>
+              <span>Bedrooms</span>
+              <strong id="modal-bedrooms"></strong>
+            </div>
+
+            <div>
+              <span>Bathrooms</span>
+              <strong id="modal-bathrooms"></strong>
+            </div>
+
+            <div>
+              <span>Area</span>
+              <strong id="modal-area"></strong>
+            </div>
+          </div>
+
+          <p class="property-price" id="modal-price"></p>
+        </div>
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">
