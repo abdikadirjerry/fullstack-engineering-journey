@@ -209,11 +209,96 @@
 
           <h2>Ready to find your next home?</h2>
 
-          <p>Our team is here to help you take the next step.</p>
+          <p class="contact-description">
+            Tell us what you're looking for and our team will help you take the
+            next step.
+          </p>
 
-          <a href="mailto:hello@estatehub.example" class="contact-link">
-            Contact our team
-          </a>
+          <!-- CONTACT FORM -->
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name"> Full name </label>
+
+                <input
+                  type="text"
+                  id="full-name"
+                  name="fullName"
+                  placeholder="Enter your full name"
+                  autocomplete="name"
+                  aria-describedby="full-name-error"
+                />
+
+                <p class="form-error" id="full-name-error" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="email"> Email address </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  aria-describedby="email-error"
+                />
+
+                <p class="form-error" id="email-error" hidden></p>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone"> Phone number </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+252..."
+                  autocomplete="tel"
+                  aria-describedby="phone-error"
+                />
+
+                <p class="form-error" id="phone-error" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="property-select"> Property </label>
+
+                <select
+                  id="property-select"
+                  name="property"
+                  aria-describedby="property-error"
+                >
+                  <option value="">Select a property</option>
+                </select>
+
+                <p class="form-error" id="property-error" hidden></p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message"> Message </label>
+
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Tell us what you would like to know..."
+                aria-describedby="message-error"
+              ></textarea>
+
+              <p class="form-error" id="message-error" hidden></p>
+            </div>
+
+            <button class="form-submit" type="submit">Send Inquiry</button>
+
+            <p class="form-success" id="form-success" role="status" hidden>
+              Thank you! Your inquiry has been received.
+            </p>
+          </form>
         </div>
       </section>
     </main>

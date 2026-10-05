@@ -21,6 +21,18 @@ const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
 
+// ===== CONTACT FORM ELEMENTS =====
+
+const contactForm = document.querySelector("#contact-form");
+
+const fullNameInput = document.querySelector("#full-name");
+const emailInput = document.querySelector("#email");
+const phoneInput = document.querySelector("#phone");
+const propertySelect = document.querySelector("#property-select");
+const messageInput = document.querySelector("#message");
+
+const formSuccess = document.querySelector("#form-success");
+
 // ===== MODAL ELEMENTS =====
 
 const propertyModal = document.querySelector("#property-modal");
@@ -429,6 +441,225 @@ function handleFavoritesFilter() {
   filterProperties();
 }
 
+// ===== POPULATE PROPERTY SELECT =====
+
+function populatePropertySelect() {
+  properties.forEach((property) => {
+    const option = document.createElement("option");
+
+    option.value = property.id;
+    option.textContent = `${property.title} — ${formatPrice(property.price)}`;
+
+    propertySelect.appendChild(option);
+  });
+}
+
+// ===== FORM VALIDATION HELPERS =====
+
+function showFieldError(input, errorElement, message) {
+  input.classList.add("input-error");
+  input.setAttribute("aria-invalid", "true");
+
+  errorElement.textContent = message;
+  errorElement.hidden = false;
+}
+
+function clearFieldError(input, errorElement) {
+  input.classList.remove("input-error");
+  input.setAttribute("aria-invalid", "false");
+
+  errorElement.textContent = "";
+  errorElement.hidden = true;
+}
+
+// ===== VALIDATE NAME =====
+
+function validateName() {
+  const errorElement = document.querySelector("#full-name-error");
+
+  const value = fullNameInput.value.trim();
+
+  if (!value) {
+    showFieldError(fullNameInput, errorElement, "Please enter your full name.");
+
+    return false;
+  }
+
+  if (value.length < 2) {
+    showFieldError(
+      fullNameInput,
+      errorElement,
+      "Name must contain at least 2 characters.",
+    );
+
+    return false;
+  }
+
+  clearFieldError(fullNameInput, errorElement);
+
+  return true;
+}
+
+// ===== VALIDATE EMAIL =====
+
+function validateEmail() {
+  const errorElement = document.querySelector("#email-error");
+
+  const value = emailInput.value.trim();
+
+  if (!value) {
+    showFieldError(
+      emailInput,
+      errorElement,
+      "Please enter your email address.",
+    );
+
+    return false;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(value)) {
+    showFieldError(
+      emailInput,
+      errorElement,
+      "Please enter a valid email address.",
+    );
+
+    return false;
+  }
+
+  clearFieldError(emailInput, errorElement);
+
+  return true;
+}
+
+// ===== VALIDATE PHONE =====
+
+function validatePhone() {
+  const errorElement = document.querySelector("#phone-error");
+
+  const value = phoneInput.value.trim();
+
+  if (!value) {
+    showFieldError(phoneInput, errorElement, "Please enter your phone number.");
+
+    return false;
+  }
+
+  const phonePattern = /^[+]?[0-9\s()-]{7,20}$/;
+
+  if (!phonePattern.test(value)) {
+    showFieldError(
+      phoneInput,
+      errorElement,
+      "Please enter a valid phone number.",
+    );
+
+    return false;
+  }
+
+  clearFieldError(phoneInput, errorElement);
+
+  return true;
+}
+
+// ===== VALIDATE PROPERTY =====
+
+function validateProperty() {
+  const errorElement = document.querySelector("#property-error");
+
+  const value = propertySelect.value;
+
+  if (!value) {
+    showFieldError(propertySelect, errorElement, "Please select a property.");
+
+    return false;
+  }
+
+  clearFieldError(propertySelect, errorElement);
+
+  return true;
+}
+
+// ===== VALIDATE MESSAGE =====
+
+function validateMessage() {
+  const errorElement = document.querySelector("#message-error");
+
+  const value = messageInput.value.trim();
+
+  if (!value) {
+    showFieldError(messageInput, errorElement, "Please enter your message.");
+
+    return false;
+  }
+
+  if (value.length < 10) {
+    showFieldError(
+      messageInput,
+      errorElement,
+      "Message must contain at least 10 characters.",
+    );
+
+    return false;
+  }
+
+  clearFieldError(messageInput, errorElement);
+
+  return true;
+}
+
+// ===== VALIDATE FORM =====
+
+function validateForm() {
+  const isNameValid = validateName();
+  const isEmailValid = validateEmail();
+  const isPhoneValid = validatePhone();
+  const isPropertyValid = validateProperty();
+  const isMessageValid = validateMessage();
+
+  return (
+    isNameValid &&
+    isEmailValid &&
+    isPhoneValid &&
+    isPropertyValid &&
+    isMessageValid
+  );
+}
+
+// ===== HANDLE CONTACT FORM SUBMISSION =====
+
+function handleContactSubmit(event) {
+  event.preventDefault();
+
+  formSuccess.hidden = true;
+
+  const isFormValid = validateForm();
+
+  if (!isFormValid) {
+    return;
+  }
+
+  formSuccess.hidden = false;
+
+  contactForm.reset();
+
+  fullNameInput.focus();
+
+  setTimeout(() => {
+    formSuccess.hidden = true;
+  }, 5000);
+}
+
+// ===== CLEAR FORM FIELD ERROR ON INPUT =====
+
+function handleFieldInput(input, validationFunction) {
+  input.addEventListener("input", () => {
+    validationFunction();
+  });
+}
+
 // ===== OPEN PROPERTY MODAL =====
 
 function openPropertyModal(propertyId) {
@@ -529,6 +760,15 @@ favoritesButton.addEventListener("click", handleFavoritesFilter);
 
 propertyList.addEventListener("click", handlePropertyClick);
 
+contactForm.addEventListener("submit", handleContactSubmit);
+
+handleFieldInput(fullNameInput, validateName);
+handleFieldInput(emailInput, validateEmail);
+handleFieldInput(phoneInput, validatePhone);
+handleFieldInput(messageInput, validateMessage);
+
+propertySelect.addEventListener("change", validateProperty);
+
 modalClose.addEventListener("click", closePropertyModal);
 
 modalOverlay.addEventListener("click", closePropertyModal);
@@ -543,6 +783,7 @@ document.addEventListener("keydown", (event) => {
 // ===== INITIALIZE APP =====
 
 loadFavorites();
+populatePropertySelect();
 updateSearchUI();
 renderProperties(properties);
 

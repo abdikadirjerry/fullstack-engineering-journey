@@ -28,7 +28,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -544,6 +545,140 @@ button {
   font-size: 15px;
 }
 
+/* ===== ABOUT ===== */
+
+.about-section {
+  padding: 80px 0;
+  background-color: #f7f9f7;
+  text-align: center;
+}
+
+.about-section p:not(.eyebrow) {
+  max-width: 550px;
+  margin: 0 auto;
+  color: #69756d;
+}
+
+/* ===== CONTACT ===== */
+
+.contact-section {
+  padding: 90px 0;
+  text-align: center;
+}
+
+.contact-description {
+  max-width: 550px;
+  margin: 0 auto 30px;
+  color: #69756d;
+}
+
+/* ===== CONTACT FORM ===== */
+
+.contact-form {
+  width: min(750px, 100%);
+  margin: 35px auto 0;
+  text-align: left;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #344139;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dce4de;
+  border-radius: 7px;
+  outline: none;
+  color: #17221d;
+  background-color: #ffffff;
+  font-size: 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9aa59e;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #36805b;
+  box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
+}
+
+/* ===== FORM VALIDATION ===== */
+
+.form-group input.input-error,
+.form-group select.input-error,
+.form-group textarea.input-error {
+  border-color: #c94b4b;
+}
+
+.form-group input.input-error:focus,
+.form-group select.input-error:focus,
+.form-group textarea.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(201, 75, 75, 0.1);
+}
+
+.form-error {
+  margin-top: 6px;
+  color: #c94b4b;
+  font-size: 12px;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 7px;
+  color: #ffffff;
+  background-color: #286847;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.form-submit:hover {
+  background-color: #1e5137;
+}
+
+.form-success {
+  margin-top: 18px;
+  padding: 12px 15px;
+  border: 1px solid #cfe3d5;
+  border-radius: 7px;
+  color: #286847;
+  background-color: #f1f8f3;
+  font-size: 14px;
+  text-align: center;
+}
+
 /* ===== MODAL ===== */
 
 .modal {
@@ -655,32 +790,6 @@ button {
   font-size: 24px;
 }
 
-/* ===== ABOUT ===== */
-
-.about-section {
-  padding: 80px 0;
-  background-color: #f7f9f7;
-  text-align: center;
-}
-
-.about-section p:not(.eyebrow) {
-  max-width: 550px;
-  margin: 0 auto;
-  color: #69756d;
-}
-
-/* ===== CONTACT ===== */
-
-.contact-section {
-  padding: 90px 0;
-  text-align: center;
-}
-
-.contact-section p:not(.eyebrow) {
-  margin-bottom: 24px;
-  color: #69756d;
-}
-
 /* ===== FOOTER ===== */
 
 .site-footer {
@@ -772,7 +881,8 @@ button {
     padding: 8px 12px;
   }
 
-  .price-inputs {
+  .price-inputs,
+  .form-row {
     grid-template-columns: 1fr;
   }
 
