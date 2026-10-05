@@ -46,6 +46,8 @@ let showFavoritesOnly = false;
 
 const favoritePropertyIds = new Set();
 
+const FAVORITES_STORAGE_KEY = "estatehub-favorites";
+
 // ===== PROPERTY DATA =====
 
 const properties = [
@@ -134,6 +136,38 @@ const properties = [
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
   },
 ];
+
+// ===== LOAD FAVORITES FROM LOCAL STORAGE =====
+
+function loadFavorites() {
+  const savedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
+
+  if (!savedFavorites) {
+    return;
+  }
+
+  try {
+    const parsedFavorites = JSON.parse(savedFavorites);
+
+    if (!Array.isArray(parsedFavorites)) {
+      return;
+    }
+
+    parsedFavorites.forEach((propertyId) => {
+      favoritePropertyIds.add(Number(propertyId));
+    });
+  } catch (error) {
+    console.error("Could not load favorites from localStorage:", error);
+  }
+}
+
+// ===== SAVE FAVORITES TO LOCAL STORAGE =====
+
+function saveFavorites() {
+  const favoritesArray = [...favoritePropertyIds];
+
+  localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoritesArray));
+}
 
 // ===== FORMAT PRICE =====
 
@@ -315,6 +349,7 @@ function toggleFavorite(propertyId) {
     favoritePropertyIds.add(propertyId);
   }
 
+  saveFavorites();
   filterProperties();
 }
 
@@ -459,7 +494,9 @@ document.addEventListener("keydown", (event) => {
 
 // ===== INITIALIZE APP =====
 
+loadFavorites();
 renderProperties(properties);
 
 console.log("EstateHub is running!");
 console.log(`Loaded ${properties.length} properties.`);
+console.log(`Loaded ${favoritePropertyIds.size} saved favorites.`);
