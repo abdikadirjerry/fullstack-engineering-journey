@@ -69,16 +69,33 @@
             Discover our selection of beautiful homes.
           </p>
 
-          <!-- SEARCH -->
+          <!-- ADVANCED SEARCH -->
           <div class="property-search">
             <label for="search-input"> Search properties </label>
 
-            <input
-              type="search"
-              id="search-input"
-              placeholder="Search by name, location, or type..."
-              autocomplete="off"
-            />
+            <div class="search-input-wrapper">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Search by name, location, type, bedrooms..."
+                autocomplete="off"
+                aria-describedby="search-help"
+              />
+
+              <button
+                class="clear-search-button"
+                id="clear-search-button"
+                type="button"
+                aria-label="Clear property search"
+                hidden
+              >
+                &times;
+              </button>
+            </div>
+
+            <p class="search-help" id="search-help">
+              Try searching for a city, property type, or number of bedrooms.
+            </p>
           </div>
 
           <!-- PROPERTY TYPE FILTER -->

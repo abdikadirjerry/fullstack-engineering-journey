@@ -179,7 +179,7 @@ button {
   color: #69756d;
 }
 
-/* ===== PROPERTY SEARCH ===== */
+/* ===== ADVANCED SEARCH ===== */
 
 .property-search {
   width: min(650px, 100%);
@@ -195,9 +195,13 @@ button {
   font-weight: 600;
 }
 
+.search-input-wrapper {
+  position: relative;
+}
+
 .property-search input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 14px 48px 14px 16px;
   border: 1px solid #dce4de;
   border-radius: 7px;
   outline: none;
@@ -216,6 +220,35 @@ button {
 .property-search input:focus {
   border-color: #36805b;
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
+}
+
+.clear-search-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  color: #69756d;
+  background-color: #f1f6f2;
+  font-size: 20px;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.clear-search-button:hover {
+  color: #17221d;
+  background-color: #e4ebe5;
+}
+
+.search-help {
+  margin-top: 7px;
+  color: #8a958e;
+  font-size: 12px;
 }
 
 /* ===== PROPERTY TYPE FILTERS ===== */

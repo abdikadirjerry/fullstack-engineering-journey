@@ -5,6 +5,7 @@
 const propertyList = document.querySelector("#property-list");
 const propertyCount = document.querySelector("#property-count");
 const searchInput = document.querySelector("#search-input");
+const clearSearchButton = document.querySelector("#clear-search-button");
 const noResults = document.querySelector("#no-results");
 
 const minPriceInput = document.querySelector("#min-price");
@@ -169,6 +170,55 @@ function saveFavorites() {
   localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoritesArray));
 }
 
+// ===== NORMALIZE SEARCH TEXT =====
+
+function normalizeSearchText(value) {
+  return String(value).trim().toLowerCase();
+}
+
+// ===== CREATE SEARCHABLE PROPERTY TEXT =====
+
+function getSearchablePropertyText(property) {
+  return [
+    property.title,
+    property.location,
+    property.type,
+    property.price,
+    property.bedrooms,
+    property.bathrooms,
+    property.area,
+    property.description,
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
+// ===== UPDATE SEARCH UI =====
+
+function updateSearchUI() {
+  const hasSearchValue = searchInput.value.trim().length > 0;
+
+  clearSearchButton.hidden = !hasSearchValue;
+}
+
+// ===== HANDLE SEARCH =====
+
+function handleSearch() {
+  updateSearchUI();
+  filterProperties();
+}
+
+// ===== CLEAR SEARCH =====
+
+function clearSearch() {
+  searchInput.value = "";
+
+  updateSearchUI();
+  filterProperties();
+
+  searchInput.focus();
+}
+
 // ===== FORMAT PRICE =====
 
 function formatPrice(price) {
@@ -280,16 +330,12 @@ function renderProperties(propertyData) {
 // ===== FILTER PROPERTIES =====
 
 function filterProperties() {
-  const searchTerm = searchInput.value.trim().toLowerCase();
+  const searchTerm = normalizeSearchText(searchInput.value);
 
   const filteredProperties = properties.filter((property) => {
-    const matchesSearch = `
-      ${property.title}
-      ${property.location}
-      ${property.type}
-    `
-      .toLowerCase()
-      .includes(searchTerm);
+    const searchableText = getSearchablePropertyText(property);
+
+    const matchesSearch = searchableText.includes(searchTerm);
 
     const matchesType =
       selectedPropertyType === "all" ||
@@ -466,7 +512,9 @@ navLinks.forEach((link) => {
   link.addEventListener("click", closeMobileMenu);
 });
 
-searchInput.addEventListener("input", filterProperties);
+searchInput.addEventListener("input", handleSearch);
+
+clearSearchButton.addEventListener("click", clearSearch);
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", handleTypeFilter);
@@ -495,6 +543,7 @@ document.addEventListener("keydown", (event) => {
 // ===== INITIALIZE APP =====
 
 loadFavorites();
+updateSearchUI();
 renderProperties(properties);
 
 console.log("EstateHub is running!");
