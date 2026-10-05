@@ -4,18 +4,30 @@
 
 const propertyList = document.querySelector("#property-list");
 const propertyCount = document.querySelector("#property-count");
+
 const searchInput = document.querySelector("#search-input");
 const clearSearchButton = document.querySelector("#clear-search-button");
-const noResults = document.querySelector("#no-results");
 
 const minPriceInput = document.querySelector("#min-price");
 const maxPriceInput = document.querySelector("#max-price");
+const priceError = document.querySelector("#price-error");
 
 const sortSelect = document.querySelector("#sort-select");
 
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const favoritesButton = document.querySelector("#favorites-button");
+
+const resetFiltersButton = document.querySelector("#reset-filters-button");
+
+const emptyState = document.querySelector("#empty-state");
+const emptyStateTitle = document.querySelector("#empty-state-title");
+
+const emptyStateMessage = document.querySelector("#empty-state-message");
+
+const emptyStateButton = document.querySelector("#empty-state-button");
+
+const loadingState = document.querySelector("#loading-state");
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
@@ -31,6 +43,10 @@ const phoneInput = document.querySelector("#phone");
 const propertySelect = document.querySelector("#property-select");
 const messageInput = document.querySelector("#message");
 
+const formSubmit = document.querySelector("#form-submit");
+const submitText = document.querySelector(".submit-text");
+const submitLoading = document.querySelector(".submit-loading");
+
 const formSuccess = document.querySelector("#form-success");
 
 // ===== MODAL ELEMENTS =====
@@ -44,8 +60,11 @@ const modalType = document.querySelector("#modal-type");
 const modalTitle = document.querySelector("#modal-title");
 const modalLocation = document.querySelector("#modal-location");
 const modalDescription = document.querySelector("#modal-description");
+
 const modalBedrooms = document.querySelector("#modal-bedrooms");
+
 const modalBathrooms = document.querySelector("#modal-bathrooms");
+
 const modalArea = document.querySelector("#modal-area");
 const modalPrice = document.querySelector("#modal-price");
 
@@ -167,7 +186,15 @@ function loadFavorites() {
     }
 
     parsedFavorites.forEach((propertyId) => {
-      favoritePropertyIds.add(Number(propertyId));
+      const numericId = Number(propertyId);
+
+      const propertyExists = properties.some(
+        (property) => property.id === numericId,
+      );
+
+      if (propertyExists) {
+        favoritePropertyIds.add(numericId);
+      }
     });
   } catch (error) {
     console.error("Could not load favorites from localStorage:", error);
@@ -177,9 +204,13 @@ function loadFavorites() {
 // ===== SAVE FAVORITES TO LOCAL STORAGE =====
 
 function saveFavorites() {
-  const favoritesArray = [...favoritePropertyIds];
+  try {
+    const favoritesArray = [...favoritePropertyIds];
 
-  localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoritesArray));
+    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoritesArray));
+  } catch (error) {
+    console.error("Could not save favorites to localStorage:", error);
+  }
 }
 
 // ===== NORMALIZE SEARCH TEXT =====
@@ -252,6 +283,7 @@ function createPropertyCard(property) {
         class="property-image"
         src="${property.image}"
         alt="${property.title}"
+        loading="lazy"
       >
 
       <button
@@ -325,10 +357,48 @@ function sortProperties(propertyData) {
   return sortedProperties;
 }
 
+// ===== SHOW LOADING STATE =====
+
+function showLoadingState() {
+  loadingState.hidden = false;
+  propertyList.hidden = true;
+  emptyState.hidden = true;
+}
+
+// ===== HIDE LOADING STATE =====
+
+function hideLoadingState() {
+  loadingState.hidden = true;
+  propertyList.hidden = false;
+}
+
+// ===== UPDATE EMPTY STATE =====
+
+function updateEmptyState() {
+  if (!showFavoritesOnly) {
+    emptyStateTitle.textContent = "No properties found";
+
+    emptyStateMessage.textContent = "Try changing your search or filters.";
+
+    emptyStateButton.textContent = "Reset Filters";
+
+    return;
+  }
+
+  emptyStateTitle.textContent = "No favorite properties yet";
+
+  emptyStateMessage.textContent =
+    "Save properties you like and they will appear here.";
+
+  emptyStateButton.textContent = "Show All Properties";
+}
+
 // ===== RENDER PROPERTIES =====
 
 function renderProperties(propertyData) {
   const sortedProperties = sortProperties(propertyData);
+
+  hideLoadingState();
 
   propertyList.innerHTML = sortedProperties.map(createPropertyCard).join("");
 
@@ -336,12 +406,62 @@ function renderProperties(propertyData) {
     sortedProperties.length === 1 ? "property" : "properties"
   } found`;
 
-  noResults.hidden = sortedProperties.length !== 0;
+  if (sortedProperties.length === 0) {
+    updateEmptyState();
+    emptyState.hidden = false;
+  } else {
+    emptyState.hidden = true;
+  }
+}
+
+// ===== VALIDATE PRICE RANGE =====
+
+function validatePriceRange() {
+  const minValue = minPriceInput.value.trim();
+  const maxValue = maxPriceInput.value.trim();
+
+  const minimum = Number(minValue);
+  const maximum = Number(maxValue);
+
+  minPriceInput.classList.remove("input-error");
+  maxPriceInput.classList.remove("input-error");
+
+  if (minValue !== "" && maxValue !== "" && minimum > maximum) {
+    priceError.textContent =
+      "Minimum price cannot be greater than maximum price.";
+
+    priceError.hidden = false;
+
+    minPriceInput.classList.add("input-error");
+    maxPriceInput.classList.add("input-error");
+
+    return false;
+  }
+
+  priceError.textContent = "";
+  priceError.hidden = true;
+
+  return true;
 }
 
 // ===== FILTER PROPERTIES =====
 
 function filterProperties() {
+  if (!validatePriceRange()) {
+    propertyList.innerHTML = "";
+    propertyList.hidden = true;
+    emptyState.hidden = true;
+
+    propertyCount.textContent = "Please correct the price range.";
+
+    return;
+  }
+
+  minimumPrice = Number(minPriceInput.value) || 0;
+
+  maximumPrice =
+    maxPriceInput.value.trim() === "" ? Infinity : Number(maxPriceInput.value);
+
   const searchTerm = normalizeSearchText(searchInput.value);
 
   const filteredProperties = properties.filter((property) => {
@@ -384,9 +504,6 @@ function handleTypeFilter(event) {
 // ===== HANDLE PRICE FILTER =====
 
 function handlePriceFilter() {
-  minimumPrice = Number(minPriceInput.value) || 0;
-  maximumPrice = Number(maxPriceInput.value) || Infinity;
-
   filterProperties();
 }
 
@@ -441,6 +558,60 @@ function handleFavoritesFilter() {
   filterProperties();
 }
 
+// ===== RESET ALL FILTERS =====
+
+function resetFilters() {
+  searchInput.value = "";
+
+  minPriceInput.value = "";
+  maxPriceInput.value = "";
+
+  selectedPropertyType = "all";
+  selectedSort = "default";
+  showFavoritesOnly = false;
+
+  sortSelect.value = "default";
+
+  filterButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.type === "all");
+  });
+
+  favoritesButton.classList.remove("active");
+
+  favoritesButton.setAttribute("aria-pressed", "false");
+
+  favoritesButton.textContent = "♥ Show Favorites";
+
+  priceError.hidden = true;
+  priceError.textContent = "";
+
+  minPriceInput.classList.remove("input-error");
+  maxPriceInput.classList.remove("input-error");
+
+  updateSearchUI();
+  filterProperties();
+}
+
+// ===== HANDLE EMPTY STATE BUTTON =====
+
+function handleEmptyStateButton() {
+  if (showFavoritesOnly) {
+    showFavoritesOnly = false;
+
+    favoritesButton.classList.remove("active");
+
+    favoritesButton.setAttribute("aria-pressed", "false");
+
+    favoritesButton.textContent = "♥ Show Favorites";
+
+    filterProperties();
+
+    return;
+  }
+
+  resetFilters();
+}
+
 // ===== POPULATE PROPERTY SELECT =====
 
 function populatePropertySelect() {
@@ -448,6 +619,7 @@ function populatePropertySelect() {
     const option = document.createElement("option");
 
     option.value = property.id;
+
     option.textContent = `${property.title} — ${formatPrice(property.price)}`;
 
     propertySelect.appendChild(option);
@@ -617,6 +789,7 @@ function validateForm() {
   const isEmailValid = validateEmail();
   const isPhoneValid = validatePhone();
   const isPropertyValid = validateProperty();
+
   const isMessageValid = validateMessage();
 
   return (
@@ -626,6 +799,17 @@ function validateForm() {
     isPropertyValid &&
     isMessageValid
   );
+}
+
+// ===== SET FORM LOADING STATE =====
+
+function setFormLoading(isLoading) {
+  formSubmit.disabled = isLoading;
+
+  formSubmit.classList.toggle("is-loading", isLoading);
+
+  submitText.hidden = isLoading;
+  submitLoading.hidden = !isLoading;
 }
 
 // ===== HANDLE CONTACT FORM SUBMISSION =====
@@ -641,15 +825,22 @@ function handleContactSubmit(event) {
     return;
   }
 
-  formSuccess.hidden = false;
+  setFormLoading(true);
 
-  contactForm.reset();
-
-  fullNameInput.focus();
-
+  // Simulate a request to a server.
   setTimeout(() => {
-    formSuccess.hidden = true;
-  }, 5000);
+    formSuccess.hidden = false;
+
+    contactForm.reset();
+
+    setFormLoading(false);
+
+    fullNameInput.focus();
+
+    setTimeout(() => {
+      formSuccess.hidden = true;
+    }, 5000);
+  }, 1000);
 }
 
 // ===== CLEAR FORM FIELD ERROR ON INPUT =====
@@ -673,17 +864,23 @@ function openPropertyModal(propertyId) {
   modalImage.alt = property.title;
 
   modalType.textContent = property.type;
+
   modalTitle.textContent = property.title;
+
   modalLocation.textContent = property.location;
+
   modalDescription.textContent = property.description;
 
   modalBedrooms.textContent = property.bedrooms;
+
   modalBathrooms.textContent = property.bathrooms;
+
   modalArea.textContent = `${property.area} m²`;
 
   modalPrice.textContent = formatPrice(property.price);
 
   propertyModal.hidden = false;
+
   document.body.classList.add("menu-open");
 
   modalClose.focus();
@@ -693,6 +890,7 @@ function openPropertyModal(propertyId) {
 
 function closePropertyModal() {
   propertyModal.hidden = true;
+
   document.body.classList.remove("menu-open");
 }
 
@@ -729,9 +927,11 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
   mainNav.classList.remove("active");
+
   document.body.classList.remove("menu-open");
 
   menuToggle.setAttribute("aria-expanded", "false");
+
   menuToggle.setAttribute("aria-label", "Open navigation menu");
 }
 
@@ -752,19 +952,27 @@ filterButtons.forEach((button) => {
 });
 
 minPriceInput.addEventListener("input", handlePriceFilter);
+
 maxPriceInput.addEventListener("input", handlePriceFilter);
 
 sortSelect.addEventListener("change", handleSort);
 
 favoritesButton.addEventListener("click", handleFavoritesFilter);
 
+resetFiltersButton.addEventListener("click", resetFilters);
+
+emptyStateButton.addEventListener("click", handleEmptyStateButton);
+
 propertyList.addEventListener("click", handlePropertyClick);
 
 contactForm.addEventListener("submit", handleContactSubmit);
 
 handleFieldInput(fullNameInput, validateName);
+
 handleFieldInput(emailInput, validateEmail);
+
 handleFieldInput(phoneInput, validatePhone);
+
 handleFieldInput(messageInput, validateMessage);
 
 propertySelect.addEventListener("change", validateProperty);
@@ -782,10 +990,20 @@ document.addEventListener("keydown", (event) => {
 
 // ===== INITIALIZE APP =====
 
-loadFavorites();
-populatePropertySelect();
-updateSearchUI();
-renderProperties(properties);
+function initializeApp() {
+  showLoadingState();
+
+  loadFavorites();
+  populatePropertySelect();
+  updateSearchUI();
+
+  // Simulate initial loading.
+  setTimeout(() => {
+    renderProperties(properties);
+  }, 600);
+}
+
+initializeApp();
 
 console.log("EstateHub is running!");
 console.log(`Loaded ${properties.length} properties.`);

@@ -152,6 +152,8 @@
                 />
               </div>
             </div>
+
+            <p class="filter-error" id="price-error" role="alert" hidden></p>
           </div>
 
           <!-- SORTING -->
@@ -179,15 +181,52 @@
             </button>
           </div>
 
-          <p class="property-count" id="property-count"></p>
+          <!-- RESET FILTERS -->
+          <div class="reset-filters">
+            <button
+              class="reset-button"
+              id="reset-filters-button"
+              type="button"
+            >
+              Reset Filters
+            </button>
+          </div>
 
+          <p class="property-count" id="property-count" aria-live="polite"></p>
+
+          <!-- LOADING STATE -->
+          <div
+            class="loading-state"
+            id="loading-state"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            <div class="loading-spinner"></div>
+            <p>Loading properties...</p>
+          </div>
+
+          <!-- PROPERTY LIST -->
           <div id="property-list" class="property-grid">
             <!-- Property cards are rendered by JavaScript -->
           </div>
 
-          <p class="no-results" id="no-results" hidden>
-            No properties found. Try another search or filter.
-          </p>
+          <!-- EMPTY STATE -->
+          <div class="empty-state" id="empty-state" hidden>
+            <div class="empty-icon">⌂</div>
+
+            <h3 id="empty-state-title">No properties found</h3>
+
+            <p id="empty-state-message">Try changing your search or filters.</p>
+
+            <button
+              class="empty-state-button"
+              id="empty-state-button"
+              type="button"
+            >
+              Reset Filters
+            </button>
+          </div>
         </div>
       </section>
 
@@ -293,7 +332,10 @@
               <p class="form-error" id="message-error" hidden></p>
             </div>
 
-            <button class="form-submit" type="submit">Send Inquiry</button>
+            <button class="form-submit" id="form-submit" type="submit">
+              <span class="submit-text">Send Inquiry</span>
+              <span class="submit-loading" hidden> Sending... </span>
+            </button>
 
             <p class="form-success" id="form-success" role="status" hidden>
               Thank you! Your inquiry has been received.
