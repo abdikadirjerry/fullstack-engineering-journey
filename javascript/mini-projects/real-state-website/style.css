@@ -27,7 +27,8 @@ a {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -301,6 +302,42 @@ button {
 }
 
 .price-input-group input:focus {
+  border-color: #36805b;
+  box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
+}
+
+/* ===== SORTING ===== */
+
+.property-sorting {
+  width: min(650px, 100%);
+  margin: 25px auto 0;
+  text-align: left;
+}
+
+.property-sorting label {
+  display: block;
+  margin-bottom: 8px;
+  color: #344139;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.property-sorting select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dce4de;
+  border-radius: 7px;
+  outline: none;
+  color: #17221d;
+  background-color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.property-sorting select:focus {
   border-color: #36805b;
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }

@@ -10,6 +10,8 @@ const noResults = document.querySelector("#no-results");
 const minPriceInput = document.querySelector("#min-price");
 const maxPriceInput = document.querySelector("#max-price");
 
+const sortSelect = document.querySelector("#sort-select");
+
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const menuToggle = document.querySelector(".menu-toggle");
@@ -21,6 +23,7 @@ const navLinks = document.querySelectorAll(".main-nav a");
 let selectedPropertyType = "all";
 let minimumPrice = 0;
 let maximumPrice = Infinity;
+let selectedSort = "default";
 
 // ===== PROPERTY DATA =====
 
@@ -145,16 +148,42 @@ function createPropertyCard(property) {
   `;
 }
 
+// ===== SORT PROPERTIES =====
+
+function sortProperties(propertyData) {
+  const sortedProperties = [...propertyData];
+
+  if (selectedSort === "price-low") {
+    sortedProperties.sort((a, b) => a.price - b.price);
+  }
+
+  if (selectedSort === "price-high") {
+    sortedProperties.sort((a, b) => b.price - a.price);
+  }
+
+  if (selectedSort === "name-az") {
+    sortedProperties.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if (selectedSort === "name-za") {
+    sortedProperties.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
+  return sortedProperties;
+}
+
 // ===== RENDER PROPERTIES =====
 
 function renderProperties(propertyData) {
-  propertyList.innerHTML = propertyData.map(createPropertyCard).join("");
+  const sortedProperties = sortProperties(propertyData);
 
-  propertyCount.textContent = `${propertyData.length} ${
-    propertyData.length === 1 ? "property" : "properties"
+  propertyList.innerHTML = sortedProperties.map(createPropertyCard).join("");
+
+  propertyCount.textContent = `${sortedProperties.length} ${
+    sortedProperties.length === 1 ? "property" : "properties"
   } found`;
 
-  noResults.hidden = propertyData.length !== 0;
+  noResults.hidden = sortedProperties.length !== 0;
 }
 
 // ===== FILTER PROPERTIES =====
@@ -209,6 +238,14 @@ function handlePriceFilter() {
   filterProperties();
 }
 
+// ===== HANDLE SORTING =====
+
+function handleSort() {
+  selectedSort = sortSelect.value;
+
+  filterProperties();
+}
+
 // ===== MOBILE NAVIGATION =====
 
 function toggleMobileMenu() {
@@ -248,6 +285,8 @@ filterButtons.forEach((button) => {
 
 minPriceInput.addEventListener("input", handlePriceFilter);
 maxPriceInput.addEventListener("input", handlePriceFilter);
+
+sortSelect.addEventListener("change", handleSort);
 
 // ===== INITIALIZE APP =====
 
