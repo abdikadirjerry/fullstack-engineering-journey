@@ -14,6 +14,8 @@ const sortSelect = document.querySelector("#sort-select");
 
 const filterButtons = document.querySelectorAll(".filter-button");
 
+const favoritesButton = document.querySelector("#favorites-button");
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
@@ -40,6 +42,9 @@ let selectedPropertyType = "all";
 let minimumPrice = 0;
 let maximumPrice = Infinity;
 let selectedSort = "default";
+let showFavoritesOnly = false;
+
+const favoritePropertyIds = new Set();
 
 // ===== PROPERTY DATA =====
 
@@ -143,6 +148,8 @@ function formatPrice(price) {
 // ===== CREATE PROPERTY CARD =====
 
 function createPropertyCard(property) {
+  const isFavorite = favoritePropertyIds.has(property.id);
+
   return `
     <article class="property-card">
       <img
@@ -150,6 +157,20 @@ function createPropertyCard(property) {
         src="${property.image}"
         alt="${property.title}"
       >
+
+      <button
+        class="favorite-button ${isFavorite ? "active" : ""}"
+        type="button"
+        data-property-id="${property.id}"
+        aria-label="${
+          isFavorite
+            ? `Remove ${property.title} from favorites`
+            : `Add ${property.title} to favorites`
+        }"
+        aria-pressed="${isFavorite}"
+      >
+        ${isFavorite ? "♥" : "♡"}
+      </button>
 
       <div class="property-content">
         <span class="property-type">
@@ -243,7 +264,10 @@ function filterProperties() {
     const matchesPrice =
       property.price >= minimumPrice && property.price <= maximumPrice;
 
-    return matchesSearch && matchesType && matchesPrice;
+    const matchesFavorite =
+      !showFavoritesOnly || favoritePropertyIds.has(property.id);
+
+    return matchesSearch && matchesType && matchesPrice && matchesFavorite;
   });
 
   renderProperties(filteredProperties);
@@ -278,6 +302,48 @@ function handlePriceFilter() {
 
 function handleSort() {
   selectedSort = sortSelect.value;
+
+  filterProperties();
+}
+
+// ===== TOGGLE FAVORITE =====
+
+function toggleFavorite(propertyId) {
+  if (favoritePropertyIds.has(propertyId)) {
+    favoritePropertyIds.delete(propertyId);
+  } else {
+    favoritePropertyIds.add(propertyId);
+  }
+
+  filterProperties();
+}
+
+// ===== HANDLE FAVORITE CLICK =====
+
+function handleFavoriteClick(event) {
+  const favoriteButton = event.target.closest(".favorite-button");
+
+  if (!favoriteButton) {
+    return;
+  }
+
+  const propertyId = Number(favoriteButton.dataset.propertyId);
+
+  toggleFavorite(propertyId);
+}
+
+// ===== HANDLE FAVORITES FILTER =====
+
+function handleFavoritesFilter() {
+  showFavoritesOnly = !showFavoritesOnly;
+
+  favoritesButton.classList.toggle("active", showFavoritesOnly);
+
+  favoritesButton.setAttribute("aria-pressed", showFavoritesOnly);
+
+  favoritesButton.textContent = showFavoritesOnly
+    ? "♥ Showing Favorites"
+    : "♥ Show Favorites";
 
   filterProperties();
 }
@@ -318,18 +384,20 @@ function closePropertyModal() {
   document.body.classList.remove("menu-open");
 }
 
-// ===== HANDLE PROPERTY DETAILS CLICK =====
+// ===== HANDLE PROPERTY LIST CLICK =====
 
 function handlePropertyClick(event) {
   const detailsButton = event.target.closest(".details-button");
 
-  if (!detailsButton) {
+  if (detailsButton) {
+    const propertyId = Number(detailsButton.dataset.propertyId);
+
+    openPropertyModal(propertyId);
+
     return;
   }
 
-  const propertyId = Number(detailsButton.dataset.propertyId);
-
-  openPropertyModal(propertyId);
+  handleFavoriteClick(event);
 }
 
 // ===== MOBILE NAVIGATION =====
@@ -373,6 +441,8 @@ minPriceInput.addEventListener("input", handlePriceFilter);
 maxPriceInput.addEventListener("input", handlePriceFilter);
 
 sortSelect.addEventListener("change", handleSort);
+
+favoritesButton.addEventListener("click", handleFavoritesFilter);
 
 propertyList.addEventListener("click", handlePropertyClick);
 

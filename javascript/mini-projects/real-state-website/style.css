@@ -342,6 +342,38 @@ button {
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }
 
+/* ===== FAVORITES ===== */
+
+.favorites-filter {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.favorites-button {
+  padding: 10px 18px;
+  border: 1px solid #dce4de;
+  border-radius: 6px;
+  color: #59665e;
+  background-color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.favorites-button:hover {
+  border-color: #286847;
+  color: #286847;
+}
+
+.favorites-button.active {
+  border-color: #286847;
+  color: #ffffff;
+  background-color: #286847;
+}
+
 /* ===== PROPERTY COUNT ===== */
 
 .property-count {
@@ -363,6 +395,7 @@ button {
 /* ===== PROPERTY CARD ===== */
 
 .property-card {
+  position: relative;
   overflow: hidden;
   border: 1px solid #e8ece9;
   border-radius: 10px;
@@ -417,6 +450,35 @@ button {
   color: #286847;
   font-size: 20px;
   font-weight: 700;
+}
+
+/* ===== FAVORITE BUTTON ===== */
+
+.favorite-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  color: #59665e;
+  background-color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  transition:
+    color 0.2s,
+    transform 0.2s;
+}
+
+.favorite-button:hover {
+  color: #286847;
+  transform: scale(1.05);
+}
+
+.favorite-button.active {
+  color: #286847;
 }
 
 /* ===== VIEW DETAILS BUTTON ===== */
