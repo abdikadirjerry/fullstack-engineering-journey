@@ -2,34 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="EstateHub — Find your perfect property."
     />
+
     <title>EstateHub | Find Your Dream Property</title>
 
     <link rel="stylesheet" href="style.css" />
+
     <script src="app.js" defer></script>
   </head>
 
   <body>
+    <!-- ===== HEADER ===== -->
+
     <header class="site-header">
       <div class="container">
-        <a href="#home" class="logo"> Estate<span>Hub.</span> </a>
+        <a href="#home" class="logo" aria-label="EstateHub home">
+          Estate<span>Hub.</span>
+        </a>
 
         <button
           class="menu-toggle"
           type="button"
           aria-label="Open navigation menu"
           aria-expanded="false"
+          aria-controls="main-navigation"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <nav class="main-nav" aria-label="Main navigation">
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
           <a href="#home">Home</a>
           <a href="#properties">Properties</a>
           <a href="#about">About</a>
@@ -41,7 +50,8 @@
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- ===== HERO ===== -->
+
       <section class="hero" id="home">
         <div class="container">
           <p class="eyebrow">FIND YOUR PLACE</p>
@@ -58,7 +68,8 @@
         </div>
       </section>
 
-      <!-- PROPERTIES -->
+      <!-- ===== PROPERTIES ===== -->
+
       <section class="properties-section" id="properties">
         <div class="container">
           <p class="eyebrow">EXPLORE OUR COLLECTION</p>
@@ -69,7 +80,8 @@
             Discover our selection of beautiful homes.
           </p>
 
-          <!-- ADVANCED SEARCH -->
+          <!-- SEARCH -->
+
           <div class="property-search">
             <label for="search-input"> Search properties </label>
 
@@ -99,6 +111,7 @@
           </div>
 
           <!-- PROPERTY TYPE FILTER -->
+
           <div class="property-filters">
             <p class="filter-label">Property type</p>
 
@@ -126,12 +139,13 @@
           </div>
 
           <!-- PRICE FILTER -->
+
           <div class="price-filters">
             <p class="filter-label">Price range</p>
 
             <div class="price-inputs">
               <div class="price-input-group">
-                <label for="min-price">Minimum price</label>
+                <label for="min-price"> Minimum price </label>
 
                 <input
                   type="number"
@@ -142,7 +156,7 @@
               </div>
 
               <div class="price-input-group">
-                <label for="max-price">Maximum price</label>
+                <label for="max-price"> Maximum price </label>
 
                 <input
                   type="number"
@@ -156,20 +170,26 @@
             <p class="filter-error" id="price-error" role="alert" hidden></p>
           </div>
 
-          <!-- SORTING -->
+          <!-- SORT -->
+
           <div class="property-sorting">
             <label for="sort-select"> Sort properties </label>
 
             <select id="sort-select">
               <option value="default">Default order</option>
+
               <option value="price-low">Price: Low to High</option>
+
               <option value="price-high">Price: High to Low</option>
+
               <option value="name-az">Name: A to Z</option>
+
               <option value="name-za">Name: Z to A</option>
             </select>
           </div>
 
           <!-- FAVORITES -->
+
           <div class="favorites-filter">
             <button
               class="favorites-button"
@@ -181,7 +201,8 @@
             </button>
           </div>
 
-          <!-- RESET FILTERS -->
+          <!-- RESET -->
+
           <div class="reset-filters">
             <button
               class="reset-button"
@@ -192,9 +213,12 @@
             </button>
           </div>
 
+          <!-- PROPERTY COUNT -->
+
           <p class="property-count" id="property-count" aria-live="polite"></p>
 
-          <!-- LOADING STATE -->
+          <!-- LOADING -->
+
           <div
             class="loading-state"
             id="loading-state"
@@ -203,17 +227,22 @@
             hidden
           >
             <div class="loading-spinner"></div>
+
             <p>Loading properties...</p>
           </div>
 
           <!-- PROPERTY LIST -->
-          <div id="property-list" class="property-grid">
-            <!-- Property cards are rendered by JavaScript -->
-          </div>
+
+          <div
+            id="property-list"
+            class="property-grid"
+            aria-live="polite"
+          ></div>
 
           <!-- EMPTY STATE -->
+
           <div class="empty-state" id="empty-state" hidden>
-            <div class="empty-icon">⌂</div>
+            <div class="empty-icon" aria-hidden="true">⌂</div>
 
             <h3 id="empty-state-title">No properties found</h3>
 
@@ -230,7 +259,8 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
+      <!-- ===== ABOUT ===== -->
+
       <section class="about-section" id="about">
         <div class="container">
           <p class="eyebrow">ABOUT ESTATEHUB</p>
@@ -241,7 +271,8 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
+      <!-- ===== CONTACT ===== -->
+
       <section class="contact-section" id="contact">
         <div class="container">
           <p class="eyebrow">GET IN TOUCH</p>
@@ -253,7 +284,6 @@
             next step.
           </p>
 
-          <!-- CONTACT FORM -->
           <form class="contact-form" id="contact-form" novalidate>
             <div class="form-row">
               <div class="form-group">
@@ -333,7 +363,8 @@
             </div>
 
             <button class="form-submit" id="form-submit" type="submit">
-              <span class="submit-text">Send Inquiry</span>
+              <span class="submit-text"> Send Inquiry </span>
+
               <span class="submit-loading" hidden> Sending... </span>
             </button>
 
@@ -345,7 +376,8 @@
       </section>
     </main>
 
-    <!-- PROPERTY DETAILS MODAL -->
+    <!-- ===== PROPERTY DETAILS MODAL ===== -->
+
     <div
       class="modal"
       id="property-modal"
@@ -399,12 +431,19 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- ===== FOOTER ===== -->
+
     <footer class="site-footer">
       <div class="container">
-        <a href="#home" class="logo"> Estate<span>Hub.</span> </a>
+        <a href="#home" class="logo" aria-label="EstateHub home">
+          Estate<span>Hub.</span>
+        </a>
 
-        <p>&copy; 2026 EstateHub. All rights reserved.</p>
+        <p>
+          &copy;
+          <span id="current-year">2026</span>
+          EstateHub. All rights reserved.
+        </p>
       </div>
     </footer>
   </body>

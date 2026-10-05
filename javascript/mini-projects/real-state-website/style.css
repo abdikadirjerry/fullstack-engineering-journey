@@ -88,8 +88,7 @@ button:disabled {
   color: #36805b;
 }
 
-.header-button,
-.contact-link {
+.header-button {
   display: inline-block;
   padding: 11px 20px;
   border-radius: 6px;
@@ -102,8 +101,7 @@ button:disabled {
     transform 0.2s;
 }
 
-.header-button:hover,
-.contact-link:hover {
+.header-button:hover {
   background-color: #1e5137;
   transform: translateY(-1px);
 }
@@ -126,9 +124,6 @@ button:disabled {
   height: 2px;
   margin: 5px 0;
   background-color: #17221d;
-  transition:
-    transform 0.2s,
-    opacity 0.2s;
 }
 
 /* ===== HERO ===== */
@@ -188,7 +183,7 @@ button:disabled {
   color: #69756d;
 }
 
-/* ===== ADVANCED SEARCH ===== */
+/* ===== SEARCH ===== */
 
 .property-search {
   width: min(650px, 100%);
@@ -222,10 +217,6 @@ button:disabled {
     box-shadow 0.2s;
 }
 
-.property-search input::placeholder {
-  color: #9aa59e;
-}
-
 .property-search input:focus {
   border-color: #36805b;
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
@@ -244,9 +235,6 @@ button:disabled {
   font-size: 20px;
   line-height: 1;
   transform: translateY(-50%);
-  transition:
-    color 0.2s,
-    background-color 0.2s;
 }
 
 .clear-search-button:hover {
@@ -260,7 +248,7 @@ button:disabled {
   font-size: 12px;
 }
 
-/* ===== PROPERTY TYPE FILTERS ===== */
+/* ===== FILTERS ===== */
 
 .property-filters {
   margin-top: 25px;
@@ -306,7 +294,7 @@ button:disabled {
   background-color: #286847;
 }
 
-/* ===== PRICE FILTERS ===== */
+/* ===== PRICE ===== */
 
 .price-filters {
   width: min(650px, 100%);
@@ -336,13 +324,6 @@ button:disabled {
   color: #17221d;
   background-color: #ffffff;
   font-size: 14px;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-}
-
-.price-input-group input::placeholder {
-  color: #9aa59e;
 }
 
 .price-input-group input:focus {
@@ -385,10 +366,6 @@ button:disabled {
   color: #17221d;
   background-color: #ffffff;
   font-size: 14px;
-  cursor: pointer;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
 }
 
 .property-sorting select:focus {
@@ -400,7 +377,6 @@ button:disabled {
 
 .favorites-filter {
   margin-top: 20px;
-  text-align: center;
 }
 
 .favorites-button {
@@ -414,27 +390,24 @@ button:disabled {
   transition:
     color 0.2s,
     background-color 0.2s,
-    border-color 0.2s,
     transform 0.2s;
 }
 
 .favorites-button:hover {
-  border-color: #286847;
   color: #286847;
+  background-color: #f1f6f2;
   transform: translateY(-1px);
 }
 
 .favorites-button.active {
-  border-color: #286847;
   color: #ffffff;
   background-color: #286847;
 }
 
-/* ===== RESET FILTERS ===== */
+/* ===== RESET ===== */
 
 .reset-filters {
   margin-top: 14px;
-  text-align: center;
 }
 
 .reset-button {
@@ -445,9 +418,6 @@ button:disabled {
   background-color: #f1f6f2;
   font-size: 12px;
   font-weight: 600;
-  transition:
-    color 0.2s,
-    background-color 0.2s;
 }
 
 .reset-button:hover {
@@ -464,7 +434,7 @@ button:disabled {
   font-size: 13px;
 }
 
-/* ===== LOADING STATE ===== */
+/* ===== LOADING ===== */
 
 .loading-state {
   display: flex;
@@ -524,8 +494,9 @@ button:disabled {
 .property-image {
   width: 100%;
   height: 220px;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  background-color: #f1f6f2;
 }
 
 .property-content {
@@ -599,7 +570,7 @@ button:disabled {
   color: #286847;
 }
 
-/* ===== VIEW DETAILS BUTTON ===== */
+/* ===== DETAILS BUTTON ===== */
 
 .details-button {
   width: 100%;
@@ -660,14 +631,10 @@ button:disabled {
   background-color: #286847;
   font-size: 13px;
   font-weight: 600;
-  transition:
-    background-color 0.2s,
-    transform 0.2s;
 }
 
 .empty-state-button:hover {
   background-color: #1e5137;
-  transform: translateY(-1px);
 }
 
 /* ===== ABOUT ===== */
@@ -735,19 +702,11 @@ button:disabled {
   color: #17221d;
   background-color: #ffffff;
   font-size: 14px;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
 }
 
 .form-group textarea {
   min-height: 150px;
   resize: vertical;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #9aa59e;
 }
 
 .form-group input:focus,
@@ -757,18 +716,10 @@ button:disabled {
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }
 
-/* ===== FORM VALIDATION ===== */
-
 .form-group input.input-error,
 .form-group select.input-error,
 .form-group textarea.input-error {
   border-color: #c94b4b;
-}
-
-.form-group input.input-error:focus,
-.form-group select.input-error:focus,
-.form-group textarea.input-error:focus {
-  box-shadow: 0 0 0 3px rgba(201, 75, 75, 0.1);
 }
 
 .form-error {
@@ -778,7 +729,6 @@ button:disabled {
 }
 
 .form-submit {
-  position: relative;
   width: 100%;
   min-height: 47px;
   padding: 13px 20px;
@@ -800,10 +750,6 @@ button:disabled {
 
 .form-submit.is-loading {
   pointer-events: none;
-}
-
-.submit-loading {
-  display: inline-block;
 }
 
 .form-success {
@@ -873,8 +819,9 @@ button:disabled {
 .modal-image {
   width: 100%;
   height: 300px;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
+  background-color: #f1f6f2;
 }
 
 .modal-body {

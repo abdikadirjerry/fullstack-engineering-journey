@@ -9,7 +9,9 @@ const searchInput = document.querySelector("#search-input");
 const clearSearchButton = document.querySelector("#clear-search-button");
 
 const minPriceInput = document.querySelector("#min-price");
+
 const maxPriceInput = document.querySelector("#max-price");
+
 const priceError = document.querySelector("#price-error");
 
 const sortSelect = document.querySelector("#sort-select");
@@ -21,6 +23,7 @@ const favoritesButton = document.querySelector("#favorites-button");
 const resetFiltersButton = document.querySelector("#reset-filters-button");
 
 const emptyState = document.querySelector("#empty-state");
+
 const emptyStateTitle = document.querySelector("#empty-state-title");
 
 const emptyStateMessage = document.querySelector("#empty-state-message");
@@ -30,35 +33,49 @@ const emptyStateButton = document.querySelector("#empty-state-button");
 const loadingState = document.querySelector("#loading-state");
 
 const menuToggle = document.querySelector(".menu-toggle");
+
 const mainNav = document.querySelector(".main-nav");
+
 const navLinks = document.querySelectorAll(".main-nav a");
 
-// ===== CONTACT FORM ELEMENTS =====
+// ===== CONTACT FORM =====
 
 const contactForm = document.querySelector("#contact-form");
 
 const fullNameInput = document.querySelector("#full-name");
+
 const emailInput = document.querySelector("#email");
+
 const phoneInput = document.querySelector("#phone");
+
 const propertySelect = document.querySelector("#property-select");
+
 const messageInput = document.querySelector("#message");
 
 const formSubmit = document.querySelector("#form-submit");
+
 const submitText = document.querySelector(".submit-text");
+
 const submitLoading = document.querySelector(".submit-loading");
 
 const formSuccess = document.querySelector("#form-success");
 
-// ===== MODAL ELEMENTS =====
+// ===== MODAL =====
 
 const propertyModal = document.querySelector("#property-modal");
+
 const modalOverlay = document.querySelector(".modal-overlay");
+
 const modalClose = document.querySelector("#modal-close");
 
 const modalImage = document.querySelector("#modal-image");
+
 const modalType = document.querySelector("#modal-type");
+
 const modalTitle = document.querySelector("#modal-title");
+
 const modalLocation = document.querySelector("#modal-location");
+
 const modalDescription = document.querySelector("#modal-description");
 
 const modalBedrooms = document.querySelector("#modal-bedrooms");
@@ -66,7 +83,10 @@ const modalBedrooms = document.querySelector("#modal-bedrooms");
 const modalBathrooms = document.querySelector("#modal-bathrooms");
 
 const modalArea = document.querySelector("#modal-area");
+
 const modalPrice = document.querySelector("#modal-price");
+
+const currentYear = document.querySelector("#current-year");
 
 // ===== APPLICATION STATE =====
 
@@ -97,6 +117,7 @@ const properties = [
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
   },
+
   {
     id: 2,
     title: "Luxury City Apartment",
@@ -111,6 +132,7 @@ const properties = [
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
   },
+
   {
     id: 3,
     title: "Contemporary Beach House",
@@ -125,6 +147,7 @@ const properties = [
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
   },
+
   {
     id: 4,
     title: "Cozy Family Home",
@@ -139,6 +162,7 @@ const properties = [
     image:
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80",
   },
+
   {
     id: 5,
     title: "Elegant Modern Villa",
@@ -153,6 +177,7 @@ const properties = [
     image:
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
   },
+
   {
     id: 6,
     title: "Downtown Apartment",
@@ -169,7 +194,7 @@ const properties = [
   },
 ];
 
-// ===== LOAD FAVORITES FROM LOCAL STORAGE =====
+// ===== LOCAL STORAGE =====
 
 function loadFavorites() {
   const savedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
@@ -197,29 +222,34 @@ function loadFavorites() {
       }
     });
   } catch (error) {
-    console.error("Could not load favorites from localStorage:", error);
+    console.error("Could not load favorites:", error);
   }
 }
-
-// ===== SAVE FAVORITES TO LOCAL STORAGE =====
 
 function saveFavorites() {
   try {
-    const favoritesArray = [...favoritePropertyIds];
-
-    localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoritesArray));
+    localStorage.setItem(
+      FAVORITES_STORAGE_KEY,
+      JSON.stringify([...favoritePropertyIds]),
+    );
   } catch (error) {
-    console.error("Could not save favorites to localStorage:", error);
+    console.error("Could not save favorites:", error);
   }
 }
 
-// ===== NORMALIZE SEARCH TEXT =====
+// ===== HELPERS =====
 
 function normalizeSearchText(value) {
   return String(value).trim().toLowerCase();
 }
 
-// ===== CREATE SEARCHABLE PROPERTY TEXT =====
+function formatPrice(price) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(price);
+}
 
 function getSearchablePropertyText(property) {
   return [
@@ -236,22 +266,16 @@ function getSearchablePropertyText(property) {
     .toLowerCase();
 }
 
-// ===== UPDATE SEARCH UI =====
+// ===== SEARCH =====
 
 function updateSearchUI() {
-  const hasSearchValue = searchInput.value.trim().length > 0;
-
-  clearSearchButton.hidden = !hasSearchValue;
+  clearSearchButton.hidden = searchInput.value.trim() === "";
 }
-
-// ===== HANDLE SEARCH =====
 
 function handleSearch() {
   updateSearchUI();
   filterProperties();
 }
-
-// ===== CLEAR SEARCH =====
 
 function clearSearch() {
   searchInput.value = "";
@@ -262,23 +286,14 @@ function clearSearch() {
   searchInput.focus();
 }
 
-// ===== FORMAT PRICE =====
-
-function formatPrice(price) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(price);
-}
-
-// ===== CREATE PROPERTY CARD =====
+// ===== PROPERTY CARD =====
 
 function createPropertyCard(property) {
   const isFavorite = favoritePropertyIds.has(property.id);
 
   return `
     <article class="property-card">
+
       <img
         class="property-image"
         src="${property.image}"
@@ -301,20 +316,33 @@ function createPropertyCard(property) {
       </button>
 
       <div class="property-content">
+
         <span class="property-type">
           ${property.type}
         </span>
 
-        <h3>${property.title}</h3>
+        <h3>
+          ${property.title}
+        </h3>
 
         <p class="property-location">
           ${property.location}
         </p>
 
         <div class="property-details">
-          <span>${property.bedrooms} Beds</span>
-          <span>${property.bathrooms} Baths</span>
-          <span>${property.area} m²</span>
+
+          <span>
+            ${property.bedrooms} Beds
+          </span>
+
+          <span>
+            ${property.bathrooms} Baths
+          </span>
+
+          <span>
+            ${property.area} m²
+          </span>
+
         </div>
 
         <p class="property-price">
@@ -328,36 +356,42 @@ function createPropertyCard(property) {
         >
           View Details
         </button>
+
       </div>
     </article>
   `;
 }
 
-// ===== SORT PROPERTIES =====
+// ===== SORTING =====
 
 function sortProperties(propertyData) {
   const sortedProperties = [...propertyData];
 
-  if (selectedSort === "price-low") {
-    sortedProperties.sort((a, b) => a.price - b.price);
-  }
+  switch (selectedSort) {
+    case "price-low":
+      sortedProperties.sort((a, b) => a.price - b.price);
+      break;
 
-  if (selectedSort === "price-high") {
-    sortedProperties.sort((a, b) => b.price - a.price);
-  }
+    case "price-high":
+      sortedProperties.sort((a, b) => b.price - a.price);
+      break;
 
-  if (selectedSort === "name-az") {
-    sortedProperties.sort((a, b) => a.title.localeCompare(b.title));
-  }
+    case "name-az":
+      sortedProperties.sort((a, b) => a.title.localeCompare(b.title));
+      break;
 
-  if (selectedSort === "name-za") {
-    sortedProperties.sort((a, b) => b.title.localeCompare(a.title));
+    case "name-za":
+      sortedProperties.sort((a, b) => b.title.localeCompare(a.title));
+      break;
+
+    default:
+      break;
   }
 
   return sortedProperties;
 }
 
-// ===== SHOW LOADING STATE =====
+// ===== UI STATES =====
 
 function showLoadingState() {
   loadingState.hidden = false;
@@ -365,35 +399,31 @@ function showLoadingState() {
   emptyState.hidden = true;
 }
 
-// ===== HIDE LOADING STATE =====
-
 function hideLoadingState() {
   loadingState.hidden = true;
   propertyList.hidden = false;
 }
 
-// ===== UPDATE EMPTY STATE =====
-
 function updateEmptyState() {
-  if (!showFavoritesOnly) {
-    emptyStateTitle.textContent = "No properties found";
+  if (showFavoritesOnly) {
+    emptyStateTitle.textContent = "No favorite properties yet";
 
-    emptyStateMessage.textContent = "Try changing your search or filters.";
+    emptyStateMessage.textContent =
+      "Save properties you like and they will appear here.";
 
-    emptyStateButton.textContent = "Reset Filters";
+    emptyStateButton.textContent = "Show All Properties";
 
     return;
   }
 
-  emptyStateTitle.textContent = "No favorite properties yet";
+  emptyStateTitle.textContent = "No properties found";
 
-  emptyStateMessage.textContent =
-    "Save properties you like and they will appear here.";
+  emptyStateMessage.textContent = "Try changing your search or filters.";
 
-  emptyStateButton.textContent = "Show All Properties";
+  emptyStateButton.textContent = "Reset Filters";
 }
 
-// ===== RENDER PROPERTIES =====
+// ===== RENDER =====
 
 function renderProperties(propertyData) {
   const sortedProperties = sortProperties(propertyData);
@@ -414,16 +444,18 @@ function renderProperties(propertyData) {
   }
 }
 
-// ===== VALIDATE PRICE RANGE =====
+// ===== PRICE VALIDATION =====
 
 function validatePriceRange() {
   const minValue = minPriceInput.value.trim();
+
   const maxValue = maxPriceInput.value.trim();
 
   const minimum = Number(minValue);
   const maximum = Number(maxValue);
 
   minPriceInput.classList.remove("input-error");
+
   maxPriceInput.classList.remove("input-error");
 
   if (minValue !== "" && maxValue !== "" && minimum > maximum) {
@@ -433,6 +465,7 @@ function validatePriceRange() {
     priceError.hidden = false;
 
     minPriceInput.classList.add("input-error");
+
     maxPriceInput.classList.add("input-error");
 
     return false;
@@ -444,7 +477,7 @@ function validatePriceRange() {
   return true;
 }
 
-// ===== FILTER PROPERTIES =====
+// ===== FILTERING =====
 
 function filterProperties() {
   if (!validatePriceRange()) {
@@ -485,7 +518,7 @@ function filterProperties() {
   renderProperties(filteredProperties);
 }
 
-// ===== HANDLE TYPE FILTER =====
+// ===== TYPE FILTER =====
 
 function handleTypeFilter(event) {
   const clickedButton = event.currentTarget;
@@ -493,21 +526,19 @@ function handleTypeFilter(event) {
   selectedPropertyType = clickedButton.dataset.type;
 
   filterButtons.forEach((button) => {
-    button.classList.remove("active");
+    button.classList.toggle("active", button === clickedButton);
   });
-
-  clickedButton.classList.add("active");
 
   filterProperties();
 }
 
-// ===== HANDLE PRICE FILTER =====
+// ===== PRICE FILTER =====
 
 function handlePriceFilter() {
   filterProperties();
 }
 
-// ===== HANDLE SORTING =====
+// ===== SORT =====
 
 function handleSort() {
   selectedSort = sortSelect.value;
@@ -515,7 +546,7 @@ function handleSort() {
   filterProperties();
 }
 
-// ===== TOGGLE FAVORITE =====
+// ===== FAVORITES =====
 
 function toggleFavorite(propertyId) {
   if (favoritePropertyIds.has(propertyId)) {
@@ -528,8 +559,6 @@ function toggleFavorite(propertyId) {
   filterProperties();
 }
 
-// ===== HANDLE FAVORITE CLICK =====
-
 function handleFavoriteClick(event) {
   const favoriteButton = event.target.closest(".favorite-button");
 
@@ -541,8 +570,6 @@ function handleFavoriteClick(event) {
 
   toggleFavorite(propertyId);
 }
-
-// ===== HANDLE FAVORITES FILTER =====
 
 function handleFavoritesFilter() {
   showFavoritesOnly = !showFavoritesOnly;
@@ -558,7 +585,7 @@ function handleFavoritesFilter() {
   filterProperties();
 }
 
-// ===== RESET ALL FILTERS =====
+// ===== RESET FILTERS =====
 
 function resetFilters() {
   searchInput.value = "";
@@ -582,17 +609,16 @@ function resetFilters() {
 
   favoritesButton.textContent = "♥ Show Favorites";
 
-  priceError.hidden = true;
-  priceError.textContent = "";
-
   minPriceInput.classList.remove("input-error");
+
   maxPriceInput.classList.remove("input-error");
+
+  priceError.textContent = "";
+  priceError.hidden = true;
 
   updateSearchUI();
   filterProperties();
 }
-
-// ===== HANDLE EMPTY STATE BUTTON =====
 
 function handleEmptyStateButton() {
   if (showFavoritesOnly) {
@@ -612,7 +638,7 @@ function handleEmptyStateButton() {
   resetFilters();
 }
 
-// ===== POPULATE PROPERTY SELECT =====
+// ===== CONTACT FORM =====
 
 function populatePropertySelect() {
   properties.forEach((property) => {
@@ -626,25 +652,25 @@ function populatePropertySelect() {
   });
 }
 
-// ===== FORM VALIDATION HELPERS =====
-
 function showFieldError(input, errorElement, message) {
   input.classList.add("input-error");
+
   input.setAttribute("aria-invalid", "true");
 
   errorElement.textContent = message;
+
   errorElement.hidden = false;
 }
 
 function clearFieldError(input, errorElement) {
   input.classList.remove("input-error");
+
   input.setAttribute("aria-invalid", "false");
 
   errorElement.textContent = "";
+
   errorElement.hidden = true;
 }
-
-// ===== VALIDATE NAME =====
 
 function validateName() {
   const errorElement = document.querySelector("#full-name-error");
@@ -671,8 +697,6 @@ function validateName() {
 
   return true;
 }
-
-// ===== VALIDATE EMAIL =====
 
 function validateEmail() {
   const errorElement = document.querySelector("#email-error");
@@ -706,8 +730,6 @@ function validateEmail() {
   return true;
 }
 
-// ===== VALIDATE PHONE =====
-
 function validatePhone() {
   const errorElement = document.querySelector("#phone-error");
 
@@ -736,14 +758,10 @@ function validatePhone() {
   return true;
 }
 
-// ===== VALIDATE PROPERTY =====
-
 function validateProperty() {
   const errorElement = document.querySelector("#property-error");
 
-  const value = propertySelect.value;
-
-  if (!value) {
+  if (!propertySelect.value) {
     showFieldError(propertySelect, errorElement, "Please select a property.");
 
     return false;
@@ -753,8 +771,6 @@ function validateProperty() {
 
   return true;
 }
-
-// ===== VALIDATE MESSAGE =====
 
 function validateMessage() {
   const errorElement = document.querySelector("#message-error");
@@ -782,26 +798,15 @@ function validateMessage() {
   return true;
 }
 
-// ===== VALIDATE FORM =====
-
 function validateForm() {
-  const isNameValid = validateName();
-  const isEmailValid = validateEmail();
-  const isPhoneValid = validatePhone();
-  const isPropertyValid = validateProperty();
-
-  const isMessageValid = validateMessage();
-
   return (
-    isNameValid &&
-    isEmailValid &&
-    isPhoneValid &&
-    isPropertyValid &&
-    isMessageValid
+    validateName() &&
+    validateEmail() &&
+    validatePhone() &&
+    validateProperty() &&
+    validateMessage()
   );
 }
-
-// ===== SET FORM LOADING STATE =====
 
 function setFormLoading(isLoading) {
   formSubmit.disabled = isLoading;
@@ -809,25 +814,21 @@ function setFormLoading(isLoading) {
   formSubmit.classList.toggle("is-loading", isLoading);
 
   submitText.hidden = isLoading;
+
   submitLoading.hidden = !isLoading;
 }
-
-// ===== HANDLE CONTACT FORM SUBMISSION =====
 
 function handleContactSubmit(event) {
   event.preventDefault();
 
   formSuccess.hidden = true;
 
-  const isFormValid = validateForm();
-
-  if (!isFormValid) {
+  if (!validateForm()) {
     return;
   }
 
   setFormLoading(true);
 
-  // Simulate a request to a server.
   setTimeout(() => {
     formSuccess.hidden = false;
 
@@ -843,15 +844,11 @@ function handleContactSubmit(event) {
   }, 1000);
 }
 
-// ===== CLEAR FORM FIELD ERROR ON INPUT =====
-
 function handleFieldInput(input, validationFunction) {
-  input.addEventListener("input", () => {
-    validationFunction();
-  });
+  input.addEventListener("input", validationFunction);
 }
 
-// ===== OPEN PROPERTY MODAL =====
+// ===== MODAL =====
 
 function openPropertyModal(propertyId) {
   const property = properties.find((item) => item.id === propertyId);
@@ -861,6 +858,7 @@ function openPropertyModal(propertyId) {
   }
 
   modalImage.src = property.image;
+
   modalImage.alt = property.title;
 
   modalType.textContent = property.type;
@@ -886,15 +884,11 @@ function openPropertyModal(propertyId) {
   modalClose.focus();
 }
 
-// ===== CLOSE PROPERTY MODAL =====
-
 function closePropertyModal() {
   propertyModal.hidden = true;
 
   document.body.classList.remove("menu-open");
 }
-
-// ===== HANDLE PROPERTY LIST CLICK =====
 
 function handlePropertyClick(event) {
   const detailsButton = event.target.closest(".details-button");
@@ -908,6 +902,46 @@ function handlePropertyClick(event) {
   }
 
   handleFavoriteClick(event);
+}
+
+// ===== IMAGE ERROR HANDLING =====
+
+function handleImageError(event) {
+  const image = event.target;
+
+  if (image.dataset.fallbackApplied) {
+    return;
+  }
+
+  image.dataset.fallbackApplied = "true";
+
+  image.src =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="900"
+        height="600"
+        viewBox="0 0 900 600"
+      >
+        <rect
+          width="900"
+          height="600"
+          fill="#f1f6f2"
+        />
+        <text
+          x="450"
+          y="300"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          font-family="Arial"
+          font-size="28"
+          fill="#69756d"
+        >
+          Image unavailable
+        </text>
+      </svg>
+    `);
 }
 
 // ===== MOBILE NAVIGATION =====
@@ -965,6 +999,10 @@ emptyStateButton.addEventListener("click", handleEmptyStateButton);
 
 propertyList.addEventListener("click", handlePropertyClick);
 
+propertyList.addEventListener("error", handleImageError, true);
+
+modalImage.addEventListener("error", handleImageError);
+
 contactForm.addEventListener("submit", handleContactSubmit);
 
 handleFieldInput(fullNameInput, validateName);
@@ -973,38 +1011,38 @@ handleFieldInput(emailInput, validateEmail);
 
 handleFieldInput(phoneInput, validatePhone);
 
-handleFieldInput(messageInput, validateMessage);
-
 propertySelect.addEventListener("change", validateProperty);
 
 modalClose.addEventListener("click", closePropertyModal);
 
 modalOverlay.addEventListener("click", closePropertyModal);
 
-// Close modal with Escape key
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !propertyModal.hidden) {
     closePropertyModal();
   }
+
+  if (event.key === "Escape" && mainNav.classList.contains("active")) {
+    closeMobileMenu();
+  }
 });
 
-// ===== INITIALIZE APP =====
+// ===== INITIALIZE =====
 
 function initializeApp() {
+  currentYear.textContent = new Date().getFullYear();
+
   showLoadingState();
 
   loadFavorites();
+
   populatePropertySelect();
+
   updateSearchUI();
 
-  // Simulate initial loading.
   setTimeout(() => {
     renderProperties(properties);
   }, 600);
 }
 
 initializeApp();
-
-console.log("EstateHub is running!");
-console.log(`Loaded ${properties.length} properties.`);
-console.log(`Loaded ${favoritePropertyIds.size} saved favorites.`);
