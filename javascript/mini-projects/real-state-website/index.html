@@ -81,6 +81,33 @@
             />
           </div>
 
+          <!-- PROPERTY TYPE FILTER -->
+          <div class="property-filters">
+            <p class="filter-label">Property type</p>
+
+            <div class="filter-buttons">
+              <button
+                class="filter-button active"
+                type="button"
+                data-type="all"
+              >
+                All Properties
+              </button>
+
+              <button class="filter-button" type="button" data-type="house">
+                House
+              </button>
+
+              <button class="filter-button" type="button" data-type="villa">
+                Villa
+              </button>
+
+              <button class="filter-button" type="button" data-type="apartment">
+                Apartment
+              </button>
+            </div>
+          </div>
+
           <p class="property-count" id="property-count"></p>
 
           <div id="property-list" class="property-grid">
@@ -88,7 +115,7 @@
           </div>
 
           <p class="no-results" id="no-results" hidden>
-            No properties found. Try another search.
+            No properties found. Try another search or filter.
           </p>
         </div>
       </section>

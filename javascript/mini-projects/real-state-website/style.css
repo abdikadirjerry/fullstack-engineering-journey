@@ -31,6 +31,10 @@ input {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
   width: min(1120px, 90%);
   margin: 0 auto;
@@ -104,7 +108,6 @@ input {
   border: 1px solid #dfe6e1;
   border-radius: 6px;
   background-color: #ffffff;
-  cursor: pointer;
 }
 
 .menu-toggle span {
@@ -214,8 +217,54 @@ input {
   box-shadow: 0 0 0 3px rgba(54, 128, 91, 0.1);
 }
 
+/* ===== PROPERTY FILTERS ===== */
+
+.property-filters {
+  margin-top: 25px;
+}
+
+.filter-label {
+  margin-bottom: 10px;
+  color: #344139;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-button {
+  padding: 9px 16px;
+  border: 1px solid #dce4de;
+  border-radius: 6px;
+  color: #59665e;
+  background-color: #ffffff;
+  font-size: 13px;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.filter-button:hover {
+  border-color: #36805b;
+  color: #286847;
+}
+
+.filter-button.active {
+  border-color: #286847;
+  color: #ffffff;
+  background-color: #286847;
+}
+
+/* ===== PROPERTY COUNT ===== */
+
 .property-count {
-  margin-top: 18px;
+  margin-top: 22px;
   color: #69756d;
   font-size: 13px;
 }
@@ -404,6 +453,14 @@ input {
 
   .property-grid {
     grid-template-columns: 1fr;
+  }
+
+  .filter-buttons {
+    gap: 8px;
+  }
+
+  .filter-button {
+    padding: 8px 12px;
   }
 
   .site-footer .container {

@@ -7,9 +7,15 @@ const propertyCount = document.querySelector("#property-count");
 const searchInput = document.querySelector("#search-input");
 const noResults = document.querySelector("#no-results");
 
+const filterButtons = document.querySelectorAll(".filter-button");
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
 const navLinks = document.querySelectorAll(".main-nav a");
+
+// ===== APPLICATION STATE =====
+
+let selectedPropertyType = "all";
 
 // ===== PROPERTY DATA =====
 
@@ -139,27 +145,51 @@ function createPropertyCard(property) {
 function renderProperties(propertyData) {
   propertyList.innerHTML = propertyData.map(createPropertyCard).join("");
 
-  propertyCount.textContent = `${propertyData.length} ${propertyData.length === 1 ? "property" : "properties"} found`;
+  propertyCount.textContent = `${propertyData.length} ${
+    propertyData.length === 1 ? "property" : "properties"
+  } found`;
 
   noResults.hidden = propertyData.length !== 0;
 }
 
-// ===== SEARCH PROPERTIES =====
+// ===== FILTER PROPERTIES =====
 
-function searchProperties() {
+function filterProperties() {
   const searchTerm = searchInput.value.trim().toLowerCase();
 
   const filteredProperties = properties.filter((property) => {
-    const searchableText = `
+    const matchesSearch = `
       ${property.title}
       ${property.location}
       ${property.type}
-    `.toLowerCase();
+    `
+      .toLowerCase()
+      .includes(searchTerm);
 
-    return searchableText.includes(searchTerm);
+    const matchesType =
+      selectedPropertyType === "all" ||
+      property.type.toLowerCase() === selectedPropertyType;
+
+    return matchesSearch && matchesType;
   });
 
   renderProperties(filteredProperties);
+}
+
+// ===== HANDLE TYPE FILTER =====
+
+function handleTypeFilter(event) {
+  const clickedButton = event.currentTarget;
+
+  selectedPropertyType = clickedButton.dataset.type;
+
+  filterButtons.forEach((button) => {
+    button.classList.remove("active");
+  });
+
+  clickedButton.classList.add("active");
+
+  filterProperties();
 }
 
 // ===== MOBILE NAVIGATION =====
@@ -193,7 +223,11 @@ navLinks.forEach((link) => {
   link.addEventListener("click", closeMobileMenu);
 });
 
-searchInput.addEventListener("input", searchProperties);
+searchInput.addEventListener("input", filterProperties);
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", handleTypeFilter);
+});
 
 // ===== INITIALIZE APP =====
 
